@@ -99,15 +99,16 @@ img{display:block}
 
 /* BOOKS GRID */
 .books-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:16px}
-.book-card{display:flex;flex-direction:column;gap:8px;cursor:pointer}
-.book-card a{display:flex;flex-direction:column;gap:8px}
+.book-card{display:flex;flex-direction:column;gap:0;cursor:pointer;text-align:center}
+.book-card a{display:flex;flex-direction:column}
 .book-cover{width:100%;aspect-ratio:2/3;object-fit:cover;border-radius:4px;border:1px solid var(--border);transition:all .2s}
 .book-card:hover .book-cover{border-color:var(--gold-d);transform:translateY(-3px);box-shadow:0 8px 20px rgba(0,0,0,.5)}
-.book-title{font-size:12px;color:var(--text);font-weight:600;line-height:1.3;opacity:.85}
-.book-meta{font-size:11px;color:var(--dim)}
-.book-buy{display:inline-block;padding:4px 10px;background:var(--gold);color:#000;border-radius:3px;font-size:10px;font-weight:700;letter-spacing:.04em;transition:background .15s;width:fit-content}
+.book-card-body{display:flex;flex-direction:column;align-items:center;padding:8px 4px 0;flex:1}
+.book-title{font-size:12px;color:var(--text);font-weight:600;line-height:1.3;opacity:.85;min-height:2.6em;display:flex;align-items:center;justify-content:center}
+.book-meta{font-size:11px;color:var(--dim);min-height:1.4em;margin-top:2px;margin-bottom:8px}
+.book-buy{display:inline-block;padding:5px 14px;background:var(--gold);color:#000;border-radius:3px;font-size:10px;font-weight:700;letter-spacing:.04em;transition:background .15s}
 .book-buy:hover{background:var(--gold-l)}
-.book-ku{display:inline-block;padding:4px 10px;border:1px solid var(--blue);color:var(--blue);border-radius:3px;font-size:10px;font-weight:700;letter-spacing:.04em;transition:all .15s;width:fit-content}
+.book-ku{display:inline-block;padding:5px 14px;border:1px solid var(--blue);color:var(--blue);border-radius:3px;font-size:10px;font-weight:700;letter-spacing:.04em;transition:all .15s}
 .book-ku:hover{background:rgba(0,180,230,.1)}
 
 
@@ -469,10 +470,19 @@ function renderKuFavorites(items) {
 }
 
 function bookCard(it, isKu) {
-  const btnHtml = isKu
-    ? `<a href="${esc(it.amazonUrl)}" target="_blank" rel="noopener" class="book-ku">Read Free</a>`
-    : `<a href="${esc(it.amazonUrl)}" target="_blank" rel="noopener" class="book-buy">Buy Now</a>`;
-  return `<div class="book-card"><a href="${esc(it.amazonUrl)}" target="_blank" rel="noopener"><img src="${esc(it.coverUrl)}" class="book-cover" alt="${esc(it.title)}" onerror="this.style.display='none'"></a><div class="book-title">${esc(it.title)}</div>${it.amazonUrl?btnHtml:''}</div>`;
+  const btn = it.amazonUrl && !isKu
+    ? `<a href="${esc(it.amazonUrl)}" target="_blank" rel="noopener" class="book-buy">Buy Now</a>`
+    : '';
+  return `<div class="book-card">
+    <a href="${esc(it.amazonUrl||'#')}" target="_blank" rel="noopener">
+      <img src="${esc(it.coverUrl)}" class="book-cover" alt="${esc(it.title)}" onerror="this.style.display='none'">
+    </a>
+    <div class="book-card-body">
+      <div class="book-title">${esc(it.title)}</div>
+      <div class="book-meta"></div>
+      ${btn}
+    </div>
+  </div>`;
 }
 
 function renderTbr(tbrList, favoritesList) {
@@ -555,9 +565,11 @@ function renderCatalog(items) {
       <a href="${esc(it.amazonUrl||'#')}" target="_blank" rel="noopener">
         <img src="${esc(it.coverUrl)}" class="book-cover" alt="${esc(it.title)}" onerror="this.style.display='none'">
       </a>
-      <div class="book-title">${esc(it.title)}</div>
-      <div class="book-meta">${seriesMeta}</div>
-      ${btn}
+      <div class="book-card-body">
+        <div class="book-title">${esc(it.title)}</div>
+        <div class="book-meta">${seriesMeta}</div>
+        ${btn}
+      </div>
     </div>`;
   }).join('');
   grid.innerHTML = `<div class="books-grid">${booksHtml}</div>`;
