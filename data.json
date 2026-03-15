@@ -1,0 +1,34 @@
+{
+  "profile": {
+    "photoUrl": "",
+    "brandLogoUrl": "",
+    "faviconUrl": "",
+    "socialShareImageUrl": "",
+    "bio": "Raven DeNoir writes dangerous love stories for readers who crave obsession, betrayal, and power that bites. She builds heat and havoc across BWWM dark romance."
+  },
+  "socials": {
+    "newsletter": "",
+    "amazon": "",
+    "patreon": "",
+    "tiktok": "",
+    "instagram": "",
+    "facebook": "",
+    "discord": "",
+    "goodreads": ""
+  },
+  "comingSoon": [],
+  "events": [],
+  "topSellers": [],
+  "kuFavorites": [],
+  "tbrList": [],
+  "leadMagnet": {
+    "enabled": false,
+    "headline": "Get a Free Exclusive Prequel",
+    "subtext": "Join the mailing list and get a free copy delivered straight to your inbox.",
+    "buttonText": "Download for Free",
+    "buttonUrl": "",
+    "coverUrl": ""
+  },
+  "reviews": [],
+  "catalog": []
+}
