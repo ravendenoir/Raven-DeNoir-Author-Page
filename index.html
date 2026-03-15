@@ -230,8 +230,12 @@ async function init() {
   renderSocials(data.socials || {});
   renderComingSoon(data.comingSoon || []);
   renderEvents(data.events || []);
-  renderTopSellers(data.topSellers || []);
-  renderKuFavorites(data.kuFavorites || []);
+  // Derive top sellers and KU faves from catalog checkboxes
+  const catalog = data.catalog || [];
+  const topSellers = data.topSellers?.length ? data.topSellers : catalog.filter(b=>b.isTopSeller).map(b=>({id:b.id,title:b.title,amazonUrl:b.amazonUrl,coverUrl:b.coverUrl}));
+  const kuFaves = data.kuFavorites?.length ? data.kuFavorites : catalog.filter(b=>b.isKuFave).map(b=>({id:b.id,title:b.title,amazonUrl:b.amazonUrl,coverUrl:b.coverUrl}));
+  renderTopSellers(topSellers);
+  renderKuFavorites(kuFaves);
   renderTbr(data.tbrList || []);
   renderLeadMagnet(data.leadMagnet || {});
   renderReviews(data.reviews || []);
