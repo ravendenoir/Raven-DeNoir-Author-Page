@@ -103,6 +103,25 @@ img{display:block}
 .book-ku{display:inline-block;padding:4px 10px;border:1px solid var(--blue);color:var(--blue);border-radius:3px;font-size:10px;font-weight:700;letter-spacing:.04em;transition:all .15s;width:fit-content}
 .book-ku:hover{background:rgba(0,180,230,.1)}
 
+
+/* TBR SPLIT */
+.tbr-split{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
+.tbr-col-title{font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:20px;padding-bottom:10px;border-bottom:1px solid var(--border)}
+.tbr-featured{display:flex;flex-direction:column;align-items:center;text-align:center;gap:12px}
+.tbr-featured-cover{width:200px;height:300px;object-fit:cover;border-radius:6px;border:1px solid var(--border);transition:all .2s}
+.tbr-featured-cover:hover{transform:translateY(-4px);box-shadow:0 12px 30px rgba(0,0,0,.6)}
+.tbr-featured-title{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:600;color:var(--text);letter-spacing:.05em}
+.tbr-featured-author{font-size:13px;color:var(--dim)}
+.tbr-check-btn{display:inline-block;padding:10px 28px;background:var(--bg3);border:1px solid var(--border2);color:var(--text);border-radius:4px;font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;transition:all .15s}
+.tbr-check-btn:hover{border-color:var(--gold);color:var(--gold)}
+.tbr-new-grid{display:flex;flex-direction:column;gap:24px}
+.tbr-new-card{display:flex;flex-direction:column;align-items:center;text-align:center;gap:10px}
+.tbr-new-cover{width:160px;height:240px;object-fit:cover;border-radius:6px;border:1px solid var(--border);transition:all .2s}
+.tbr-new-cover:hover{transform:translateY(-4px);box-shadow:0 12px 30px rgba(0,0,0,.6)}
+.tbr-new-title{font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:600;color:var(--text);letter-spacing:.04em}
+.tbr-new-author{font-size:12px;color:var(--dim)}
+@media(max-width:640px){.tbr-split{grid-template-columns:1fr}}
+
 /* TBR */
 .tbr-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:20px}
 .tbr-card a{display:flex;flex-direction:column;gap:8px}
@@ -204,9 +223,18 @@ img{display:block}
 <div class="divider" id="ku"></div>
 
 <section class="section" id="tbr">
-  <div class="section-title">Raven's TBR List</div>
+  <div class="section-title">Raven DeNoir's TBR List</div>
   <div class="section-bar"></div>
-  <div class="tbr-grid" id="tbr-grid"></div>
+  <div class="tbr-split">
+    <div>
+      <div class="tbr-col-title">Raven DeNoir's All-Time Favorite</div>
+      <div id="tbr-fav"></div>
+    </div>
+    <div>
+      <div class="tbr-col-title">New to Raven DeNoir's TBR</div>
+      <div class="tbr-new-grid" id="tbr-new"></div>
+    </div>
+  </div>
 </section>
 
 <div class="divider"></div>
@@ -343,7 +371,7 @@ async function init() {
   const kuFaves = data.kuFavorites?.length ? data.kuFavorites : catalog.filter(b=>b.isKuFave).map(b=>({id:b.id,title:b.title,amazonUrl:b.amazonUrl,coverUrl:b.coverUrl}));
   renderTopSellers(topSellers);
   renderKuFavorites(kuFaves);
-  renderTbr(data.tbrList || []);
+  renderTbr(data.tbrList || [], data.favoritesList || []);
   renderLeadMagnet(data.leadMagnet || {});
   renderReviews(data.reviews || []);
   renderCatalog(data.catalog || []);
@@ -432,10 +460,40 @@ function bookCard(it, isKu) {
   return `<div class="book-card"><a href="${esc(it.amazonUrl)}" target="_blank" rel="noopener"><img src="${esc(it.coverUrl)}" class="book-cover" alt="${esc(it.title)}" onerror="this.style.display='none'"></a><div class="book-title">${esc(it.title)}</div>${it.amazonUrl?btnHtml:''}</div>`;
 }
 
-function renderTbr(items) {
-  const grid = document.getElementById('tbr-grid');
-  if (!grid || !items.length) { if(grid) grid.closest('section').style.display='none'; return; }
-  grid.innerHTML = items.map(it => `<div class="tbr-card"><a href="${esc(it.amazonUrl)}" target="_blank" rel="noopener"><img src="${esc(it.coverUrl)}" class="tbr-cover" alt="${esc(it.title)}" onerror="this.style.display='none'"><div class="tbr-title">${esc(it.title)}</div><div class="tbr-author">${esc(it.author)}</div></a></div>`).join('');
+function renderTbr(tbrList, favoritesList) {
+  const favEl = document.getElementById('tbr-fav');
+  const newEl = document.getElementById('tbr-new');
+  const sec = document.getElementById('tbr');
+  const fav = favoritesList || [];
+  const newBooks = tbrList || [];
+  if (!fav.length && !newBooks.length) { if(sec) sec.style.display='none'; return; }
+
+  if (favEl) {
+    if (fav.length) {
+      const it = fav[0];
+      favEl.innerHTML = `<div class="tbr-featured">
+        <a href="${esc(it.amazonUrl||'#')}" target="_blank" rel="noopener">
+          <img src="${esc(it.coverUrl)}" class="tbr-featured-cover" alt="${esc(it.title)}" onerror="this.style.display='none'">
+        </a>
+        <div class="tbr-featured-title">${esc(it.title)}</div>
+        <div class="tbr-featured-author">by ${esc(it.author)}</div>
+        ${it.amazonUrl?`<a href="${esc(it.amazonUrl)}" target="_blank" rel="noopener" class="tbr-check-btn">Check It Out</a>`:''}
+      </div>`;
+    } else { favEl.innerHTML = ''; }
+  }
+
+  if (newEl) {
+    if (newBooks.length) {
+      newEl.innerHTML = newBooks.map(it => `<div class="tbr-new-card">
+        <a href="${esc(it.amazonUrl||'#')}" target="_blank" rel="noopener">
+          <img src="${esc(it.coverUrl)}" class="tbr-new-cover" alt="${esc(it.title)}" onerror="this.style.display='none'">
+        </a>
+        <div class="tbr-new-title">${esc(it.title)}</div>
+        <div class="tbr-new-author">by ${esc(it.author)}</div>
+        ${it.amazonUrl?`<a href="${esc(it.amazonUrl)}" target="_blank" rel="noopener" class="tbr-check-btn">Check It Out</a>`:''}
+      </div>`).join('');
+    } else { newEl.innerHTML = ''; }
+  }
 }
 
 function renderLeadMagnet(lm) {
