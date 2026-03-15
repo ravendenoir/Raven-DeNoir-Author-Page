@@ -16,6 +16,13 @@ body{background:var(--bg);color:var(--text);font-family:'Montserrat',sans-serif;
 a{color:inherit;text-decoration:none}
 img{display:block}
 
+
+/* SOCIAL BAR */
+.social-bar{background:var(--bg2);border-bottom:1px solid var(--border);padding:20px 24px}
+.social-bar-inner{max-width:1100px;margin:0 auto;display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.social-bar-btn{display:inline-flex;align-items:center;gap:8px;padding:10px 20px;border:1px solid var(--border2);border-radius:4px;color:var(--text);font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;transition:all .15s;text-decoration:none;background:transparent}
+.social-bar-btn:hover{border-color:var(--gold);color:var(--gold);background:rgba(201,165,53,.05)}
+
 /* NAV */
 .nav{background:var(--bg2);border-bottom:1px solid var(--border);padding:0 24px;display:flex;align-items:center;gap:0;position:sticky;top:0;z-index:50;height:52px;overflow-x:auto}
 .nav-brand{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:600;color:var(--gold);white-space:nowrap;margin-right:24px}
@@ -203,6 +210,8 @@ img{display:block}
 <div class="divider"></div>
 
 <div id="carousel-section"></div>
+
+<div id="social-bar-section"></div>
 
 <div id="events-section"></div>
 
@@ -394,14 +403,17 @@ function renderProfile(p) {
 function renderSocials(s) {
   const nav = document.getElementById('nav-socials');
   const footer = document.getElementById('footer-links');
-  const navHtml = [], footHtml = [];
+  const bar = document.getElementById('social-bar-section');
+  const navHtml = [], footHtml = [], barHtml = [];
   Object.keys(SOCIAL_ICONS).forEach(k => {
     if (!s[k]) return;
     navHtml.push(`<a class="nav-social" href="${esc(s[k])}" target="_blank" rel="noopener" title="${SOCIAL_LABELS[k]}">${SOCIAL_ICONS[k]}</a>`);
     footHtml.push(`<a class="footer-link" href="${esc(s[k])}" target="_blank" rel="noopener">${SOCIAL_LABELS[k]}</a>`);
+    barHtml.push(`<a class="social-bar-btn" href="${esc(s[k])}" target="_blank" rel="noopener">${SOCIAL_ICONS[k]} ${SOCIAL_LABELS[k]}</a>`);
   });
   if (nav) nav.innerHTML = navHtml.join('');
   if (footer) footer.innerHTML = footHtml.join('');
+  if (bar && barHtml.length) bar.innerHTML = `<div class="social-bar"><div class="social-bar-inner">${barHtml.join('')}</div></div>`;
 }
 
 function renderComingSoon(items) {
