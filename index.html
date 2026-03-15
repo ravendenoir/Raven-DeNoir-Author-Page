@@ -40,7 +40,7 @@ img{display:block}
 .hero-info{flex:1}
 .hero-name{font-family:'Cormorant Garamond',serif;font-size:42px;font-weight:600;color:var(--gold);line-height:1.1;margin-bottom:4px}
 .hero-tagline{font-size:13px;letter-spacing:.15em;text-transform:uppercase;color:var(--dim);margin-bottom:14px}
-.hero-bio{font-size:14px;color:var(--text);line-height:1.8;max-width:600px;opacity:.85}
+.hero-bio{font-size:14px;color:var(--text);line-height:1.8;max-width:600px;opacity:.85}.hero-bio p{margin-bottom:14px}.hero-bio p:last-child{margin-bottom:0}
 .hero-logo{max-height:40px;max-width:200px;margin-top:16px;opacity:.8}
 @media(max-width:640px){.hero{flex-direction:column;align-items:center;text-align:center}.hero-name{font-size:32px}}
 
@@ -203,7 +203,7 @@ img{display:block}
       <div class="hero-name" id="hero-name">Raven DeNoir</div>
       <div class="hero-tagline">Love Stories With Body Counts</div>
       <div class="hero-bio" id="hero-bio"></div>
-      <img id="hero-logo" style="display:none" class="hero-logo">
+
     </div>
   </div>
 </section>
@@ -392,15 +392,13 @@ async function init() {
 
 function renderProfile(p) {
   const bio = document.getElementById('hero-bio');
-  if (bio && p.bio) bio.textContent = p.bio;
+  if (bio && p.bio) bio.innerHTML = p.bio.split(/\n\n+/).map(para => `<p>${para.replace(/\n/g,' ').trim()}</p>`).join('');
   const photoWrap = document.getElementById('hero-photo-wrap');
   if (photoWrap && p.photoUrl) {
     photoWrap.outerHTML = `<img src="${esc(p.photoUrl)}" class="hero-photo" alt="Raven DeNoir" onerror="this.style.display='none'">`;
   } else if (photoWrap && !p.photoUrl) {
     // keep placeholder
   }
-  const logo = document.getElementById('hero-logo');
-  if (logo && p.brandLogoUrl) { logo.src = p.brandLogoUrl; logo.style.display = 'block'; }
 }
 
 function renderSocials(s) {
