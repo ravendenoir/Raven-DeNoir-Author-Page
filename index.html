@@ -72,7 +72,7 @@ img{display:block}
 .carousel-info{flex:1}
 .carousel-label{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);opacity:.7;margin-bottom:8px}
 .carousel-series{font-family:'Cormorant Garamond',serif;font-size:42px;font-weight:600;color:var(--text);line-height:1.1;margin-bottom:16px}
-.carousel-books{display:flex;flex-direction:column;gap:6px;margin-bottom:20px;max-height:160px;overflow-y:auto}
+.carousel-books{display:grid;grid-template-rows:repeat(5,auto);grid-auto-flow:column;grid-auto-columns:minmax(160px,1fr);gap:6px 24px;margin-bottom:20px}
 .carousel-book{display:flex;align-items:center;gap:10px;font-size:13px;color:rgba(232,224,208,.7);transition:color .15s;text-decoration:none}
 .carousel-book:hover{color:var(--gold)}
 .carousel-book-num{font-size:11px;color:var(--gold-d);font-weight:700;width:24px;flex-shrink:0}
