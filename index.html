@@ -489,7 +489,7 @@ function renderKuFavorites(items) {
 }
 
 function bookCard(it, isKu) {
-  const btn = it.amazonUrl && !isKu
+  const btn = it.amazonUrl
     ? `<a href="${esc(it.amazonUrl)}" target="_blank" rel="noopener" class="book-buy">Buy Now</a>`
     : '';
   return `<div class="book-card">
