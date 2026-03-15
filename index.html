@@ -339,7 +339,25 @@ function renderLeadMagnet(lm) {
 function renderReviews(items) {
   const grid = document.getElementById('reviews-grid');
   if (!grid || !items.length) { if(grid) grid.closest('section').style.display='none'; return; }
-  grid.innerHTML = items.map(it => `<div class="review-card">${it.imageUrl?`<img src="${esc(it.imageUrl)}" class="review-img" alt="Review" onerror="this.style.display='none'">`:''}<div class="review-stars">${'★'.repeat(it.rating||5)}</div>${it.text&&!it.imageUrl?`<div class="review-text">"${esc(it.text)}"</div>`:''}<div class="review-meta"><span class="review-name">${esc(it.reviewer)}</span><span class="review-source">${esc(it.source)}</span></div></div>`).join('');
+  grid.innerHTML = items.map(it => {
+    const hasCover = it.bookCoverUrl;
+    const hasScreenshot = it.imageUrl;
+    return `<div class="review-card">
+      <div style="display:flex;gap:12px;align-items:flex-start">
+        ${hasCover?`<img src="${esc(it.bookCoverUrl)}" style="width:60px;min-width:60px;height:90px;object-fit:cover;border-radius:4px;border:1px solid var(--border)" onerror="this.style.display='none'">`:''}
+        <div style="flex:1;min-width:0">
+          ${hasScreenshot?`<img src="${esc(it.imageUrl)}" class="review-img" alt="Review screenshot" onerror="this.style.display='none'">`:
+            it.text?`<div class="review-text">"${esc(it.text)}"</div>`:''}
+          <div class="review-stars" style="margin-top:8px">${'★'.repeat(it.rating||5)}</div>
+          <div class="review-meta">
+            <span class="review-name">${esc(it.reviewer)}</span>
+            <span class="review-source">${esc(it.source)}</span>
+          </div>
+          ${it.bookTitle?`<div style="font-size:11px;color:var(--dim);margin-top:4px;font-style:italic">${esc(it.bookTitle)}</div>`:''}
+        </div>
+      </div>
+    </div>`;
+  }).join('');
 }
 
 function renderCatalog(items) {
