@@ -33,6 +33,12 @@ img{display:block}
 .nav-social{display:flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:50%;background:var(--bg3);border:1px solid var(--border);font-size:14px;transition:all .15s;color:var(--text);text-decoration:none}
 .nav-social:hover{border-color:var(--gold);background:rgba(201,165,53,.1)}
 
+
+/* CTA BUTTONS */
+.hero-cta-wrap{display:flex;flex-direction:column;gap:10px;margin-top:20px}
+.hero-cta-btn{display:block;width:100%;padding:11px 20px;border:1px solid var(--gold-d);color:var(--gold);border-radius:4px;font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;text-align:center;transition:all .2s;background:transparent}
+.hero-cta-btn:hover{background:var(--gold);color:#000;border-color:var(--gold)}
+
 /* HERO */
 .hero{background:linear-gradient(180deg,var(--bg2) 0%,var(--bg) 100%);padding:48px 24px 40px;max-width:1100px;margin:0 auto;display:flex;gap:40px;align-items:flex-start}
 .hero-photo{width:260px;min-width:260px;height:390px;border-radius:8px;object-fit:cover;border:3px solid var(--gold);flex-shrink:0;box-shadow:0 20px 50px rgba(0,0,0,.7)}
@@ -372,7 +378,7 @@ function renderCarousel(catalog) {
 async function init() {
   const data = await loadData();
   if (!data) return;
-  renderProfile(data.profile || {});
+  renderProfile(data.profile || {}, data.ctaButtons || []);
   renderSocials(data.socials || {});
   renderComingSoon(data.comingSoon || []);
   renderEvents(data.events || []);
@@ -390,14 +396,20 @@ async function init() {
   updateMeta(data.profile || {});
 }
 
-function renderProfile(p) {
+function renderProfile(p, ctaButtons) {
   const bio = document.getElementById('hero-bio');
   if (bio && p.bio) bio.innerHTML = p.bio.split(/\n\n+/).map(para => `<p>${para.replace(/\n/g,' ').trim()}</p>`).join('');
   const photoWrap = document.getElementById('hero-photo-wrap');
   if (photoWrap && p.photoUrl) {
-    photoWrap.outerHTML = `<img src="${esc(p.photoUrl)}" class="hero-photo" alt="Raven DeNoir" onerror="this.style.display='none'">`;
-  } else if (photoWrap && !p.photoUrl) {
-    // keep placeholder
+    photoWrap.outerHTML = `<div id="hero-photo-col"><img src="${esc(p.photoUrl)}" class="hero-photo" alt="Raven DeNoir" onerror="this.style.display='none'"><div id="hero-cta-wrap" class="hero-cta-wrap"></div></div>`;
+  }
+  // Render CTA buttons
+  const ctaWrap = document.getElementById('hero-cta-wrap');
+  if (ctaWrap && ctaButtons && ctaButtons.length) {
+    const btns = ctaButtons.filter(b => b.label && b.url);
+    if (btns.length) {
+      ctaWrap.innerHTML = btns.map(b => `<a href="${esc(b.url)}" target="_blank" rel="noopener" class="hero-cta-btn">${esc(b.label)}</a>`).join('');
+    }
   }
 }
 
