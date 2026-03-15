@@ -69,7 +69,7 @@ img{display:block}
 .carousel-content{position:relative;z-index:2;display:flex;gap:40px;align-items:center;max-width:1100px;margin:0 auto;padding:40px 24px;width:100%;justify-content:center}
 .carousel-cover{width:180px;min-width:180px;height:270px;object-fit:cover;border-radius:6px;border:2px solid rgba(201,165,53,.4);box-shadow:0 20px 60px rgba(0,0,0,.8);flex-shrink:0}
 .carousel-cover-ph{width:180px;min-width:180px;height:270px;background:var(--bg3);border-radius:6px;border:2px solid var(--border);flex-shrink:0}
-.carousel-info{flex:1}
+.carousel-info{flex:1;max-width:520px}
 .carousel-label{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);opacity:.7;margin-bottom:8px}
 .carousel-series{font-family:'Cormorant Garamond',serif;font-size:42px;font-weight:600;color:var(--text);line-height:1.1;margin-bottom:16px}
 .carousel-books{display:grid;grid-template-rows:repeat(5,auto);grid-auto-flow:column;grid-auto-columns:minmax(160px,1fr);gap:6px 24px;margin-bottom:20px}
@@ -146,7 +146,7 @@ img{display:block}
 
 /* REVIEWS */
 .reviews-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px}
-.rv-carousel{position:relative;max-width:860px;margin:0}
+.rv-carousel{position:relative;max-width:900px;margin:0 auto}
 .rv-slide{display:none;flex-direction:column;gap:16px;align-items:flex-start}
 .rv-slide.active{display:flex}
 .rv-screenshot{width:100%;max-width:800px;border-radius:8px;border:1px solid var(--border);object-fit:contain}
@@ -211,7 +211,7 @@ img{display:block}
 
 <div id="cs-section"></div>
 
-<section class="section">
+<section class="section" style="max-width:1100px;margin:0 auto;padding:48px 24px 40px">
   <div style="display:flex;gap:40px;align-items:flex-start" id="hero-section">
     <div class="hero-photo-ph" id="hero-photo-wrap">🪶</div>
     <div class="hero-info">
@@ -267,7 +267,7 @@ img{display:block}
 
 <div id="lm-section"></div>
 
-<section class="section" id="reviews">
+<section class="section" id="reviews" style="max-width:1100px;margin:0 auto">
   <div class="section-title">Reader Reviews</div>
   <div class="section-bar"></div>
   <div id="reviews-carousel"></div>
