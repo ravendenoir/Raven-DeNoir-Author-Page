@@ -47,6 +47,32 @@ img{display:block}
 /* DIVIDER */
 .divider{height:1px;background:linear-gradient(90deg,transparent,var(--border),transparent);margin:0}
 
+
+/* CAROUSEL */
+.carousel-wrap{background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:0;overflow:hidden;position:relative}
+.carousel-track{display:flex;transition:transform .5s cubic-bezier(.4,0,.2,1)}
+.carousel-slide{min-width:100%;display:flex;align-items:stretch;min-height:380px}
+.carousel-bg{position:absolute;inset:0;background-size:cover;background-position:center;filter:blur(18px) brightness(.18);transform:scale(1.1);transition:background-image .5s}
+.carousel-content{position:relative;z-index:2;display:flex;gap:40px;align-items:center;max-width:1100px;margin:0 auto;padding:40px 24px;width:100%}
+.carousel-cover{width:180px;min-width:180px;height:270px;object-fit:cover;border-radius:6px;border:2px solid rgba(201,165,53,.4);box-shadow:0 20px 60px rgba(0,0,0,.8);flex-shrink:0}
+.carousel-cover-ph{width:180px;min-width:180px;height:270px;background:var(--bg3);border-radius:6px;border:2px solid var(--border);flex-shrink:0}
+.carousel-info{flex:1}
+.carousel-label{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);opacity:.7;margin-bottom:8px}
+.carousel-series{font-family:'Cormorant Garamond',serif;font-size:42px;font-weight:600;color:var(--text);line-height:1.1;margin-bottom:16px}
+.carousel-books{display:flex;flex-direction:column;gap:6px;margin-bottom:20px;max-height:160px;overflow-y:auto}
+.carousel-book{display:flex;align-items:center;gap:10px;font-size:13px;color:rgba(232,224,208,.7);transition:color .15s;text-decoration:none}
+.carousel-book:hover{color:var(--gold)}
+.carousel-book-num{font-size:11px;color:var(--gold-d);font-weight:700;width:24px;flex-shrink:0}
+.carousel-btn{display:inline-block;padding:10px 24px;border:1px solid var(--gold);color:var(--gold);border-radius:4px;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;transition:all .15s;margin-top:4px}
+.carousel-btn:hover{background:var(--gold);color:#000}
+.carousel-dots{position:absolute;bottom:14px;left:50%;transform:translateX(-50%);display:flex;gap:8px;z-index:3}
+.carousel-dot{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.2);cursor:pointer;transition:all .2s;border:none;padding:0}
+.carousel-dot.active{background:var(--gold);transform:scale(1.2)}
+.carousel-arr{position:absolute;top:50%;transform:translateY(-50%);z-index:3;background:rgba(0,0,0,.5);border:1px solid var(--border);color:var(--text);width:36px;height:36px;border-radius:50%;cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;transition:all .15s}
+.carousel-arr:hover{border-color:var(--gold);color:var(--gold)}
+.carousel-arr.prev{left:16px}.carousel-arr.next{right:16px}
+@media(max-width:640px){.carousel-content{flex-direction:column;align-items:center;text-align:center}.carousel-series{font-size:28px}.carousel-cover{width:130px;min-width:130px;height:195px}}
+
 /* COMING SOON */
 .cs-wrap{background:linear-gradient(135deg,var(--bg2),var(--bg3));border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:40px 24px}
 .cs-inner{max-width:1100px;margin:0 auto}
@@ -141,6 +167,7 @@ img{display:block}
   <div class="nav-socials" id="nav-socials"></div>
 </nav>
 
+<div id="carousel-section"></div>
 <div id="cs-section"></div>
 
 <section class="section">
@@ -223,6 +250,86 @@ async function loadData() {
   }
 }
 
+
+function renderCarousel(catalog) {
+  const sec = document.getElementById('carousel-section');
+  if (!sec || !catalog.length) return;
+  
+  // Group by series, exclude standalones, need 2+ books
+  const groups = {};
+  catalog.forEach(b => {
+    if (!b.series) return;
+    if (!groups[b.series]) groups[b.series] = [];
+    groups[b.series].push(b);
+  });
+  const series = Object.entries(groups)
+    .filter(([,books]) => books.length >= 1)
+    .sort(([,a],[,b]) => b.length - a.length);
+  
+  if (!series.length) return;
+
+  const slides = series.map(([name, books]) => {
+    const sorted = [...books].sort((a,b) => (a.seriesOrder||99) - (b.seriesOrder||99));
+    const cover = sorted[0]?.coverUrl || '';
+    const booksHtml = sorted.map(b => 
+      `<a class="carousel-book" href="${esc(b.amazonUrl||'#')}" target="_blank" rel="noopener">
+        <span class="carousel-book-num">#${b.seriesOrder||'?'}</span>
+        <span>${esc(b.title)}</span>
+      </a>`
+    ).join('');
+    const amazonUrl = sorted[0]?.amazonUrl || '#';
+    return { name, cover, booksHtml, count: books.length, amazonUrl };
+  });
+
+  let cur = 0, timer;
+
+  function render() {
+    const s = slides[cur];
+    const bgEl = document.querySelector('.carousel-bg');
+    if (bgEl) bgEl.style.backgroundImage = s.cover ? `url(${esc(s.cover)})` : 'none';
+    const track = document.querySelector('.carousel-track');
+    if (track) track.style.transform = `translateX(-${cur * 100}%)`;
+    document.querySelectorAll('.carousel-dot').forEach((d,i) => d.classList.toggle('active', i === cur));
+  }
+
+  function go(n) { cur = (n + slides.length) % slides.length; render(); resetTimer(); }
+  function resetTimer() { clearInterval(timer); timer = setInterval(() => go(cur + 1), 5000); }
+
+  const slidesHtml = slides.map((s,i) => `
+    <div class="carousel-slide">
+      <div class="carousel-content">
+        ${s.cover 
+          ? `<img src="${esc(s.cover)}" class="carousel-cover" alt="${esc(s.name)}" onerror="this.style.display='none'">`
+          : '<div class="carousel-cover-ph"></div>'}
+        <div class="carousel-info">
+          <div class="carousel-label">Featured Series</div>
+          <div class="carousel-series">${esc(s.name)}</div>
+          <div style="font-size:12px;color:var(--dim);margin-bottom:12px">${s.count} Book${s.count!==1?'s':''}</div>
+          <div class="carousel-books">${s.booksHtml}</div>
+          <a href="${esc(s.amazonUrl)}" target="_blank" rel="noopener" class="carousel-btn">Explore Series</a>
+        </div>
+      </div>
+    </div>`).join('');
+
+  const dotsHtml = slides.map((_,i) => `<button class="carousel-dot${i===0?' active':''}" onclick="carouselGo(${i})"></button>`).join('');
+
+  sec.innerHTML = `<div class="carousel-wrap">
+    <div class="carousel-bg" style="background-image:${slides[0].cover?`url(${esc(slides[0].cover)})`:'none'}"></div>
+    <div class="carousel-track">${slidesHtml}</div>
+    <button class="carousel-arr prev" onclick="carouselGo(${-1})">‹</button>
+    <button class="carousel-arr next" onclick="carouselGo(${1})">›</button>
+    <div class="carousel-dots">${dotsHtml}</div>
+  </div>`;
+
+  window.carouselGo = (n) => go(typeof n === 'number' && Math.abs(n) <= 1 && slides.length > 0 ? (n === -1 || n === 1 ? cur + n : n) : n);
+  // Fix: prev/next pass relative, dots pass absolute
+  window.carouselGo = (n) => { 
+    if(n === -1 || n === 1) go(cur + n); 
+    else go(n); 
+  };
+  resetTimer();
+}
+
 async function init() {
   const data = await loadData();
   if (!data) return;
@@ -240,6 +347,7 @@ async function init() {
   renderLeadMagnet(data.leadMagnet || {});
   renderReviews(data.reviews || []);
   renderCatalog(data.catalog || []);
+  renderCarousel(data.catalog || []);
   updateMeta(data.profile || {});
 }
 
@@ -363,21 +471,25 @@ function renderReviews(items) {
 function renderCatalog(items) {
   const grid = document.getElementById('catalog-grid');
   if (!grid || !items.length) { if(grid) grid.closest('section').style.display='none'; return; }
-  // Group by series
-  const groups = {};
-  items.forEach(b => {
-    const key = b.series || '__standalone__';
-    if (!groups[key]) groups[key] = [];
-    groups[key].push(b);
-  });
-  // Sort groups: series alphabetically, standalones last
-  const keys = Object.keys(groups).sort((a,b)=>a==='__standalone__'?1:b==='__standalone__'?-1:a.localeCompare(b));
-  grid.innerHTML = keys.map(k => {
-    const books = groups[k];
-    const label = k === '__standalone__' ? 'Standalone' : k;
-    const booksHtml = books.map(it => `<div class="book-card"><a href="${esc(it.amazonUrl||'#')}" target="_blank" rel="noopener"><img src="${esc(it.coverUrl)}" class="book-cover" alt="${esc(it.title)}" onerror="this.style.display='none'"></a><div class="book-title">${esc(it.title)}</div><div class="book-meta">${it.publishDate?fmtDateShort(it.publishDate):''}</div>${it.amazonUrl?(it.isKu?`<a href="${esc(it.amazonUrl)}" target="_blank" rel="noopener" class="book-ku">KU</a>`:`<a href="${esc(it.amazonUrl)}" target="_blank" rel="noopener" class="book-buy">Buy</a>`):''}></div>`).join('');
-    return `<div class="catalog-series-group"><div class="series-label">${esc(label)}</div><div class="books-grid">${booksHtml}</div></div>`;
+  // Sort by release date descending — newest first
+  const sorted = [...items].sort((a,b) => (b.publishDate||'0000').localeCompare(a.publishDate||'0000'));
+  const booksHtml = sorted.map(it => {
+    const seriesMeta = it.series ? `${esc(it.series)}${it.seriesOrder?' #'+it.seriesOrder:''}` : 'Standalone';
+    const btn = it.amazonUrl
+      ? (it.isKuFave
+          ? `<a href="${esc(it.amazonUrl)}" target="_blank" rel="noopener" class="book-ku">Read Free</a>`
+          : `<a href="${esc(it.amazonUrl)}" target="_blank" rel="noopener" class="book-buy">Buy Now</a>`)
+      : '';
+    return `<div class="book-card">
+      <a href="${esc(it.amazonUrl||'#')}" target="_blank" rel="noopener">
+        <img src="${esc(it.coverUrl)}" class="book-cover" alt="${esc(it.title)}" onerror="this.style.display='none'">
+      </a>
+      <div class="book-title">${esc(it.title)}</div>
+      <div class="book-meta">${seriesMeta}</div>
+      ${btn}
+    </div>`;
   }).join('');
+  grid.innerHTML = `<div class="books-grid">${booksHtml}</div>`;
 }
 
 function updateMeta(p) {
