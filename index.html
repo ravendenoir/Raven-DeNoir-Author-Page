@@ -146,10 +146,11 @@ img{display:block}
 
 /* REVIEWS */
 .reviews-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px}
-.review-card{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:16px;display:flex;flex-direction:row;gap:14px;align-items:flex-start}
-.review-cover{width:70px;min-width:70px;height:105px;object-fit:cover;border-radius:4px;border:1px solid var(--border);flex-shrink:0}
-.review-cover-ph{width:70px;min-width:70px;height:105px;background:var(--bg3);border-radius:4px;flex-shrink:0}
-.review-screenshot{flex:1;width:100%;border-radius:4px;object-fit:contain;max-height:300px}
+.reviews-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:24px}
+.review-item{display:flex;flex-direction:column;gap:12px}
+.review-screenshot{width:100%;border-radius:6px;border:1px solid var(--border);object-fit:contain}
+.review-buy-btn{display:inline-block;padding:8px 20px;background:var(--gold);color:#000;border-radius:4px;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;transition:background .15s;width:fit-content}
+.review-buy-btn:hover{background:var(--gold-l)}
 
 /* LEAD MAGNET */
 .lm-wrap{background:linear-gradient(135deg,rgba(201,165,53,.08),rgba(233,30,140,.05));border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:48px 24px;text-align:center}
@@ -536,16 +537,17 @@ function renderLeadMagnet(lm) {
 
 function renderReviews(items) {
   const grid = document.getElementById('reviews-grid');
-  if (!grid || !items.length) { if(grid) grid.closest('section').style.display='none'; return; }
-  const visible = items.filter(it => it.screenshotBase64 || it.screenshotUrl);
+  if (!grid) return;
+  const visible = (items||[]).filter(it => it.screenshotBase64 || it.screenshotUrl);
   if (!visible.length) { grid.closest('section').style.display='none'; return; }
   grid.innerHTML = visible.map(it => {
     const ss = it.screenshotBase64 || it.screenshotUrl || '';
-    return `<div class="review-card">
-      ${it.bookCoverUrl
-        ? `<img src="${esc(it.bookCoverUrl)}" class="review-cover" alt="${esc(it.bookTitle||'')}" onerror="this.style.display='none'">`
-        : '<div class="review-cover-ph"></div>'}
-      ${ss ? `<img src="${esc(ss)}" class="review-screenshot" alt="Review" onerror="this.style.display='none'">` : ''}
+    const btn = it.bookAmazonUrl
+      ? `<a href="${esc(it.bookAmazonUrl)}" target="_blank" rel="noopener" class="review-buy-btn">Buy Now</a>`
+      : '';
+    return `<div class="review-item">
+      ${ss ? `<img src="${esc(ss)}" class="review-screenshot" alt="Reader review" onerror="this.style.display='none'">` : ''}
+      ${btn}
     </div>`;
   }).join('');
 }
