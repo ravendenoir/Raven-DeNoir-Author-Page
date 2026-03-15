@@ -146,10 +146,10 @@ img{display:block}
 
 /* REVIEWS */
 .reviews-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px}
-.rv-carousel{position:relative;max-width:900px;margin:0 auto}
+.rv-carousel{position:relative;max-width:860px;margin:0}
 .rv-slide{display:none;gap:40px;align-items:center}
 .rv-slide.active{display:flex}
-.rv-screenshot{flex:1;max-width:600px;border-radius:8px;border:1px solid var(--border);object-fit:contain;max-height:480px;width:100%}
+.rv-screenshot{flex:1;max-width:680px;border-radius:8px;border:1px solid var(--border);object-fit:contain;max-height:600px;width:100%}
 .rv-side{display:flex;flex-direction:column;align-items:flex-start;gap:16px;min-width:140px}
 .rv-book-title{font-family:'Cormorant Garamond',serif;font-size:18px;color:var(--text);line-height:1.3}
 .review-buy-btn{display:inline-block;padding:10px 24px;background:var(--gold);color:#000;border-radius:4px;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;transition:background .15s}
@@ -563,7 +563,6 @@ function renderReviews(items) {
       return `<div class="rv-slide${i===0?' active':''}" data-idx="${i}">
         <img src="${esc(ss)}" class="rv-screenshot" alt="Reader review" onerror="this.style.display='none'">
         <div class="rv-side">
-          ${it.bookTitle ? `<div class="rv-book-title">${esc(it.bookTitle)}</div>` : ''}
           ${btn}
         </div>
       </div>`;
