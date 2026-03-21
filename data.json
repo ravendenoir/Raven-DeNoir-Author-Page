@@ -97,7 +97,15 @@
       "coverUrl": "https://images-na.ssl-images-amazon.com/images/P/B0GHLKK3SZ.01._SCLZZZZZZZ_.jpg"
     }
   ],
-  "favoritesList": [],
+  "favoritesList": [
+    {
+      "id": "mn0kdh4xginx",
+      "title": "Paved in Rage",
+      "author": "Sonja Grey",
+      "amazonUrl": "https://www.amazon.com/Paved-Rage-Romance-Melnikov-Bratva-ebook/dp/B0CL52XZPJ",
+      "coverUrl": "https://m.media-amazon.com/images/I/81uiD1pQKxL._SL1500_.jpg"
+    }
+  ],
   "tbrList": [
     {
       "id": "1764536401138",
@@ -112,13 +120,6 @@
       "author": "Talena Tillman",
       "amazonUrl": "https://www.amazon.com/Crown-Man-My-Word-Knight-ebook/dp/B0GQLM4XWT",
       "coverUrl": "https://m.media-amazon.com/images/I/71roqA9R-oL._SL1500_.jpg"
-    },
-    {
-      "id": "1764536295936",
-      "title": "Paved in Rage",
-      "author": "Sonja Grey",
-      "amazonUrl": "https://www.amazon.com/Paved-Rage-Romance-Melnikov-Bratva-ebook/dp/B0CL52XZPJ",
-      "coverUrl": "https://m.media-amazon.com/images/I/81uiD1pQKxL._SL1500_.jpg"
     }
   ],
   "leadMagnet": {
