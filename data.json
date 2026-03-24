@@ -59,12 +59,6 @@
   "events": [],
   "topSellers": [
     {
-      "id": "b-manual-1770230253746",
-      "title": "The Yacht",
-      "amazonUrl": "https://www.amazon.com/Yacht-Romance-High-Society-Secrets-Leverage-ebook/dp/B0GHDYP4PG",
-      "coverUrl": "https://images-na.ssl-images-amazon.com/images/P/B0GHDYP4PG.01._SCLZZZZZZZ_.jpg"
-    },
-    {
       "id": "b-6-1764535451710",
       "title": "Viktor's Elena",
       "amazonUrl": "https://www.amazon.com/Viktors-Elena-Romance-Forbidden-Vengeance-ebook/dp/B0FDY7V8H6",
@@ -90,12 +84,6 @@
     }
   ],
   "kuFavorites": [
-    {
-      "id": "b-manual-1769202732222",
-      "title": "Names We Inherit",
-      "amazonUrl": "https://www.amazon.com/Names-We-Inherit-Secrets-Obligation-ebook/dp/B0GHLKK3SZ",
-      "coverUrl": "https://images-na.ssl-images-amazon.com/images/P/B0GHLKK3SZ.01._SCLZZZZZZZ_.jpg"
-    },
     {
       "id": "b-6-1764535451710",
       "title": "Viktor's Elena",
@@ -348,7 +336,7 @@
       "amazonUrl": "https://www.amazon.com/Names-We-Inherit-Secrets-Obligation-ebook/dp/B0GHLKK3SZ",
       "coverUrl": "https://images-na.ssl-images-amazon.com/images/P/B0GHLKK3SZ.01._SCLZZZZZZZ_.jpg",
       "isTopSeller": false,
-      "isKuFave": true
+      "isKuFave": false
     },
     {
       "id": "b-manual-1770230260068",
@@ -391,7 +379,7 @@
       "publishDate": "2026-01-30",
       "amazonUrl": "https://www.amazon.com/Yacht-Romance-High-Society-Secrets-Leverage-ebook/dp/B0GHDYP4PG",
       "coverUrl": "https://images-na.ssl-images-amazon.com/images/P/B0GHDYP4PG.01._SCLZZZZZZZ_.jpg",
-      "isTopSeller": true,
+      "isTopSeller": false,
       "isKuFave": false
     },
     {
