@@ -680,6 +680,20 @@ body {
   body { display: none !important; }
 }
 
+
+/* PAGE COUNTER */
+#page-counter {
+  position: fixed;
+  bottom: 24px; left: 24px;
+  font-family: var(--font-ui);
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  letter-spacing: 0.1em;
+  z-index: 90;
+  pointer-events: none;
+}
+#page-counter span { color: var(--gold-dim); }
+
 </style>
 </head>
 <body>
@@ -2413,7 +2427,41 @@ document.addEventListener('visibilitychange', () => {
 });
 // ─────────────────────────────────────────────────────────────────────────────
 
+
+// PAGE COUNTER
+(function() {
+  const WORDS_PER_PAGE = 250;
+  const body = document.querySelector('#book-wrap');
+  const current = document.getElementById('pg-current');
+  const total = document.getElementById('pg-total');
+
+  function countWords(el) {
+    return (el ? el.innerText.trim().split(/\s+/).length : 0);
+  }
+
+  function init() {
+    const totalWords = countWords(body);
+    const totalPages = Math.max(1, Math.ceil(totalWords / WORDS_PER_PAGE));
+    total.textContent = totalPages;
+
+    window.addEventListener('scroll', function() {
+      const scrolled = window.scrollY;
+      const docH = document.documentElement.scrollHeight - window.innerHeight;
+      const pct = docH > 0 ? scrolled / docH : 0;
+      const pg = Math.min(totalPages, Math.max(1, Math.ceil(pct * totalPages)));
+      current.textContent = pg;
+    }, { passive: true });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();
+
 </script>
+<div id="page-counter">Page <span id="pg-current">1</span> of <span id="pg-total">—</span></div>
 <button id="scroll-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Back to top">↑</button>
 </body>
 </html>
