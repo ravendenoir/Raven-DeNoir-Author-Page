@@ -681,18 +681,25 @@ body {
 }
 
 
-/* PAGE COUNTER */
-#page-counter {
+
+/* VISITOR COUNTER */
+#visitor-counter {
   position: fixed;
-  bottom: 24px; left: 24px;
+  bottom: 24px; right: 76px;
   font-family: var(--font-ui);
-  font-size: 0.72rem;
+  font-size: 0.7rem;
   color: var(--text-muted);
-  letter-spacing: 0.1em;
+  letter-spacing: 0.08em;
   z-index: 90;
-  pointer-events: none;
+  display: flex;
+  align-items: center;
+  gap: 6px;
 }
-#page-counter span { color: var(--gold-dim); }
+#visitor-counter img {
+  height: 16px;
+  opacity: 0.6;
+  filter: grayscale(1) brightness(1.5);
+}
 
 </style>
 </head>
@@ -2428,40 +2435,10 @@ document.addEventListener('visibilitychange', () => {
 // ─────────────────────────────────────────────────────────────────────────────
 
 
-// PAGE COUNTER
-(function() {
-  const WORDS_PER_PAGE = 250;
-  const body = document.querySelector('#book-wrap');
-  const current = document.getElementById('pg-current');
-  const total = document.getElementById('pg-total');
-
-  function countWords(el) {
-    return (el ? el.innerText.trim().split(/\s+/).length : 0);
-  }
-
-  function init() {
-    const totalWords = countWords(body);
-    const totalPages = Math.max(1, Math.ceil(totalWords / WORDS_PER_PAGE));
-    total.textContent = totalPages;
-
-    window.addEventListener('scroll', function() {
-      const scrolled = window.scrollY;
-      const docH = document.documentElement.scrollHeight - window.innerHeight;
-      const pct = docH > 0 ? scrolled / docH : 0;
-      const pg = Math.min(totalPages, Math.max(1, Math.ceil(pct * totalPages)));
-      current.textContent = pg;
-    }, { passive: true });
-  }
-
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
-  } else {
-    init();
-  }
-})();
-
 </script>
-<div id="page-counter">Page <span id="pg-current">1</span> of <span id="pg-total">—</span></div>
+<div id="visitor-counter">
+  <img src="https://hits.sh/ravendenoir.com/king-takes-queen.svg?style=flat&color=gold&labelColor=111" alt="visitor counter">
+</div>
 <button id="scroll-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Back to top">↑</button>
 </body>
 </html>
