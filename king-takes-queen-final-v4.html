@@ -939,6 +939,15 @@ body {
   font-weight: 600;
 }
 
+
+.bp-session-count {
+  font-family: var(--font-ui);
+  font-size: 0.6rem;
+  color: #8a7a6a;
+  letter-spacing: 0.06em;
+}
+.bp-session-count strong { color: #5a4a3a; font-weight: 600; }
+
 </style>
 </head>
 <body>
@@ -1329,6 +1338,8 @@ function bpFlip(dir) {
   if (dir > 0) {
     bpPagesReadSession++;
     jbTrackPage();
+    const sd = document.getElementById('bp-session-display');
+    if (sd) sd.textContent = bpPagesReadSession;
   }
   bpRender(bpIdx + dir, dir);
   // Smooth scroll to keep reader in view
@@ -1385,18 +1396,12 @@ async function jbLoad() {
     const res = await fetch(JB_URL + "/latest", {
       headers: { "X-Master-Key": JB_KEY, "X-Access-Key": JB_ACCESS_KEY }
     });
-    if (!res.ok) {
-      const err = await res.text();
-      el.textContent = "err:" + res.status;
-      console.error("JSONBin load failed:", res.status, err);
-      return;
-    }
+    if (!res.ok) return;
     const data = await res.json();
     jbTotal = data.record.total || 0;
     el.textContent = jbTotal.toLocaleString();
   } catch(e) {
-    el.textContent = "err:" + e.message;
-    console.error("JSONBin fetch error:", e);
+    // silent fail
   }
 }
 
