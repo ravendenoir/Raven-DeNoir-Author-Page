@@ -1372,6 +1372,7 @@ bpRender(savedBP);
 
 // ── JSONBIN TOTAL PAGE COUNTER ───────────────────────────────────────────────
 const JB_KEY = "$2a$10$.dRUkPtfhgY/kupS0rwGHuiwkad8BkGmK3vxHHU8x.vYUkci.yp0q";
+const JB_ACCESS_KEY = "69ca8f3e856a682189e1aba5";
 const JB_BIN = "69ca8ed5856a682189e1a95e";
 const JB_URL = "https://api.jsonbin.io/v3/b/" + JB_BIN;
 let jbTotal = 0;
@@ -1382,7 +1383,7 @@ async function jbLoad() {
   const el = document.getElementById("total-pages");
   try {
     const res = await fetch(JB_URL + "/latest", {
-      headers: { "X-Master-Key": JB_KEY }
+      headers: { "X-Master-Key": JB_KEY, "X-Access-Key": JB_ACCESS_KEY }
     });
     if (!res.ok) {
       const err = await res.text();
