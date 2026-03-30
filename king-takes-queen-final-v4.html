@@ -1379,18 +1379,23 @@ let jbPending = 0;
 let jbSaving = false;
 
 async function jbLoad() {
+  const el = document.getElementById("total-pages");
   try {
     const res = await fetch(JB_URL + "/latest", {
-      headers: { 
-        "X-Master-Key": JB_KEY,
-        "X-Access-Key": JB_KEY
-      }
+      headers: { "X-Master-Key": JB_KEY }
     });
+    if (!res.ok) {
+      const err = await res.text();
+      el.textContent = "err:" + res.status;
+      console.error("JSONBin load failed:", res.status, err);
+      return;
+    }
     const data = await res.json();
     jbTotal = data.record.total || 0;
-    document.getElementById("total-pages").textContent = jbTotal.toLocaleString();
+    el.textContent = jbTotal.toLocaleString();
   } catch(e) {
-    document.getElementById("total-pages").textContent = "—";
+    el.textContent = "err:" + e.message;
+    console.error("JSONBin fetch error:", e);
   }
 }
 
