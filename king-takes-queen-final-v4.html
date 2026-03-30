@@ -1123,8 +1123,17 @@ function getToken() {
 }
 
 function checkAccess() {
-  gate.classList.add('hidden');
-  cwModal.classList.remove('hidden');
+  const token = getToken();
+  if (token === VALID_TOKEN) {
+    gate.classList.add('hidden');
+    cwModal.classList.remove('hidden');
+    bookWrap.style.display = 'none'; // hide until CW accepted
+  } else {
+    gate.classList.remove('hidden');
+    bookWrap.style.display = 'none';
+    topbar.style.display = 'none';
+    document.getElementById('reading-progress').style.display = 'none';
+  }
 }
 
 function enterBook() {
