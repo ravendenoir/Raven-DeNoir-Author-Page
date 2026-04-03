@@ -59,12 +59,6 @@
   "events": [],
   "topSellers": [
     {
-      "id": "b-6-1764535451710",
-      "title": "Viktor's Elena",
-      "amazonUrl": "https://www.amazon.com/Viktors-Elena-Romance-Forbidden-Vengeance-ebook/dp/B0FDY7V8H6",
-      "coverUrl": "https://images-na.ssl-images-amazon.com/images/P/B0FDY7V8H6.01._SCLZZZZZZZ_.jpg"
-    },
-    {
       "id": "b-9-1764535451710",
       "title": "Ruined",
       "amazonUrl": "https://www.amazon.com/Ruined-BWWM-Romance-Friction-Falling-ebook/dp/B0FDXKST4Z",
@@ -84,12 +78,6 @@
     }
   ],
   "kuFavorites": [
-    {
-      "id": "b-6-1764535451710",
-      "title": "Viktor's Elena",
-      "amazonUrl": "https://www.amazon.com/Viktors-Elena-Romance-Forbidden-Vengeance-ebook/dp/B0FDY7V8H6",
-      "coverUrl": "https://images-na.ssl-images-amazon.com/images/P/B0FDY7V8H6.01._SCLZZZZZZZ_.jpg"
-    },
     {
       "id": "b-0-1764535451710",
       "title": "Dark Vows",
@@ -399,8 +387,8 @@
       "publishDate": "2025-12-22",
       "amazonUrl": "https://www.amazon.com/Viktors-Elena-Romance-Forbidden-Vengeance-ebook/dp/B0FDY7V8H6",
       "coverUrl": "https://images-na.ssl-images-amazon.com/images/P/B0FDY7V8H6.01._SCLZZZZZZZ_.jpg",
-      "isTopSeller": true,
-      "isKuFave": true
+      "isTopSeller": false,
+      "isKuFave": false
     },
     {
       "id": "b-manual-1769203165328",
