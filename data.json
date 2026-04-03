@@ -79,6 +79,24 @@
   ],
   "kuFavorites": [
     {
+      "id": "mn0jh6lnu603",
+      "title": "Seabrook's Broken Veil",
+      "amazonUrl": "https://www.amazon.com/Nijume-Seabrooks-Broken-Warlord-Romance-ebook/dp/B0GPPXRWVG/",
+      "coverUrl": "https://m.media-amazon.com/images/I/716KZhxJKgL._SL1500_.jpg"
+    },
+    {
+      "id": "b-manual-1769202658405",
+      "title": "The Apology Wite",
+      "amazonUrl": "https://www.amazon.com/Apology-Wife-Terms-Trust-Legacy-ebook/dp/B0GHPW7718",
+      "coverUrl": "https://images-na.ssl-images-amazon.com/images/P/B0GHPW7718.01._SCLZZZZZZZ_.jpg"
+    },
+    {
+      "id": "b-manual-1772668006973",
+      "title": "The Bet",
+      "amazonUrl": "https://www.amazon.com/Bet-Plus-Size-Heroine-Billionaire-Romance-ebook/dp/B0GPP4XCMD",
+      "coverUrl": "https://images-na.ssl-images-amazon.com/images/P/B0GPP4XCMD.01._SCLZZZZZZZ_.jpg"
+    },
+    {
       "id": "b-0-1764535451710",
       "title": "Dark Vows",
       "amazonUrl": "https://www.amazon.com/Dark-Vows-Romance-Kingpin-Vengeance-ebook/dp/B0F4NFKR7D",
@@ -278,7 +296,7 @@
       "amazonUrl": "https://www.amazon.com/Nijume-Seabrooks-Broken-Warlord-Romance-ebook/dp/B0GPPXRWVG/",
       "coverUrl": "https://m.media-amazon.com/images/I/716KZhxJKgL._SL1500_.jpg",
       "isTopSeller": false,
-      "isKuFave": false
+      "isKuFave": true
     },
     {
       "id": "b-manual-1769202658405",
@@ -289,7 +307,7 @@
       "amazonUrl": "https://www.amazon.com/Apology-Wife-Terms-Trust-Legacy-ebook/dp/B0GHPW7718",
       "coverUrl": "https://images-na.ssl-images-amazon.com/images/P/B0GHPW7718.01._SCLZZZZZZZ_.jpg",
       "isTopSeller": false,
-      "isKuFave": false
+      "isKuFave": true
     },
     {
       "id": "b-manual-1772668006973",
@@ -300,7 +318,7 @@
       "amazonUrl": "https://www.amazon.com/Bet-Plus-Size-Heroine-Billionaire-Romance-ebook/dp/B0GPP4XCMD",
       "coverUrl": "https://images-na.ssl-images-amazon.com/images/P/B0GPP4XCMD.01._SCLZZZZZZZ_.jpg",
       "isTopSeller": false,
-      "isKuFave": false
+      "isKuFave": true
     },
     {
       "id": "b-manual-1772668183445",
