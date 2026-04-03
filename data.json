@@ -65,10 +65,16 @@
       "coverUrl": "https://images-na.ssl-images-amazon.com/images/P/B0FDY7V8H6.01._SCLZZZZZZZ_.jpg"
     },
     {
-      "id": "b-18-1764535451710",
-      "title": "Forecheck, Backcheck, Heartcheck",
-      "amazonUrl": "https://www.amazon.com/Forecheck-Backcheck-Heartcheck-Single-Mom-Defenseman-ebook/dp/B0G21VCYJL",
-      "coverUrl": "https://images-na.ssl-images-amazon.com/images/P/B0G21VCYJL.01._SCLZZZZZZZ_.jpg"
+      "id": "b-9-1764535451710",
+      "title": "Ruined",
+      "amazonUrl": "https://www.amazon.com/Ruined-BWWM-Romance-Friction-Falling-ebook/dp/B0FDXKST4Z",
+      "coverUrl": "https://images-na.ssl-images-amazon.com/images/P/B0FDXKST4Z.01._SCLZZZZZZZ_.jpg"
+    },
+    {
+      "id": "b-12-1764535451710",
+      "title": "The Don",
+      "amazonUrl": "https://www.amazon.com/Don-Forbidden-Mafia-Short-Consequence-ebook/dp/B0FJDQCLF5",
+      "coverUrl": "https://images-na.ssl-images-amazon.com/images/P/B0FJDQCLF5.01._SCLZZZZZZZ_.jpg"
     },
     {
       "id": "b-0-1764535451710",
@@ -83,12 +89,6 @@
       "title": "Viktor's Elena",
       "amazonUrl": "https://www.amazon.com/Viktors-Elena-Romance-Forbidden-Vengeance-ebook/dp/B0FDY7V8H6",
       "coverUrl": "https://images-na.ssl-images-amazon.com/images/P/B0FDY7V8H6.01._SCLZZZZZZZ_.jpg"
-    },
-    {
-      "id": "b-18-1764535451710",
-      "title": "Forecheck, Backcheck, Heartcheck",
-      "amazonUrl": "https://www.amazon.com/Forecheck-Backcheck-Heartcheck-Single-Mom-Defenseman-ebook/dp/B0G21VCYJL",
-      "coverUrl": "https://images-na.ssl-images-amazon.com/images/P/B0G21VCYJL.01._SCLZZZZZZZ_.jpg"
     },
     {
       "id": "b-0-1764535451710",
@@ -421,8 +421,8 @@
       "publishDate": "2025-12-15",
       "amazonUrl": "https://www.amazon.com/Forecheck-Backcheck-Heartcheck-Single-Mom-Defenseman-ebook/dp/B0G21VCYJL",
       "coverUrl": "https://images-na.ssl-images-amazon.com/images/P/B0G21VCYJL.01._SCLZZZZZZZ_.jpg",
-      "isTopSeller": true,
-      "isKuFave": true
+      "isTopSeller": false,
+      "isKuFave": false
     },
     {
       "id": "b-manual-1764539624555",
@@ -498,7 +498,7 @@
       "publishDate": "2025-09-05",
       "amazonUrl": "https://www.amazon.com/Ruined-BWWM-Romance-Friction-Falling-ebook/dp/B0FDXKST4Z",
       "coverUrl": "https://images-na.ssl-images-amazon.com/images/P/B0FDXKST4Z.01._SCLZZZZZZZ_.jpg",
-      "isTopSeller": false,
+      "isTopSeller": true,
       "isKuFave": false
     },
     {
@@ -553,7 +553,7 @@
       "publishDate": "2025-08-08",
       "amazonUrl": "https://www.amazon.com/Don-Forbidden-Mafia-Short-Consequence-ebook/dp/B0FJDQCLF5",
       "coverUrl": "https://images-na.ssl-images-amazon.com/images/P/B0FJDQCLF5.01._SCLZZZZZZZ_.jpg",
-      "isTopSeller": false,
+      "isTopSeller": true,
       "isKuFave": false
     },
     {
