@@ -95,12 +95,6 @@
       "title": "The Bet",
       "amazonUrl": "https://www.amazon.com/Bet-Plus-Size-Heroine-Billionaire-Romance-ebook/dp/B0GPP4XCMD",
       "coverUrl": "https://images-na.ssl-images-amazon.com/images/P/B0GPP4XCMD.01._SCLZZZZZZZ_.jpg"
-    },
-    {
-      "id": "b-0-1764535451710",
-      "title": "Dark Vows",
-      "amazonUrl": "https://www.amazon.com/Dark-Vows-Romance-Kingpin-Vengeance-ebook/dp/B0F4NFKR7D",
-      "coverUrl": "https://images-na.ssl-images-amazon.com/images/P/B0F4NFKR7D.01._SCLZZZZZZZ_.jpg"
     }
   ],
   "favoritesList": [
@@ -626,7 +620,7 @@
       "amazonUrl": "https://www.amazon.com/Dark-Vows-Romance-Kingpin-Vengeance-ebook/dp/B0F4NFKR7D",
       "coverUrl": "https://images-na.ssl-images-amazon.com/images/P/B0F4NFKR7D.01._SCLZZZZZZZ_.jpg",
       "isTopSeller": true,
-      "isKuFave": true
+      "isKuFave": false
     }
   ]
 }
