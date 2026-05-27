@@ -79,6 +79,12 @@
       "title": "Dark Vows",
       "amazonUrl": "https://www.amazon.com/Dark-Vows-Romance-Kingpin-Vengeance-ebook/dp/B0F4NFKR7D",
       "coverUrl": "https://images-na.ssl-images-amazon.com/images/P/B0F4NFKR7D.01._SCLZZZZZZZ_.jpg"
+    },
+    {
+      "id": "mpo8w9roo2ry",
+      "title": "Madame Cipher",
+      "amazonUrl": "https://www.amazon.com/Madame-Cipher-Romance-Surrender-Mistress-ebook/dp/B0GX2YC9JT",
+      "coverUrl": "https://m.media-amazon.com/images/I/81RZzqXAm8L._SL1500_.jpg"
     }
   ],
   "kuFavorites": [
@@ -609,6 +615,17 @@
       "amazonUrl": "",
       "coverUrl": "",
       "isTopSeller": false,
+      "isKuFave": false
+    },
+    {
+      "id": "mpo8w9roo2ry",
+      "title": "Madame Cipher",
+      "series": "Queen Mistress",
+      "seriesOrder": null,
+      "publishDate": "2026-04-30",
+      "amazonUrl": "https://www.amazon.com/Madame-Cipher-Romance-Surrender-Mistress-ebook/dp/B0GX2YC9JT",
+      "coverUrl": "https://m.media-amazon.com/images/I/81RZzqXAm8L._SL1500_.jpg",
+      "isTopSeller": true,
       "isKuFave": false
     }
   ]
