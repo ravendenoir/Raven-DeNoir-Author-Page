@@ -86,6 +86,18 @@ img{display:block}
 .carousel-arr.prev{left:16px}.carousel-arr.next{right:16px}
 @media(max-width:640px){.carousel-content{flex-direction:column;align-items:center;text-align:center}.carousel-series{font-size:28px}.carousel-cover{width:130px;min-width:130px;height:195px}}
 
+
+/* AUTHOR SITES */
+.sites-grid{display:flex;gap:20px;flex-wrap:wrap;justify-content:center}
+.site-card{background:var(--bg2);border:1px solid var(--border);border-radius:8px;overflow:hidden;display:flex;flex-direction:column;align-items:center;min-width:220px;max-width:300px;flex:1;text-align:center;transition:border-color .2s}
+.site-card:hover{border-color:var(--gold-d)}
+.site-card-img{width:100%;height:160px;object-fit:cover}
+.site-card-img-ph{width:100%;height:160px;background:var(--bg3);display:flex;align-items:center;justify-content:center;font-size:40px}
+.site-card-body{padding:16px;display:flex;flex-direction:column;gap:12px;align-items:center;width:100%}
+.site-card-title{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:600;color:var(--text)}
+.site-card-btn{display:inline-block;padding:9px 22px;background:var(--gold);color:#000;border-radius:4px;font-size:12px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;transition:background .15s;width:100%}
+.site-card-btn:hover{background:var(--gold-l)}
+
 /* COMING SOON */
 .cs-wrap{background:linear-gradient(135deg,var(--bg2),var(--bg3));border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:40px 24px}
 .cs-inner{max-width:1100px;margin:0 auto}
@@ -209,7 +221,6 @@ img{display:block}
   <div class="nav-socials" id="nav-socials"></div>
 </nav>
 
-<div id="cs-section"></div>
 
 <section class="section" style="max-width:1100px;margin:0 auto;padding:48px 24px 40px">
   <div style="display:flex;gap:40px;align-items:flex-start" id="hero-section">
@@ -225,6 +236,8 @@ img{display:block}
 
 <div class="divider"></div>
 
+<div id="cs-section"></div>
+<div id="sites-section"></div>
 <div id="carousel-section"></div>
 
 <div id="social-bar-section"></div>
@@ -384,12 +397,38 @@ function renderCarousel(catalog) {
   resetTimer();
 }
 
+function renderAuthorSites(items) {
+  const sec = document.getElementById('sites-section');
+  if (!sec || !items || !items.length) return;
+  const cards = items.map(it => {
+    const img = it.imageBase64 || it.imageUrl;
+    return `<div class="site-card">
+      ${img
+        ? `<img src="${esc(img)}" class="site-card-img" alt="${esc(it.title)}" onerror="this.style.display='none'">`
+        : '<div class="site-card-img-ph">🌐</div>'}
+      <div class="site-card-body">
+        <div class="site-card-title">${esc(it.title)}</div>
+        ${it.linkUrl
+          ? `<a href="${esc(it.linkUrl)}" target="_blank" rel="noopener" class="site-card-btn">${esc(it.buttonLabel||'Visit Site')}</a>`
+          : ''}
+      </div>
+    </div>`;
+  }).join('');
+
+  sec.innerHTML = `<div class="cs-wrap"><div class="cs-inner">
+    <div class="section-title" style="text-align:center;margin-bottom:6px">More From Raven DeNoir</div>
+    <div class="section-bar" style="margin:0 auto 24px"></div>
+    <div class="sites-grid">${cards}</div>
+  </div></div><div class="divider"></div>`;
+}
+
 async function init() {
   const data = await loadData();
   if (!data) return;
   renderProfile(data.profile || {}, data.ctaButtons || []);
   renderSocials(data.socials || {});
   renderComingSoon(data.comingSoon || []);
+  renderAuthorSites(data.authorSites || []);
   renderEvents(data.events || []);
   // Derive top sellers and KU faves from catalog checkboxes
   const catalog = data.catalog || [];
