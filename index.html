@@ -89,10 +89,10 @@ img{display:block}
 
 /* AUTHOR SITES */
 .sites-grid{display:flex;gap:20px;flex-wrap:wrap;justify-content:center}
-.site-card{background:var(--bg2);border:1px solid var(--border);border-radius:8px;overflow:hidden;display:flex;flex-direction:column;align-items:center;min-width:220px;max-width:300px;flex:1;text-align:center;transition:border-color .2s}
+.site-card{background:var(--bg2);border:1px solid var(--border);border-radius:8px;overflow:hidden;display:flex;flex-direction:column;align-items:center;min-width:260px;max-width:360px;flex:1;text-align:center;transition:border-color .2s}
 .site-card:hover{border-color:var(--gold-d)}
-.site-card-img{width:100%;height:160px;object-fit:cover}
-.site-card-img-ph{width:100%;height:160px;background:var(--bg3);display:flex;align-items:center;justify-content:center;font-size:40px}
+.site-card-img{width:100%;height:260px;object-fit:cover}
+.site-card-img-ph{width:100%;height:260px;background:var(--bg3);display:flex;align-items:center;justify-content:center;font-size:40px}
 .site-card-body{padding:16px;display:flex;flex-direction:column;gap:12px;align-items:center;width:100%}
 .site-card-title{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:600;color:var(--text)}
 .site-card-btn{display:inline-block;padding:9px 22px;background:var(--gold);color:#000;border-radius:4px;font-size:12px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;transition:background .15s;width:100%}
@@ -410,7 +410,7 @@ function renderAuthorSites(items) {
         <div class="site-card-title">${esc(it.title)}</div>
         ${it.linkUrl
           ? `<a href="${esc(it.linkUrl)}" target="_blank" rel="noopener" class="site-card-btn">${esc(it.buttonLabel||'Visit Site')}</a>`
-          : ''}
+          : `<span class="site-card-btn" style="opacity:.4;cursor:default">${esc(it.buttonLabel||'Visit Site')}</span>`}
       </div>
     </div>`;
   }).join('');
@@ -427,7 +427,32 @@ async function init() {
   if (!data) return;
   renderProfile(data.profile || {}, data.ctaButtons || []);
   renderSocials(data.socials || {});
-  renderComingSoon(data.comingSoon || []);
+  // Normalise any date format to YYYY-MM-DD for ISO datetime
+  function toISODate(d) {
+    if (!d) return '';
+    // Already ISO: 2026-05-29
+    if (/^\d{4}-\d{2}-\d{2}/.test(d)) return d.substring(0,10);
+    // US format: 05/29/2026
+    const us = d.match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})/);
+    if (us) return `${us[3]}-${us[1].padStart(2,'0')}-${us[2].padStart(2,'0')}`;
+    // Dashed US: 05-29-2026
+    const ud = d.match(/^(\d{1,2})-(\d{1,2})-(\d{4})/);
+    if (ud) return `${ud[3]}-${ud[1].padStart(2,'0')}-${ud[2].padStart(2,'0')}`;
+    return d;
+  }
+  // Derive coming soon from catalog
+  const catalogCS = (data.catalog||[])
+    .filter(b => b.isComingSoon && b.publishDate)
+    .map(b => ({
+      id: b.id,
+      title: b.title,
+      datetime: toISODate(b.publishDate) + 'T00:00:00',
+      amazonUrl: b.amazonUrl,
+      coverUrl: b.coverUrl
+    }));
+  const manualCS = (data.comingSoon||[]).filter(x => !catalogCS.find(c=>c.id===x.id));
+  const allCS = [...catalogCS, ...manualCS].slice(0,3);
+  renderComingSoon(allCS);
   renderAuthorSites(data.authorSites || []);
   renderEvents(data.events || []);
   // Derive top sellers and KU faves from catalog checkboxes
