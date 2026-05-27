@@ -606,6 +606,18 @@
       "isTopSeller": false,
       "isKuFave": false,
       "isComingSoon": true
+    },
+    {
+      "id": "mpo9dscncl68",
+      "title": "Strongman Season",
+      "series": "Private Playbook",
+      "seriesOrder": 2,
+      "publishDate": "2026-07-03",
+      "amazonUrl": "https://www.amazon.com/Strongman-Season-Photographer-Heritage-Highland-ebook/dp/B0D1YTNPBC",
+      "coverUrl": "https://m.media-amazon.com/images/I/71OJVYew0xL._SL1500_.jpg",
+      "isTopSeller": false,
+      "isKuFave": false,
+      "isComingSoon": true
     }
   ]
 }
