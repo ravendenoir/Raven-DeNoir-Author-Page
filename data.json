@@ -245,50 +245,6 @@
   ],
   "catalog": [
     {
-      "id": "b-manual-1769203003295",
-      "title": "Vero Vengeance",
-      "series": "Malora & Kalihex",
-      "seriesOrder": 3,
-      "publishDate": "2026-09-09",
-      "amazonUrl": "https://www.amazon.com/Vero-Vengeance-Assassin-Thriller-Heroine-ebook/dp/B0FQCQP7TY",
-      "coverUrl": "https://images-na.ssl-images-amazon.com/images/P/B0FQCQP7TY.01._SCLZZZZZZZ_.jpg",
-      "isTopSeller": false,
-      "isKuFave": false
-    },
-    {
-      "id": "b-manual-1769202999779",
-      "title": "Shadow Oath",
-      "series": "Malora & Kalihex",
-      "seriesOrder": 2,
-      "publishDate": "2026-08-31",
-      "amazonUrl": "https://www.amazon.com/Shadow-Oath-Assassin-Thriller-Heroine-ebook/dp/B0FQCQ4TN9",
-      "coverUrl": "https://images-na.ssl-images-amazon.com/images/P/B0FQCQ4TN9.01._SCLZZZZZZZ_.jpg",
-      "isTopSeller": false,
-      "isKuFave": false
-    },
-    {
-      "id": "b-manual-1769202993452",
-      "title": "Blood Contract",
-      "series": "Malora & Kalihex",
-      "seriesOrder": 1,
-      "publishDate": "2026-07-31",
-      "amazonUrl": "https://www.amazon.com/Blood-Contract-Assassin-Thriller-Heroine-ebook/dp/B0FQ6TCFLL",
-      "coverUrl": "https://images-na.ssl-images-amazon.com/images/P/B0FQ6TCFLL.01._SCLZZZZZZZ_.jpg",
-      "isTopSeller": false,
-      "isKuFave": false
-    },
-    {
-      "id": "b-manual-1769202426458",
-      "title": "Sutures and Sins",
-      "series": "The Iron Queen",
-      "seriesOrder": 2,
-      "publishDate": "2026-05-01",
-      "amazonUrl": "https://www.amazon.com/SUTURES-SINS-Romance-Bratvas-Southie-ebook/dp/B0GK4ZHZZ3",
-      "coverUrl": "https://images-na.ssl-images-amazon.com/images/P/B0GK4ZHZZ3.01._SCLZZZZZZZ_.jpg",
-      "isTopSeller": false,
-      "isKuFave": false
-    },
-    {
       "id": "b-manual-1769202795651",
       "title": "Mine",
       "series": "AMBW",
