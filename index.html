@@ -471,7 +471,15 @@ async function init() {
 
 function renderProfile(p, ctaButtons) {
   const bio = document.getElementById('hero-bio');
-  if (bio && p.bio) bio.innerHTML = p.bio.split(/\n\n+/).map(para => `<p>${para.replace(/\n/g,' ').trim()}</p>`).join('');
+  if (bio && p.bio) {
+    const b = p.bio;
+    if (b.includes('<p>') || b.includes('<br')) {
+      bio.innerHTML = b;
+    } else {
+      const cleaned = b.replace(/\\n/g,'\n');
+      bio.innerHTML = cleaned.split(/\n\n+/).map(para => `<p>${para.replace(/\n/g,' ').trim()}</p>`).filter(x=>x!=='<p></p>').join('');
+    }
+  }
   const photoWrap = document.getElementById('hero-photo-wrap');
   if (photoWrap && p.photoUrl) {
     photoWrap.outerHTML = `<div id="hero-photo-col"><img src="${esc(p.photoUrl)}" class="hero-photo" alt="Raven DeNoir" onerror="this.style.display='none'"><div id="hero-cta-wrap" class="hero-cta-wrap"></div></div>`;
