@@ -618,6 +618,18 @@
       "isTopSeller": false,
       "isKuFave": false,
       "isComingSoon": true
+    },
+    {
+      "id": "mpo9f9esk5zu",
+      "title": "Black Tie Violence",
+      "series": "AMBW",
+      "seriesOrder": null,
+      "publishDate": "2026-06-24",
+      "amazonUrl": "https://www.amazon.com/Black-Tie-Violence-Fortune-Romance-ebook/dp/B0GNJ22LNC",
+      "coverUrl": "https://m.media-amazon.com/images/I/71EDsmeenaL._SL1500_.jpg",
+      "isTopSeller": false,
+      "isKuFave": false,
+      "isComingSoon": true
     }
   ]
 }
