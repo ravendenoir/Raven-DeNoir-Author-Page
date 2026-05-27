@@ -69,16 +69,10 @@
   "events": [],
   "topSellers": [
     {
-      "id": "b-9-1764535451710",
-      "title": "Ruined",
-      "amazonUrl": "https://www.amazon.com/Ruined-BWWM-Romance-Friction-Falling-ebook/dp/B0FDXKST4Z",
-      "coverUrl": "https://images-na.ssl-images-amazon.com/images/P/B0FDXKST4Z.01._SCLZZZZZZZ_.jpg"
-    },
-    {
-      "id": "b-12-1764535451710",
-      "title": "The Don",
-      "amazonUrl": "https://www.amazon.com/Don-Forbidden-Mafia-Short-Consequence-ebook/dp/B0FJDQCLF5",
-      "coverUrl": "https://images-na.ssl-images-amazon.com/images/P/B0FJDQCLF5.01._SCLZZZZZZZ_.jpg"
+      "id": "b-manual-1769202795651",
+      "title": "Mine",
+      "amazonUrl": "https://www.amazon.com/Mine-Dangerous-Claim-Raven-DeNoir-ebook/dp/B0GHT1PDN8",
+      "coverUrl": "https://images-na.ssl-images-amazon.com/images/P/B0GHT1PDN8.01._SCLZZZZZZZ_.jpg"
     },
     {
       "id": "b-0-1764535451710",
@@ -89,10 +83,10 @@
   ],
   "kuFavorites": [
     {
-      "id": "mn0jh6lnu603",
-      "title": "Seabrook's Broken Veil",
-      "amazonUrl": "https://www.amazon.com/Nijume-Seabrooks-Broken-Warlord-Romance-ebook/dp/B0GPPXRWVG/",
-      "coverUrl": "https://m.media-amazon.com/images/I/716KZhxJKgL._SL1500_.jpg"
+      "id": "b-manual-1769202795651",
+      "title": "Mine",
+      "amazonUrl": "https://www.amazon.com/Mine-Dangerous-Claim-Raven-DeNoir-ebook/dp/B0GHT1PDN8",
+      "coverUrl": "https://images-na.ssl-images-amazon.com/images/P/B0GHT1PDN8.01._SCLZZZZZZZ_.jpg"
     },
     {
       "id": "b-manual-1769202658405",
@@ -101,10 +95,10 @@
       "coverUrl": "https://images-na.ssl-images-amazon.com/images/P/B0GHPW7718.01._SCLZZZZZZZ_.jpg"
     },
     {
-      "id": "b-manual-1772668006973",
-      "title": "The Bet",
-      "amazonUrl": "https://www.amazon.com/Bet-Plus-Size-Heroine-Billionaire-Romance-ebook/dp/B0GPP4XCMD",
-      "coverUrl": "https://images-na.ssl-images-amazon.com/images/P/B0GPP4XCMD.01._SCLZZZZZZZ_.jpg"
+      "id": "b-manual-1769202732222",
+      "title": "Names We Inherit",
+      "amazonUrl": "https://www.amazon.com/Names-We-Inherit-Secrets-Obligation-ebook/dp/B0GHLKK3SZ",
+      "coverUrl": "https://images-na.ssl-images-amazon.com/images/P/B0GHLKK3SZ.01._SCLZZZZZZZ_.jpg"
     }
   ],
   "favoritesList": [
@@ -262,8 +256,8 @@
       "publishDate": "2026-04-24",
       "amazonUrl": "https://www.amazon.com/Mine-Dangerous-Claim-Raven-DeNoir-ebook/dp/B0GHT1PDN8",
       "coverUrl": "https://images-na.ssl-images-amazon.com/images/P/B0GHT1PDN8.01._SCLZZZZZZZ_.jpg",
-      "isTopSeller": false,
-      "isKuFave": false
+      "isTopSeller": true,
+      "isKuFave": true
     },
     {
       "id": "mn0jh6lnu603",
@@ -274,7 +268,7 @@
       "amazonUrl": "https://www.amazon.com/Nijume-Seabrooks-Broken-Warlord-Romance-ebook/dp/B0GPPXRWVG/",
       "coverUrl": "https://m.media-amazon.com/images/I/716KZhxJKgL._SL1500_.jpg",
       "isTopSeller": false,
-      "isKuFave": true
+      "isKuFave": false
     },
     {
       "id": "b-manual-1769202658405",
@@ -296,7 +290,7 @@
       "amazonUrl": "https://www.amazon.com/Bet-Plus-Size-Heroine-Billionaire-Romance-ebook/dp/B0GPP4XCMD",
       "coverUrl": "https://images-na.ssl-images-amazon.com/images/P/B0GPP4XCMD.01._SCLZZZZZZZ_.jpg",
       "isTopSeller": false,
-      "isKuFave": true
+      "isKuFave": false
     },
     {
       "id": "b-manual-1772668183445",
@@ -329,7 +323,7 @@
       "amazonUrl": "https://www.amazon.com/Names-We-Inherit-Secrets-Obligation-ebook/dp/B0GHLKK3SZ",
       "coverUrl": "https://images-na.ssl-images-amazon.com/images/P/B0GHLKK3SZ.01._SCLZZZZZZZ_.jpg",
       "isTopSeller": false,
-      "isKuFave": false
+      "isKuFave": true
     },
     {
       "id": "b-manual-1770230257119",
@@ -482,7 +476,7 @@
       "publishDate": "2025-09-05",
       "amazonUrl": "https://www.amazon.com/Ruined-BWWM-Romance-Friction-Falling-ebook/dp/B0FDXKST4Z",
       "coverUrl": "https://images-na.ssl-images-amazon.com/images/P/B0FDXKST4Z.01._SCLZZZZZZZ_.jpg",
-      "isTopSeller": true,
+      "isTopSeller": false,
       "isKuFave": false
     },
     {
@@ -537,7 +531,7 @@
       "publishDate": "2025-08-08",
       "amazonUrl": "https://www.amazon.com/Don-Forbidden-Mafia-Short-Consequence-ebook/dp/B0FJDQCLF5",
       "coverUrl": "https://images-na.ssl-images-amazon.com/images/P/B0FJDQCLF5.01._SCLZZZZZZZ_.jpg",
-      "isTopSeller": true,
+      "isTopSeller": false,
       "isKuFave": false
     },
     {
@@ -604,6 +598,17 @@
       "amazonUrl": "https://www.amazon.com/Dark-Vows-Romance-Kingpin-Vengeance-ebook/dp/B0F4NFKR7D",
       "coverUrl": "https://images-na.ssl-images-amazon.com/images/P/B0F4NFKR7D.01._SCLZZZZZZZ_.jpg",
       "isTopSeller": true,
+      "isKuFave": false
+    },
+    {
+      "id": "mpo8lx577e20",
+      "title": "",
+      "series": "",
+      "seriesOrder": null,
+      "publishDate": "",
+      "amazonUrl": "",
+      "coverUrl": "",
+      "isTopSeller": false,
       "isKuFave": false
     }
   ]
