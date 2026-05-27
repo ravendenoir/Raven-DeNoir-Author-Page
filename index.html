@@ -613,7 +613,8 @@ function renderLeadMagnet(lm) {
 function renderReviews(items) {
   const wrap = document.getElementById('reviews-carousel');
   if (!wrap) return;
-  const visible = (items||[]).filter(it => it.screenshotBase64 || it.screenshotUrl);
+  // Show all reviews that have at least a book linked — screenshot optional
+  const visible = (items||[]).filter(it => it.screenshotBase64 || it.screenshotUrl || it.bookAmazonUrl || it.bookTitle);
   if (!visible.length) { wrap.closest('section').style.display='none'; return; }
 
   let cur = 0;
