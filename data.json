@@ -55,22 +55,22 @@
   "events": [],
   "topSellers": [
     {
-      "id": "b-manual-1769202795651",
-      "title": "Mine",
-      "amazonUrl": "https://www.amazon.com/Mine-Dangerous-Claim-Raven-DeNoir-ebook/dp/B0GHT1PDN8",
-      "coverUrl": "https://images-na.ssl-images-amazon.com/images/P/B0GHT1PDN8.01._SCLZZZZZZZ_.jpg"
+      "id": "b-3-1764535451710",
+      "title": "No Cure For Claimed",
+      "amazonUrl": "https://www.amazon.com/No-Cure-Claimed-Ruthless-Vengeance-ebook/dp/B0F4NH7PBF",
+      "coverUrl": "https://images-na.ssl-images-amazon.com/images/P/B0F4NH7PBF.01._SCLZZZZZZZ_.jpg"
     },
     {
-      "id": "b-12-1764535451710",
-      "title": "The Don",
-      "amazonUrl": "https://www.amazon.com/Don-Forbidden-Mafia-Short-Consequence-ebook/dp/B0FJDQCLF5",
-      "coverUrl": "https://images-na.ssl-images-amazon.com/images/P/B0FJDQCLF5.01._SCLZZZZZZZ_.jpg"
+      "id": "mq5o9v1hhxrc",
+      "title": "Bound by Fire 2nd Edition",
+      "amazonUrl": "https://www.amazon.com/Bound-Fire-2nd-Rebellion-Vengeance-ebook/dp/B0GX33W17C?ref_=saga_dp_bnx_dsk_dp&qid=1780947987&sr=8-1",
+      "coverUrl": "https://m.media-amazon.com/images/I/71th0jlaWYL._SL1500_.jpg"
     },
     {
-      "id": "mpzefnolllko",
-      "title": "Blood Price",
-      "amazonUrl": "https://www.amazon.com/Blood-Price-Romance-Bartender-Bellori-ebook/dp/B0GTBW48J5",
-      "coverUrl": "https://m.media-amazon.com/images/I/713LiHmol+L._SL1500_.jpg"
+      "id": "mq5obmc50w6g",
+      "title": "Savage Devotion 2nd Edition",
+      "amazonUrl": "https://www.amazon.com/Savage-Devotion-2nd-Forbidden-Vengeance-ebook/dp/B0H3YH9C9D?ref_=saga_dp_bnx_dsk_dp&qid=1780947987&sr=8-1",
+      "coverUrl": "https://m.media-amazon.com/images/I/71qzbn+zMVL._SL1500_.jpg"
     }
   ],
   "kuFavorites": [
@@ -248,7 +248,7 @@
       "publishDate": "2026-04-24",
       "amazonUrl": "https://www.amazon.com/Mine-Dangerous-Claim-Raven-DeNoir-ebook/dp/B0GHT1PDN8",
       "coverUrl": "https://images-na.ssl-images-amazon.com/images/P/B0GHT1PDN8.01._SCLZZZZZZZ_.jpg",
-      "isTopSeller": true,
+      "isTopSeller": false,
       "isKuFave": true
     },
     {
@@ -512,7 +512,7 @@
       "publishDate": "2025-08-11",
       "amazonUrl": "https://www.amazon.com/No-Cure-Claimed-Ruthless-Vengeance-ebook/dp/B0F4NH7PBF",
       "coverUrl": "https://images-na.ssl-images-amazon.com/images/P/B0F4NH7PBF.01._SCLZZZZZZZ_.jpg",
-      "isTopSeller": false,
+      "isTopSeller": true,
       "isKuFave": false
     },
     {
@@ -523,7 +523,7 @@
       "publishDate": "2025-08-08",
       "amazonUrl": "https://www.amazon.com/Don-Forbidden-Mafia-Short-Consequence-ebook/dp/B0FJDQCLF5",
       "coverUrl": "https://images-na.ssl-images-amazon.com/images/P/B0FJDQCLF5.01._SCLZZZZZZZ_.jpg",
-      "isTopSeller": true,
+      "isTopSeller": false,
       "isKuFave": false
     },
     {
@@ -647,8 +647,44 @@
       "publishDate": "2026-05-22",
       "amazonUrl": "https://www.amazon.com/Blood-Price-Romance-Bartender-Bellori-ebook/dp/B0GTBW48J5",
       "coverUrl": "https://m.media-amazon.com/images/I/713LiHmol+L._SL1500_.jpg",
-      "isTopSeller": true,
+      "isTopSeller": false,
       "isKuFave": true,
+      "isComingSoon": false
+    },
+    {
+      "id": "mq5o9v1hhxrc",
+      "title": "Bound by Fire 2nd Edition",
+      "series": "Vows & Vengeance",
+      "seriesOrder": 2,
+      "publishDate": "2026-06-03",
+      "amazonUrl": "https://www.amazon.com/Bound-Fire-2nd-Rebellion-Vengeance-ebook/dp/B0GX33W17C?ref_=saga_dp_bnx_dsk_dp&qid=1780947987&sr=8-1",
+      "coverUrl": "https://m.media-amazon.com/images/I/71th0jlaWYL._SL1500_.jpg",
+      "isTopSeller": true,
+      "isKuFave": false,
+      "isComingSoon": false
+    },
+    {
+      "id": "mq5obmc50w6g",
+      "title": "Savage Devotion 2nd Edition",
+      "series": "Vows & Vengeance",
+      "seriesOrder": 3,
+      "publishDate": "2026-06-02",
+      "amazonUrl": "https://www.amazon.com/Savage-Devotion-2nd-Forbidden-Vengeance-ebook/dp/B0H3YH9C9D?ref_=saga_dp_bnx_dsk_dp&qid=1780947987&sr=8-1",
+      "coverUrl": "https://m.media-amazon.com/images/I/71qzbn+zMVL._SL1500_.jpg",
+      "isTopSeller": true,
+      "isKuFave": false,
+      "isComingSoon": false
+    },
+    {
+      "id": "mq5ockixc1qd",
+      "title": "",
+      "series": "",
+      "seriesOrder": null,
+      "publishDate": "",
+      "amazonUrl": "",
+      "coverUrl": "",
+      "isTopSeller": false,
+      "isKuFave": false,
       "isComingSoon": false
     }
   ]
