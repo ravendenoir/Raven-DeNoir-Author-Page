@@ -33,7 +33,15 @@
     "discord": "https://discord.gg/GNAFqznw",
     "goodreads": ""
   },
-  "comingSoon": [],
+  "comingSoon": [
+    {
+      "id": "mqpbuzj12x5h",
+      "title": "Again, With Feeling",
+      "datetime": "",
+      "amazonUrl": "https://www.amazon.com/Again-Feeling-Second-Billionaire-Romance-ebook/dp/B0H5G5QDND",
+      "coverUrl": "https://m.media-amazon.com/images/I/81d+aPgAOwL._SL1500_.jpg"
+    }
+  ],
   "authorSites": [
     {
       "id": "mpo8cavglzk5",
