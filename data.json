@@ -104,26 +104,26 @@
   "favoritesList": [
     {
       "id": "mn0kdh4xginx",
-      "title": "No Cure for Claimed",
+      "title": "The Penthouse",
       "author": "Raven DeNoir",
-      "amazonUrl": "https://www.amazon.com/No-Cure-Claimed-Ruthless-Vengeance-ebook/dp/B0F4NH7PBF/ref=sr_1_3?crid=27A71PWLBOI8K&dib=eyJ2IjoiMSJ9.QAavH1QK0NaK7YkM7yF9lpO-ChT9pwZ3sZkxHzanqEhCYceGNno_JjqtygeNSwc2ooFFvNj_eIm74TmgziSlG5eOJpy7S49zo8ua5qYXtqwrQOjY9voXnYDtf5wWmXAx0RzbZcVcsiCv-Z_by5Hp0LeRvGU3Pk_ZHmemSVjGacYEcmYKvC8Mf7qmcSYc1VVIyNetCXxJFwW4qEyso6VYM_VIWOr0_7lnCZbKr096zsE.LJ1cdXwY6PTS22VRNH-G2Ox2EXqj1N_pIaH8LFcxOPY&dib_tag=se&keywords=raven+denoir&qid=1780951707&sprefix=%2Caps%2C202&sr=8-3",
-      "coverUrl": "https://m.media-amazon.com/images/I/71mFim4aVrL._SL1500_.jpg"
+      "amazonUrl": "https://www.amazon.com/Penthouse-Forbidden-Ultimate-Betrayal-Consequence-ebook/dp/B0FM38X95D",
+      "coverUrl": "https://m.media-amazon.com/images/I/71G-x5F9Q8L._SL1500_.jpg"
     }
   ],
   "tbrList": [
     {
       "id": "1764536401138",
-      "title": "Big Mad",
-      "author": "Amarie Avant",
-      "amazonUrl": "https://www.amazon.com/Big-Mad-romance-Babineaux-Brothers-ebook/dp/B0GKQ6TN3W/ref=sr_1_1?crid=UYQSIJ6GQ5EW&dib=eyJ2IjoiMSJ9.EW9BJvjfh-7t8XhQlR_RYbrGjyzhWDpW0ydxgosAhdc.r_BM_GT4SFYKn2sD_M-cEJI-OQYsFHSYT1NgVnOsMCA&dib_tag=se&keywords=big+mad+amarie+avant&qid=1780951572&sprefix=big+mad+a%2Caps%2C208&sr=8-1",
-      "coverUrl": "https://m.media-amazon.com/images/I/814+sq0IJgL._SL1500_.jpg"
+      "title": "Cutthroat",
+      "author": "Octavia Grant",
+      "amazonUrl": "https://www.amazon.com/Cutthroat-Octavia-Grant-ebook/dp/B0F2WQP2C1",
+      "coverUrl": "https://m.media-amazon.com/images/I/61av6QZeq-L._SL1500_.jpg"
     },
     {
       "id": "1764536426346",
-      "title": "Knotted By The Dragon Prince",
-      "author": "Amaya Black",
-      "amazonUrl": "https://www.amazon.com/Knotted-Dragon-Prince-Omegaverse-Romance-ebook/dp/B0GG5MFJ16/ref=sr_1_1?crid=3PK03Y8MQMJQ7&dib=eyJ2IjoiMSJ9.9415luLieORpCirha6QuQnz0JOjunb_5zD6xujo-O25gS4dcZPE2kmQHNHnvHFW6teWEqc6g0l4xfDu4ukv7pVRzeqghYmJiBF66uUTTI4Z8t_7nmzkBwajRwCQe-9ofSeACK49rTRaU_TV1kVjc8fsWlKbHqG07wj8nhv7UmysRZotbvAIPipwwCp9LwNcQh_ZMZmG9A55RXXgzX7aUVVO-PVOWn1neghuxI1zawEU.oHhmkPRW1YmJLJmNxKBclZnImF7cVf6znoAj6Hiqypg&dib_tag=se&keywords=knotted+by+the+dragon+prince&qid=1780951796&sprefix=knotted+by+the+dra%2Caps%2C186&sr=8-1",
-      "coverUrl": "https://m.media-amazon.com/images/I/61vFmq5dIaL._SL1000_.jpg"
+      "title": "A Reaper's Heart",
+      "author": "Kendra Necole ",
+      "amazonUrl": "https://www.amazon.com/Reapers-Heart-Forbidden-Attraction-Pharaohs-ebook/dp/B0D9SWT871",
+      "coverUrl": "https://m.media-amazon.com/images/I/81QS2kV24VL._SL1500_.jpg"
     }
   ],
   "leadMagnet": {
@@ -706,7 +706,7 @@
       "coverUrl": "https://m.media-amazon.com/images/I/814evxe76PL._SL1500_.jpg",
       "isTopSeller": false,
       "isKuFave": false,
-      "isComingSoon": true
+      "isComingSoon": false
     },
     {
       "id": "msqmalwiqc96",
