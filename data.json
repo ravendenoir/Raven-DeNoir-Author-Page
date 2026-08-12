@@ -69,16 +69,10 @@
       "coverUrl": "https://images-na.ssl-images-amazon.com/images/P/B0GHPW7718.01._SCLZZZZZZZ_.jpg"
     },
     {
-      "id": "mq5o9v1hhxrc",
-      "title": "Bound by Fire 2nd Edition",
-      "amazonUrl": "https://www.amazon.com/Bound-Fire-2nd-Rebellion-Vengeance-ebook/dp/B0GX33W17C?ref_=saga_dp_bnx_dsk_dp&qid=1780947987&sr=8-1",
-      "coverUrl": "https://m.media-amazon.com/images/I/71th0jlaWYL._SL1500_.jpg"
-    },
-    {
-      "id": "mq5obmc50w6g",
-      "title": "Savage Devotion 2nd Edition",
-      "amazonUrl": "https://www.amazon.com/Savage-Devotion-2nd-Forbidden-Vengeance-ebook/dp/B0H3YH9C9D?ref_=saga_dp_bnx_dsk_dp&qid=1780947987&sr=8-1",
-      "coverUrl": "https://m.media-amazon.com/images/I/71qzbn+zMVL._SL1500_.jpg"
+      "id": "b-12-1764535451710",
+      "title": "The Don",
+      "amazonUrl": "https://www.amazon.com/Don-Forbidden-Mafia-Short-Consequence-ebook/dp/B0FJDQCLF5",
+      "coverUrl": "https://images-na.ssl-images-amazon.com/images/P/B0FJDQCLF5.01._SCLZZZZZZZ_.jpg"
     },
     {
       "id": "msqm0q7eerxa",
@@ -99,12 +93,6 @@
       "title": "The Apology Wife",
       "amazonUrl": "https://www.amazon.com/Apology-Wife-Terms-Trust-Legacy-ebook/dp/B0GHPW7718",
       "coverUrl": "https://images-na.ssl-images-amazon.com/images/P/B0GHPW7718.01._SCLZZZZZZZ_.jpg"
-    },
-    {
-      "id": "b-0-1764535451710",
-      "title": "Dark Vows",
-      "amazonUrl": "https://www.amazon.com/Dark-Vows-Romance-Kingpin-Vengeance-ebook/dp/B0F4NFKR7D",
-      "coverUrl": "https://images-na.ssl-images-amazon.com/images/P/B0F4NFKR7D.01._SCLZZZZZZZ_.jpg"
     },
     {
       "id": "msqm0q7eerxa",
@@ -507,7 +495,7 @@
       "publishDate": "2025-08-08",
       "amazonUrl": "https://www.amazon.com/Don-Forbidden-Mafia-Short-Consequence-ebook/dp/B0FJDQCLF5",
       "coverUrl": "https://images-na.ssl-images-amazon.com/images/P/B0FJDQCLF5.01._SCLZZZZZZZ_.jpg",
-      "isTopSeller": false,
+      "isTopSeller": true,
       "isKuFave": false
     },
     {
@@ -563,7 +551,7 @@
       "amazonUrl": "https://www.amazon.com/Dark-Vows-Romance-Kingpin-Vengeance-ebook/dp/B0F4NFKR7D",
       "coverUrl": "https://images-na.ssl-images-amazon.com/images/P/B0F4NFKR7D.01._SCLZZZZZZZ_.jpg",
       "isTopSeller": false,
-      "isKuFave": true
+      "isKuFave": false
     },
     {
       "id": "mpo8w9roo2ry",
@@ -632,7 +620,7 @@
       "publishDate": "2026-06-03",
       "amazonUrl": "https://www.amazon.com/Bound-Fire-2nd-Rebellion-Vengeance-ebook/dp/B0GX33W17C?ref_=saga_dp_bnx_dsk_dp&qid=1780947987&sr=8-1",
       "coverUrl": "https://m.media-amazon.com/images/I/71th0jlaWYL._SL1500_.jpg",
-      "isTopSeller": true,
+      "isTopSeller": false,
       "isKuFave": false,
       "isComingSoon": false
     },
@@ -644,7 +632,7 @@
       "publishDate": "2026-06-02",
       "amazonUrl": "https://www.amazon.com/Savage-Devotion-2nd-Forbidden-Vengeance-ebook/dp/B0H3YH9C9D?ref_=saga_dp_bnx_dsk_dp&qid=1780947987&sr=8-1",
       "coverUrl": "https://m.media-amazon.com/images/I/71qzbn+zMVL._SL1500_.jpg",
-      "isTopSeller": true,
+      "isTopSeller": false,
       "isKuFave": false,
       "isComingSoon": false
     },
