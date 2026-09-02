@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The House Store — Raven DeNoir</title>
+<meta name="description" content="Official Raven DeNoir merch. Wear the House of DeNoir — shirts, mugs, and totes from the worlds of Vows & Vengeance, The Ache, and more.">
+
+<!-- ============================================================
+  HOUSE OF DENOIR — MERCH PAGE
+  How to wire a product live:
+  1. Create the product in your Printify Pop-Up Store.
+  2. Copy its product URL.
+  3. Paste it into the matching item's  url: ""  field in the
+     PRODUCTS array at the bottom of this file.
+  4. Commit. The card's button flips from "In the forge" to "Claim it."
+  Leave url empty ("") for any product not yet live.
+============================================================ -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --ink:#0c0908;          /* warm near-black */
+    --coal:#171210;         /* card face */
+    --gold:#c9a227;
+    --gold-bright:#e6c14f;
+    --cream:#f0e7d5;
+    --smoke:#9c9186;
+    --blood:#6e1a1a;
+    --serif:'Cormorant Garamond', Georgia, serif;
+    --sans:'Jost', system-ui, sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto}
+    *{transition:none !important}
+  }
+  body{
+    background:var(--ink);
+    color:var(--cream);
+    font-family:var(--sans);
+    font-weight:300;
+    line-height:1.6;
+  }
+  a{color:var(--gold)}
+  a:focus-visible, button:focus-visible{outline:2px solid var(--gold-bright);outline-offset:3px}
+
+  /* ---------- header ---------- */
+  header{
+    text-align:center;
+    padding:2.2rem 1rem 0;
+  }
+  .wordmark{
+    font-family:var(--serif);
+    font-weight:600;
+    letter-spacing:.45em;
+    font-size:.95rem;
+    color:var(--cream);
+    text-decoration:none;
+  }
+  .wordmark span{color:var(--gold)}
+  nav{
+    margin-top:1.1rem;
+    display:flex;
+    justify-content:center;
+    gap:1.6rem;
+    flex-wrap:wrap;
+    font-size:.85rem;
+  }
+  nav a{
+    color:var(--smoke);
+    text-decoration:none;
+    letter-spacing:.08em;
+  }
+  nav a:hover{color:var(--gold)}
+
+  /* ---------- hero ---------- */
+  .hero{
+    max-width:820px;
+    margin:0 auto;
+    text-align:center;
+    padding:4.5rem 1.2rem 3.5rem;
+  }
+  .quill{font-size:2rem;display:block;margin-bottom:1.2rem}
+  .hero h1{
+    font-family:var(--serif);
+    font-weight:600;
+    font-size:clamp(2.6rem, 7vw, 4.4rem);
+    line-height:1.05;
+    color:var(--cream);
+  }
+  .hero h1 em{
+    font-style:italic;
+    color:var(--gold);
+  }
+  .hero p{
+    margin:1.4rem auto 0;
+    max-width:52ch;
+    color:var(--smoke);
+    font-size:1.02rem;
+  }
+  .hero .rule{
+    width:64px;height:1px;background:var(--gold);
+    margin:2.2rem auto 0;opacity:.7;
+  }
+
+  /* ---------- collections ---------- */
+  .collection{
+    max-width:1080px;
+    margin:0 auto;
+    padding:2.6rem 1.2rem 1rem;
+  }
+  .collection-head{
+    display:flex;
+    align-items:baseline;
+    gap:1rem;
+    border-bottom:1px solid rgba(201,162,39,.25);
+    padding-bottom:.7rem;
+    margin-bottom:1.8rem;
+  }
+  .collection-head h2{
+    font-family:var(--serif);
+    font-weight:600;
+    font-size:clamp(1.6rem, 3.4vw, 2.1rem);
+    color:var(--cream);
+  }
+  .collection-head p{
+    color:var(--smoke);
+    font-size:.9rem;
+    font-style:italic;
+    font-family:var(--serif);
+    font-weight:500;
+    font-size:1.05rem;
+  }
+
+  .grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill, minmax(250px, 1fr));
+    gap:1.4rem;
+  }
+
+  /* ---------- product card ---------- */
+  .card{
+    background:var(--coal);
+    border:1px solid rgba(201,162,39,.18);
+    display:flex;
+    flex-direction:column;
+  }
+  .face{
+    aspect-ratio:1/1;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:1.6rem;
+    text-align:center;
+    border-bottom:1px solid rgba(201,162,39,.18);
+    background:
+      radial-gradient(ellipse at 50% 120%, rgba(110,26,26,.28), transparent 65%),
+      var(--coal);
+  }
+  .face blockquote{
+    font-family:var(--serif);
+    font-weight:600;
+    font-size:clamp(1.25rem, 2.2vw, 1.55rem);
+    line-height:1.25;
+    color:var(--gold);
+  }
+  .face blockquote.small{font-size:1.1rem}
+  .meta{
+    padding:1rem 1.1rem 1.2rem;
+    display:flex;
+    flex-direction:column;
+    gap:.35rem;
+    flex:1;
+  }
+  .meta .name{
+    font-size:.95rem;
+    letter-spacing:.04em;
+    color:var(--cream);
+  }
+  .meta .kind{
+    color:var(--smoke);
+    font-size:.82rem;
+  }
+  .meta .price{
+    font-family:var(--serif);
+    font-weight:600;
+    color:var(--cream);
+    font-size:1.05rem;
+    margin-top:.2rem;
+  }
+  .buy{
+    margin-top:auto;
+    padding-top:.9rem;
+  }
+  .buy a, .buy span{
+    display:inline-block;
+    width:100%;
+    text-align:center;
+    padding:.65rem 0;
+    font-size:.85rem;
+    letter-spacing:.14em;
+    text-decoration:none;
+  }
+  .buy a{
+    background:var(--gold);
+    color:#141005;
+    font-weight:500;
+    transition:background .15s ease;
+  }
+  .buy a:hover{background:var(--gold-bright)}
+  .buy span{
+    border:1px solid rgba(156,145,134,.4);
+    color:var(--smoke);
+    cursor:default;
+  }
+
+  /* ---------- closing ---------- */
+  .closing{
+    text-align:center;
+    max-width:640px;
+    margin:0 auto;
+    padding:4rem 1.2rem 3rem;
+  }
+  .closing p{
+    font-family:var(--serif);
+    font-style:italic;
+    font-weight:500;
+    font-size:1.3rem;
+    color:var(--cream);
+  }
+  .closing .sig{
+    margin-top:.6rem;
+    font-family:var(--sans);
+    font-style:normal;
+    font-size:.9rem;
+    color:var(--smoke);
+  }
+
+  /* ---------- footer ---------- */
+  footer{
+    border-top:1px solid rgba(201,162,39,.2);
+    padding:2.4rem 1.2rem 3rem;
+    text-align:center;
+  }
+  .links-row{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:1.1rem 1.6rem;
+    margin-bottom:1.4rem;
+    font-size:.88rem;
+  }
+  .links-row a{text-decoration:none;color:var(--smoke)}
+  .links-row a:hover{color:var(--gold)}
+  .fineprint{color:var(--smoke);font-size:.78rem}
+  .fineprint a{color:var(--smoke)}
+</style>
+</head>
+<body>
+
+<header>
+  <a class="wordmark" href="https://ravendenoir.com">RAVEN <span>DENOIR</span></a>
+  <nav aria-label="Store sections">
+    <a href="#house">The House</a>
+    <a href="#vows">Vows &amp; Vengeance</a>
+    <a href="#worlds">The Worlds</a>
+    <a href="https://ravendenoir.com">Back to the books</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <span class="quill" aria-hidden="true">🪶</span>
+  <h1>Wear the <em>House</em>.</h1>
+  <p>Official House of DeNoir merch, printed to order and shipped to your door. If you know which vow was sealed in blood and whose name goes with Thursday, these were made for you.</p>
+  <div class="rule" aria-hidden="true"></div>
+</section>
+
+<section class="collection" id="house">
+  <div class="collection-head">
+    <h2>The House Collection</h2>
+    <p>for readers who ride with me</p>
+  </div>
+  <div class="grid" data-collection="house"></div>
+</section>
+
+<section class="collection" id="vows">
+  <div class="collection-head">
+    <h2>Vows &amp; Vengeance</h2>
+    <p>the flagship — Boston runs on it</p>
+  </div>
+  <div class="grid" data-collection="vows"></div>
+</section>
+
+<section class="collection" id="worlds">
+  <div class="collection-head">
+    <h2>The Worlds</h2>
+    <p>The Ache · So, About Last Night · The Emberrun</p>
+  </div>
+  <div class="grid" data-collection="worlds"></div>
+</section>
+
+<section class="closing">
+  <p>"Love fiercely. Burn beautifully. Prepare to be claimed."</p>
+  <div class="sig">— Raven DeNoir</div>
+</section>
+
+<footer>
+  <div class="links-row">
+    <a href="https://www.amazon.com/author/raven.denoir">📚 Amazon: full catalog</a>
+    <a href="https://ravendenoir.com">🌐 ravendenoir.com</a>
+    <a href="https://ravens-forms.netlify.app/f/ravens-newsletter">✉️ Newsletter</a>
+    <a href="https://www.instagram.com/ravendenoir">📸 Instagram</a>
+    <a href="https://www.tiktok.com/@ravendenoir">🎵 TikTok</a>
+    <a href="https://discord.gg/GNAFqznw">💬 Discord</a>
+    <a href="https://www.patreon.com/c/RavenDeNoir">🖤 Patreon</a>
+  </div>
+  <p class="fineprint">© Raven DeNoir. All rights reserved. Orders are printed on demand and fulfilled by our print partner; checkout and shipping happen on the product page each button opens.</p>
+</footer>
+
+<script>
+/* ============================================================
+   PRODUCTS — edit this array only.
+   quote      : the line shown on the card face (the design itself)
+   small      : true if the quote is long and needs smaller type
+   name       : product title shown under the face
+   kind       : product type line (Unisex tee, 11oz mug, etc.)
+   price      : display price — match what you set in Printify
+   url        : Printify Pop-Up product URL. "" = shows "In the forge"
+   collection : "house" | "vows" | "worlds"
+============================================================ */
+const PRODUCTS = [
+  /* ---- The House Collection ---- */
+  { quote:"Love Stories With Body Counts", small:true,
+    name:"The Tagline Tee", kind:"Unisex heavyweight tee",
+    price:"$27.99", url:"", collection:"house" },
+
+  { quote:"Read dangerously.",
+    name:"Read Dangerously Tee", kind:"Unisex heavyweight tee",
+    price:"$27.99", url:"", collection:"house" },
+
+  { quote:"Read dangerously.",
+    name:"Read Dangerously Mug", kind:"11oz ceramic mug",
+    price:"$16.99", url:"", collection:"house" },
+
+  { quote:"House of DeNoir",
+    name:"House Crest Hoodie", kind:"Unisex heavy-blend hoodie",
+    price:"$44.99", url:"", collection:"house" },
+
+  { quote:"Pick your poison.",
+    name:"Pick Your Poison Tote", kind:"Canvas book tote",
+    price:"$19.99", url:"", collection:"house" },
+
+  /* ---- Vows & Vengeance ---- */
+  { quote:"He doesn't chase. He claims.", small:true,
+    name:"Claimed Tee", kind:"Unisex heavyweight tee",
+    price:"$27.99", url:"", collection:"vows" },
+
+  { quote:"Trust is earned in blood.", small:true,
+    name:"Dark Vows Tee", kind:"Unisex heavyweight tee",
+    price:"$27.99", url:"", collection:"vows" },
+
+  { quote:"Vows & Vengeance",
+    name:"Series Crest Mug", kind:"11oz ceramic mug",
+    price:"$16.99", url:"", collection:"vows" },
+
+  /* ---- The Worlds ---- */
+  { quote:"So, about last night…", small:true,
+    name:"About Last Night Tee", kind:"Unisex heavyweight tee",
+    price:"$27.99", url:"", collection:"worlds" },
+
+  { quote:"Grown-folks love.",
+    name:"The Ache Mug", kind:"11oz ceramic mug",
+    price:"$16.99", url:"", collection:"worlds" },
+
+  { quote:"The forest watches. The wolves keep score.", small:true,
+    name:"Emberrun Tee", kind:"Unisex heavyweight tee",
+    price:"$27.99", url:"", collection:"worlds" },
+];
+
+function card(p){
+  const el = document.createElement('article');
+  el.className = 'card';
+  el.innerHTML = `
+    <div class="face"><blockquote class="${p.small ? 'small' : ''}">${p.quote}</blockquote></div>
+    <div class="meta">
+      <div class="name">${p.name}</div>
+      <div class="kind">${p.kind}</div>
+      <div class="price">${p.price}</div>
+      <div class="buy">${
+        p.url
+          ? `<a href="${p.url}" target="_blank" rel="noopener">Claim it</a>`
+          : `<span>In the forge</span>`
+      }</div>
+    </div>`;
+  return el;
+}
+
+for (const p of PRODUCTS){
+  const grid = document.querySelector(`[data-collection="${p.collection}"]`);
+  if (grid) grid.appendChild(card(p));
+}
+</script>
+
+</body>
+</html>
