@@ -268,9 +268,7 @@
 <header>
   <a class="wordmark" href="https://ravendenoir.com">RAVEN <span>DENOIR</span></a>
   <nav aria-label="Store sections">
-    <a href="#house">The House</a>
-    <a href="#vows">Vows &amp; Vengeance</a>
-    <a href="#worlds">The Worlds</a>
+    <a href="#reader">The Collection</a>
     <a href="https://ravendenoir.com">Back to the books</a>
   </nav>
 </header>
@@ -278,16 +276,8 @@
 <section class="hero">
   <span class="quill" aria-hidden="true">🪶</span>
   <h1>Wear the <em>House</em>.</h1>
-  <p>Official House of DeNoir merch, printed to order and shipped to your door. If you know which vow was sealed in blood and whose name goes with Thursday, these were made for you.</p>
+  <p>Official House of DeNoir merch, printed to order and shipped to your door. For readers whose therapy has morally grey men and a plot &mdash; wear the evidence.</p>
   <div class="rule" aria-hidden="true"></div>
-</section>
-
-<section class="collection" id="house">
-  <div class="collection-head">
-    <h2>The House Collection</h2>
-    <p>for readers who ride with me</p>
-  </div>
-  <div class="grid" data-collection="house"></div>
 </section>
 
 <section class="collection" id="reader">
@@ -296,22 +286,6 @@
     <p>my therapy has morally grey men and a plot</p>
   </div>
   <div class="grid" data-collection="reader"></div>
-</section>
-
-<section class="collection" id="vows">
-  <div class="collection-head">
-    <h2>Vows &amp; Vengeance</h2>
-    <p>the flagship — Boston runs on it</p>
-  </div>
-  <div class="grid" data-collection="vows"></div>
-</section>
-
-<section class="collection" id="worlds">
-  <div class="collection-head">
-    <h2>The Worlds</h2>
-    <p>The Ache · So, About Last Night · The Emberrun</p>
-  </div>
-  <div class="grid" data-collection="worlds"></div>
 </section>
 
 <section class="closing">
@@ -344,10 +318,6 @@
    collection : "house" | "vows" | "worlds"
 ============================================================ */
 const PRODUCTS = [
-  /* ---- The House Collection ---- */
-  { quote:"RD",
-    name:"Signature Monogram Raven Tee", kind:"Bella+Canvas lightweight tee · white",
-    price:"$26.99", url:"", collection:"house" },
 
   /* ---- Reader Life ---- */
   { img:"https://images-api.printify.com/mockup/6a98af46c07f91a2ff0abac6/73217/16992/raven-dark-romance-zipper-wallet-gothic-booklover-wallet.jpg?s=800",
@@ -386,25 +356,10 @@ const PRODUCTS = [
     url:"https://house-of-denoir.printify.me/product/31585202",
     collection:"reader" },
 
-  { quote:"Love Stories With Body Counts", small:true,
-    name:"The Tagline Tee", kind:"Unisex heavyweight tee",
-    price:"$27.99", url:"", collection:"house" },
 
-  { quote:"Read dangerously.",
-    name:"Read Dangerously Tee", kind:"Unisex heavyweight tee",
-    price:"$27.99", url:"", collection:"house" },
 
-  { quote:"Read dangerously.",
-    name:"Read Dangerously Mug", kind:"11oz ceramic mug",
-    price:"$16.99", url:"", collection:"house" },
 
-  { quote:"House of DeNoir",
-    name:"House Crest Hoodie", kind:"Unisex heavy-blend hoodie",
-    price:"$44.99", url:"", collection:"house" },
 
-  { quote:"Pick your poison.",
-    name:"Pick Your Poison Tote", kind:"Canvas book tote",
-    price:"$19.99", url:"", collection:"house" },
 
   { img:"https://images-api.printify.com/mockup/6a98ab28662bca859a053c9f/103599/100877/dark-romance-tote-bag-dark-romance-heals-things-gothic-bookish-tote.jpg?s=800",
     name:"Dark Romance Heals Things Tote", kind:"gothic bookish tote · art front, signature back",
@@ -418,31 +373,11 @@ const PRODUCTS = [
     url:"https://house-of-denoir.printify.me/product/31585386",
     collection:"reader" },
 
-  /* ---- Vows & Vengeance ---- */
-  { quote:"He doesn't chase. He claims.", small:true,
-    name:"Claimed Tee", kind:"Unisex heavyweight tee",
-    price:"$27.99", url:"", collection:"vows" },
 
-  { quote:"Trust is earned in blood.", small:true,
-    name:"Dark Vows Tee", kind:"Unisex heavyweight tee",
-    price:"$27.99", url:"", collection:"vows" },
 
-  { quote:"Vows & Vengeance",
-    name:"Series Crest Mug", kind:"11oz ceramic mug",
-    price:"$16.99", url:"", collection:"vows" },
 
-  /* ---- The Worlds ---- */
-  { quote:"So, about last night…", small:true,
-    name:"About Last Night Tee", kind:"Unisex heavyweight tee",
-    price:"$27.99", url:"", collection:"worlds" },
 
-  { quote:"Grown-folks love.",
-    name:"The Ache Mug", kind:"11oz ceramic mug",
-    price:"$16.99", url:"", collection:"worlds" },
 
-  { quote:"The forest watches. The wolves keep score.", small:true,
-    name:"Emberrun Tee", kind:"Unisex heavyweight tee",
-    price:"$27.99", url:"", collection:"worlds" },
 ];
 
 function card(p){
