@@ -170,6 +170,8 @@
     color:var(--gold);
   }
   .face blockquote.small{font-size:1.1rem}
+  .face.photo{padding:0;background:var(--coal)}
+  .face.photo img{width:100%;height:100%;object-fit:cover;display:block}
   .meta{
     padding:1rem 1.1rem 1.2rem;
     display:flex;
@@ -288,6 +290,14 @@
   <div class="grid" data-collection="house"></div>
 </section>
 
+<section class="collection" id="reader">
+  <div class="collection-head">
+    <h2>Reader Life</h2>
+    <p>my therapy has morally grey men and a plot</p>
+  </div>
+  <div class="grid" data-collection="reader"></div>
+</section>
+
 <section class="collection" id="vows">
   <div class="collection-head">
     <h2>Vows &amp; Vengeance</h2>
@@ -335,6 +345,47 @@
 ============================================================ */
 const PRODUCTS = [
   /* ---- The House Collection ---- */
+  { quote:"RD",
+    name:"Signature Monogram Raven Tee", kind:"Bella+Canvas lightweight tee · white",
+    price:"$26.99", url:"", collection:"house" },
+
+  /* ---- Reader Life ---- */
+  { img:"https://images-api.printify.com/mockup/6a98af46c07f91a2ff0abac6/73217/16992/raven-dark-romance-zipper-wallet-gothic-booklover-wallet.jpg?s=800",
+    name:"Raven Zipper Wallet", kind:"gothic booklover zip wallet",
+    price:"$29.99",
+    url:"https://house-of-denoir.printify.me/product/31585938",
+    collection:"reader" },
+
+  { img:"https://images-api.printify.com/mockup/6a98ae504ac00e7da501c06c/38191/97992/dark-romance-graphic-tshirt-dark-romance-heals-things-black-queen-illustration.jpg?s=800",
+    name:"Black Queen Illustration Tee", kind:"unisex graphic tee · front print",
+    price:"$27.95",
+    url:"https://house-of-denoir.printify.me/product/31585775",
+    collection:"reader" },
+
+  { img:"https://images-api.printify.com/mockup/6a98ad0caa543bfeff0f85e0/32912/98424/dark-romance-hoodie-dark-romance-heels-things-gothic-graphic-pullover.jpg?s=800",
+    name:"Dark Romance Heals Things Hoodie", kind:"heavy-blend pullover · front, back &amp; sleeve print",
+    price:"$58.05",
+    url:"https://house-of-denoir.printify.me/product/31585604",
+    collection:"reader" },
+
+  { img:"https://images-api.printify.com/mockup/6a98a590aa543bfeff0f7d6d/18486/102044/dark-romance-heals-things-tee-gothic-booklover-graphic-tshirt.jpg?s=800",
+    name:"Dark Romance Heals Things Tee", kind:"Bella+Canvas 3001 · front, back &amp; sleeve print",
+    price:"$39.93",
+    url:"https://house-of-denoir.printify.me/product/31584813",
+    collection:"reader" },
+
+  { img:"https://images-api.printify.com/mockup/6a98a7b360dba9e21d049be3/65216/6310/raven-skull-ceramic-mug-gothic-dark-art-coffee-cup-11oz-15oz.jpg?s=800",
+    name:"Dark Romance Heals Things Mug", kind:"white ceramic · 11oz &amp; 15oz · wraparound art",
+    price:"$11.99",
+    url:"https://house-of-denoir.printify.me/product/31585039",
+    collection:"reader" },
+
+  { img:"https://images-api.printify.com/mockup/6a98a98daa543bfeff0f80ec/71923/13136/dark-romance-mouse-pad-dark-romance-heals-things-gothic-book-lover-desk-mat.jpg?s=800",
+    name:"Dark Romance Heals Things Mouse Pad", kind:"gothic book lover desk mat",
+    price:"$9.99",
+    url:"https://house-of-denoir.printify.me/product/31585202",
+    collection:"reader" },
+
   { quote:"Love Stories With Body Counts", small:true,
     name:"The Tagline Tee", kind:"Unisex heavyweight tee",
     price:"$27.99", url:"", collection:"house" },
@@ -354,6 +405,18 @@ const PRODUCTS = [
   { quote:"Pick your poison.",
     name:"Pick Your Poison Tote", kind:"Canvas book tote",
     price:"$19.99", url:"", collection:"house" },
+
+  { img:"https://images-api.printify.com/mockup/6a98ab28662bca859a053c9f/103599/100877/dark-romance-tote-bag-dark-romance-heals-things-gothic-bookish-tote.jpg?s=800",
+    name:"Dark Romance Heals Things Tote", kind:"gothic bookish tote · art front, signature back",
+    price:"$21.05",
+    url:"https://house-of-denoir.printify.me/product/31585426",
+    collection:"reader" },
+
+  { img:"https://images-api.printify.com/mockup/6a98aad5c07f91a2ff0ab55a/44528/46804/dark-romance-accessory-pouch-dark-romance-heals-things-designer-makeup-bag.jpg?s=800",
+    name:"Dark Romance Heals Things Pouch", kind:"T-bottom accessory pouch · gold zip",
+    price:"$13.12",
+    url:"https://house-of-denoir.printify.me/product/31585386",
+    collection:"reader" },
 
   /* ---- Vows & Vengeance ---- */
   { quote:"He doesn't chase. He claims.", small:true,
@@ -385,8 +448,11 @@ const PRODUCTS = [
 function card(p){
   const el = document.createElement('article');
   el.className = 'card';
+  const face = p.img
+    ? `<div class="face photo"><img src="${p.img}" alt="${p.name}" loading="lazy"></div>`
+    : `<div class="face"><blockquote class="${p.small ? 'small' : ''}">${p.quote}</blockquote></div>`;
   el.innerHTML = `
-    <div class="face"><blockquote class="${p.small ? 'small' : ''}">${p.quote}</blockquote></div>
+    ${face}
     <div class="meta">
       <div class="name">${p.name}</div>
       <div class="kind">${p.kind}</div>
