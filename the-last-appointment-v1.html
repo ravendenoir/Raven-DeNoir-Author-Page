@@ -70,9 +70,6 @@
   .controls{display:flex;gap:10px}
   .ctrl{background:none;border:1px solid var(--line);color:var(--parchment);padding:6px 12px;font-size:.95rem}
   .ctrl:hover{border-color:var(--gold);color:var(--gold)}
-  .banner{background:var(--ink-soft);border-bottom:1px solid var(--line);padding:10px 44px 10px 20px;font-size:.92rem;color:var(--parchment-dim);position:relative;text-align:center}
-  .banner .x{position:absolute;right:12px;top:6px;background:none;border:none;color:var(--parchment-dim);font-size:1.1rem}
-  .banner .x:hover{color:var(--gold)}
 
   .hero{max-width:760px;margin:0 auto;padding:56px 20px 24px;text-align:center}
   .hero img.cover{width:min(380px,86vw);height:auto;display:block;margin:0 auto 34px;box-shadow:0 18px 60px rgba(0,0,0,.7);border:1px solid var(--line)}
@@ -177,17 +174,12 @@
     </div>
   </div>
 
-  <div class="banner" id="ktqBanner">
-    📖 Craving more after this? <a href="https://ravendenoir.com/king-takes-queen-final-v4.html?access=raven-ktq-2026"><em>King Takes Queen</em></a>, Vadim and Reyna's lost night, is free for you too.
-    <button class="x" id="bannerX" aria-label="Dismiss">&times;</button>
-  </div>
-
   <div class="hero">
     <img class="cover" src="the-last-appointment-cover.png" alt="The Last Appointment book cover">
     <div class="series-line">A HOUSE OF DENOIR EXCLUSIVE</div>
     <h1>The Last Appointment</h1>
     <p class="hook">"He booked under a fake name. She never forgot his real one."</p>
-    <p class="byline">by Raven DeNoir &middot; Exclusive Newsletter Read</p>
+    <p class="byline">Exclusive Newsletter Read</p>
     <hr>
   </div>
 
@@ -206,7 +198,6 @@
       <div class="pviewport" id="pviewport">
         <div class="pbook" id="pbook">
           <p class="story-title noindent">The Last Appointment</p>
-          <p class="story-sub noindent">by Raven DeNoir</p>
           <p class="opener">The ten o'clock booked under the name M. Webb, paid cash in advance, declined the intake call, and requested her by name.</p>
           <p>Noelle Marchand should have flagged it. Ten years in this business had taught her that men who paid cash and skipped intake were usually one of two problems, and she didn't work on either kind. But it was the last appointment of the night, the deposit was triple her rate, and her studio manager had already gone home. She turned the table warmer on, folded the linen back, and lit the candle she used to cut the smell of eucalyptus, and when the front chime sounded she called out without looking up.</p>
           <p>"Shoes off at the door, Mr. Webb. Robe's in the changing room, water's on the console. I'll need you face down when I come in."</p>
@@ -374,9 +365,6 @@
     localStorage.setItem("tla_gate","1");
     gate.classList.add("hidden");
     showPage();
-  });
-  document.getElementById("bannerX").addEventListener("click", function(){
-    document.getElementById("ktqBanner").classList.add("hidden");
   });
 
   /* ---------- pagination inside the paper card ---------- */
