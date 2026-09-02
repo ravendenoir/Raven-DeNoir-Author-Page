@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Last Appointment | An Exclusive Read | Raven DeNoir</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0e0c0a;
+    --ink-soft:#171310;
+    --parchment:#ece1cd;
+    --parchment-dim:#b9ab92;
+    --gold:#c9a227;
+    --ember:#d97f3e;
+    --line:#3a3128;
+    --serif-display:'Cormorant Garamond', Georgia, serif;
+    --serif-body:'Crimson Pro', Georgia, serif;
+    --page-w:640px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+  body{
+    background:var(--ink);
+    color:var(--parchment);
+    font-family:var(--serif-body);
+    line-height:1.7;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:var(--gold);text-decoration:none}
+  a:hover{text-decoration:underline}
+  button{font-family:inherit;cursor:pointer}
+  :focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+
+  /* ---------- screens ---------- */
+  .screen{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:32px 20px}
+  .hidden{display:none !important}
+
+  /* ---------- lock screen ---------- */
+  .lock-box{max-width:520px;text-align:center}
+  .lock-box .glyph{font-size:2rem;color:var(--gold);margin-bottom:18px}
+  .lock-box h1{font-family:var(--serif-display);font-weight:600;font-size:2rem;margin-bottom:14px;color:var(--parchment)}
+  .lock-box p{color:var(--parchment-dim);font-size:1.05rem}
+  .lock-box a{display:inline-block;margin-top:22px}
+
+  /* ---------- gate: the appointment card ---------- */
+  .gate-wrap{max-width:560px;width:100%}
+  .card{
+    border:1px solid var(--line);
+    background:var(--ink-soft);
+    padding:44px 40px 40px;
+    position:relative;
+  }
+  .card::before{
+    content:"";
+    position:absolute;inset:8px;
+    border:1px solid rgba(201,162,39,.35);
+    pointer-events:none;
+  }
+  .card .house{
+    text-align:center;
+    font-family:var(--serif-display);
+    letter-spacing:.28em;
+    font-size:.78rem;
+    color:var(--gold);
+    margin-bottom:28px;
+  }
+  .booking{
+    text-align:center;
+    color:var(--parchment-dim);
+    font-size:.98rem;
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+    padding:12px 0;
+    margin:0 auto 30px;
+    max-width:380px;
+  }
+  .booking span{color:var(--parchment)}
+  .card h1{
+    font-family:var(--serif-display);
+    font-weight:700;
+    font-size:clamp(2.3rem, 7vw, 3.1rem);
+    line-height:1.08;
+    text-align:center;
+    color:var(--parchment);
+    margin-bottom:14px;
+  }
+  .card .byline{text-align:center;color:var(--parchment-dim);font-size:1rem;margin-bottom:6px}
+  .card .series{text-align:center;color:var(--gold);font-size:.95rem;margin-bottom:26px;font-style:italic}
+  .card .hook{
+    font-family:var(--serif-display);
+    font-style:italic;
+    font-size:1.25rem;
+    text-align:center;
+    color:var(--ember);
+    margin:0 auto 30px;
+    max-width:420px;
+    line-height:1.45;
+  }
+  .warning{
+    border:1px solid var(--line);
+    padding:18px 20px;
+    font-size:.95rem;
+    color:var(--parchment-dim);
+    margin-bottom:30px;
+  }
+  .warning strong{color:var(--parchment);display:block;margin-bottom:8px;font-weight:600}
+  .enter-btn{
+    display:block;width:100%;
+    background:var(--gold);color:var(--ink);
+    border:none;padding:16px 20px;
+    font-size:1.05rem;font-weight:600;
+    letter-spacing:.04em;
+    transition:background .2s ease;
+  }
+  .enter-btn:hover{background:#dcb63b}
+  .gate-note{text-align:center;color:var(--parchment-dim);font-size:.85rem;margin-top:14px}
+
+  /* ---------- reader ---------- */
+  #reader{min-height:100vh;display:flex;flex-direction:column}
+  .reader-bar{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:14px 20px;
+    border-bottom:1px solid var(--line);
+    background:var(--ink);
+    position:sticky;top:0;z-index:5;
+  }
+  .reader-bar .title{
+    font-family:var(--serif-display);
+    font-size:1rem;letter-spacing:.12em;color:var(--gold);
+  }
+  .controls{display:flex;gap:10px;align-items:center}
+  .ctrl{
+    background:none;border:1px solid var(--line);
+    color:var(--parchment);padding:6px 12px;font-size:.95rem;
+  }
+  .ctrl:hover{border-color:var(--gold);color:var(--gold)}
+  .progress{
+    height:2px;background:var(--line);position:relative;
+  }
+  .progress .fill{
+    position:absolute;left:0;top:0;bottom:0;width:0;
+    background:var(--gold);transition:width .25s ease;
+  }
+  .stage{
+    flex:1;display:flex;align-items:stretch;justify-content:center;
+    overflow:hidden;position:relative;
+  }
+  .flip{
+    background:none;border:none;color:var(--parchment-dim);
+    font-size:2.2rem;padding:0 18px;flex:0 0 auto;
+    transition:color .2s ease;
+  }
+  .flip:hover{color:var(--gold)}
+  .flip:disabled{opacity:.2;cursor:default}
+  .viewport{
+    flex:0 1 var(--page-w);
+    max-width:var(--page-w);
+    overflow:hidden;
+    padding:38px 8px;
+  }
+  .book{
+    height:100%;
+    column-gap:64px;
+    transition:transform .3s ease;
+  }
+  .book p{
+    margin-bottom:1em;
+    font-size:var(--fs, 1.15rem);
+    text-indent:1.6em;
+  }
+  .book p.noindent{text-indent:0}
+  .book .story-title{
+    font-family:var(--serif-display);
+    font-weight:700;font-size:2rem;text-align:center;
+    color:var(--parchment);text-indent:0;margin-bottom:.4em;
+  }
+  .book .story-sub{
+    text-align:center;color:var(--parchment-dim);font-style:italic;
+    text-indent:0;margin-bottom:2.2em;font-size:1rem;
+  }
+  .book .break{
+    text-align:center;color:var(--gold);letter-spacing:.5em;
+    text-indent:0;margin:1.6em 0;
+  }
+  .book .the-end{
+    font-family:var(--serif-display);text-align:center;
+    letter-spacing:.3em;color:var(--gold);text-indent:0;margin:2.2em 0;
+  }
+  .book .final-line{font-weight:600;text-indent:1.6em}
+  .end-matter{border-top:1px solid var(--line);padding-top:2em;margin-top:1em}
+  .end-matter h2{
+    font-family:var(--serif-display);font-weight:600;
+    font-size:1.5rem;color:var(--parchment);text-align:center;
+    margin-bottom:.8em;
+  }
+  .end-matter p{text-indent:0;color:var(--parchment-dim);text-align:center;font-size:1.05rem}
+  .end-matter p.cta{color:var(--parchment)}
+  .links-row{
+    display:flex;flex-wrap:wrap;gap:10px;justify-content:center;
+    margin:1.4em 0;
+  }
+  .links-row a{
+    border:1px solid var(--line);padding:8px 14px;font-size:.92rem;
+    color:var(--parchment);
+  }
+  .links-row a:hover{border-color:var(--gold);color:var(--gold);text-decoration:none}
+  .rights{font-size:.85rem;margin-top:1.6em}
+  .pagecount{
+    text-align:center;color:var(--parchment-dim);
+    font-size:.85rem;padding:10px 0 16px;
+  }
+
+  @media (max-width:700px){
+    .viewport{padding:26px 4px}
+    .flip{padding:0 8px;font-size:1.8rem}
+    .card{padding:34px 22px 30px}
+  }
+  @media (prefers-reduced-motion: reduce){
+    .book{transition:none}
+    .progress .fill{transition:none}
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ LOCK SCREEN (no access token) ============ -->
+<section class="screen" id="lockScreen">
+  <div class="lock-box">
+    <div class="glyph">🔒</div>
+    <h1>This page is private.</h1>
+    <p>This exclusive read is available only to Raven DeNoir newsletter subscribers. If you found your way here without a key, the door is easy to open: join the list and it arrives in your inbox.</p>
+    <a href="https://ravendenoir.com">Return to ravendenoir.com</a>
+  </div>
+</section>
+
+<!-- ============ GATE: THE APPOINTMENT CARD ============ -->
+<section class="screen hidden" id="gate">
+  <div class="gate-wrap">
+    <div class="card">
+      <div class="house">HOUSE OF DENOIR</div>
+      <div class="booking">Client: <span>M. Webb</span> &nbsp;·&nbsp; <span>10:00 PM</span> &nbsp;·&nbsp; Paid in full</div>
+      <h1>The Last Appointment</h1>
+      <p class="byline">by Raven DeNoir</p>
+      <p class="series">An Exclusive Newsletter Read</p>
+      <p class="hook">"He booked under a fake name. She never forgot his real one."</p>
+      <div class="warning">
+        <strong>Content warning</strong>
+        This is a high-heat BWWM second-chance romance containing graphic, explicit sexual content and explicit language. Five years ago he walked away from the only woman who ever touched him without an invoice in her hand. Tonight he's on her table, under her rules, and every minute of the hour has a price. For mature readers 18+ only. By entering, you confirm you are 18 or older.
+      </div>
+      <button class="enter-btn" id="enterBtn">I'm 18+ · Take the Appointment</button>
+      <p class="gate-note">This story is a gift to Raven DeNoir's subscribers. Please don't share the link; send friends to ravendenoir.com so they can claim their own.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ READER ============ -->
+<div id="reader" class="hidden">
+  <div class="reader-bar">
+    <div class="title">THE LAST APPOINTMENT</div>
+    <div class="controls">
+      <button class="ctrl" id="fontDown" aria-label="Smaller text">A−</button>
+      <button class="ctrl" id="fontUp" aria-label="Larger text">A+</button>
+    </div>
+  </div>
+  <div class="progress"><div class="fill" id="progressFill"></div></div>
+
+  <div class="stage">
+    <button class="flip" id="prevBtn" aria-label="Previous page">‹</button>
+    <div class="viewport" id="viewport">
+      <div class="book" id="book">
+        <p class="story-title noindent">The Last Appointment</p>
+        <p class="story-sub noindent">by Raven DeNoir</p>
+        <!-- STORY_START -->
+        <p>The ten o'clock booked under the name M. Webb, paid cash in advance, declined the intake call, and requested her by name.</p>
+        <p>Noelle Marchand should have flagged it. Ten years in this business had taught her that men who paid cash and skipped intake were usually one of two problems, and she didn't work on either kind. But it was the last appointment of the night, the deposit was triple her rate, and her studio manager had already gone home. She turned the table warmer on, folded the linen back, and lit the candle she used to cut the smell of eucalyptus, and when the front chime sounded she called out without looking up.</p>
+        <p>"Shoes off at the door, Mr. Webb. Robe's in the changing room, water's on the console. I'll need you face down when I come in."</p>
+        <p>"You still give instructions like the room belongs to you."</p>
+        <p>Five years, and she knew the voice before she finished turning around.</p>
+        <p>Calder Hale stood in the doorway of her studio in a charcoal coat that cost more than her first six months of rent, and he had the audacity to look better than he used to. Silver threaded through the dark hair at his temples now. A new hardness sat in his face, carved in around the mouth, the kind grief leaves when it moves in permanently. His eyes hadn't changed at all, and that was the problem. His eyes had always looked at her like she was the only solvent thing in a burning building.</p>
+        <p>"The room does belong to me," she said.</p>
+        <p>"I know. I read the article. Marchand Bodyworks, appointment only, two-year waitlist." He stepped inside and let the door close behind him. "You built it."</p>
+        <p>"I built a lot of things after you left. Turns out I had the time."</p>
+        <p>He took that without flinching, which told her he'd come expecting to bleed. Fine. She could work with a man who came to bleed.</p>
+        <p>Her hands stayed steady while everything under her sternum went loud. That was the trick she'd learned at twenty-two, working on strangers while her life fell apart in the parking lot: the hands don't get to know what the rest of you knows. The hands just work.</p>
+        <p>"You have two options, Mr. Webb." She said the fake name with surgical precision and watched it land. "You can walk back out that door and I keep your deposit for my trouble. Or you can get on my table, and for sixty minutes you're a body and I'm a professional, and when it's over you leave and you don't come back."</p>
+        <p>"And if I want to talk?"</p>
+        <p>"Then you should've called five years ago. The table or the door, Calder."</p>
+        <p>He held her gaze for a long moment. Then he took off his coat.</p>
+        <p class="break">***</p>
+        <p>She'd had her hands on a thousand bodies since his. She'd forgotten none of his anyway.</p>
+        <p>That was the indignity of it, the thing she'd never say out loud: muscle memory ran both directions. He lay face down under her linen, and her palms found the old geography without asking permission, the dense slope of his shoulders, the knot he always carried under the right scapula from sleeping wrong on planes, the long channel of his spine. Cedar oil warmed between her hands. The candle threw its small light. His breathing had gone deep and controlled, too controlled to be rest.</p>
+        <p>She dug her thumb into the knot without mercy.</p>
+        <p>He exhaled through it, slow. "You're angry."</p>
+        <p>"I'm working. There's a difference. If you want anger you'll have to book a second appointment, and I'm full through spring."</p>
+        <p>"Noelle."</p>
+        <p>"Pressure okay?" Her voice was pure clinician. "Most clients find this depth uncomfortable."</p>
+        <p>"Most clients didn't earn it."</p>
+        <p>Her hands kept moving because her hands were professionals even when her chest wasn't. She worked his shoulder in silence, and the silence had teeth, and she let it bite him for a while. He'd always been able to outlast a silence. It was one of the first things she'd loved about him, back when she was twenty-nine and he'd sat in her tiny first studio with a patience she'd never seen on a rich man, never checking the time, never filling the quiet.</p>
+        <p>She moved down his back and found new terrain. A scar, maybe four inches, ridged and surgical, tracing his lower rib on the left side.</p>
+        <p>Her thumb stopped on it. She hated herself for stopping.</p>
+        <p>"Splenectomy," he said into the face cradle. "Three years ago. Car accident."</p>
+        <p>"I didn't ask."</p>
+        <p>"You stopped."</p>
+        <p>"I stopped because scar tissue changes how I work the fascia." A lie, delivered flawlessly. She adjusted her pressure and moved on. "Turn your head if the cradle's straining your neck."</p>
+        <p>"You want to know if I was alone in the car."</p>
+        <p>"I want you to be a body on my table, Mr. Webb. Bodies don't narrate."</p>
+        <p>He turned his head anyway, cheek to the linen, one grey eye finding her in the candlelight. "I was alone. I was alone for most of it, Noelle. That's not a bid for sympathy. It's just the accounting."</p>
+        <p>"The accounting." She pressed her forearm into the long muscle beside his spine and leaned her weight in, slow, controlled, right to the edge of what a body could take. "You want to do accounting. Okay. Five years ago I told you something I'd never told another living soul, and six days later your number was disconnected and your building had a new doorman with instructions. That's the ledger. There's no column for whether you were lonely."</p>
+        <p>"There's a column for why."</p>
+        <p>"No." Her weight came off him. She reoiled her hands, and the bottle clicked too loud in the quiet. "There isn't. Because I stopped asking why. Asking why is a debt, and I don't carry debt anymore. I own everything in my life outright, including this hour, which you have thirty-one minutes left of."</p>
+        <p>She worked. He let her. Outside, the city hummed against the windows, indifferent.</p>
+        <p>It was his hands that broke the détente. Not by touching her. They were still folded under the cradle, obedient, exactly where a client's hands belonged, but they curled slowly into fists, and he forced them flat again, and she understood with a low electric jolt that he was holding a line. That the stillness wasn't relaxation and never had been. Sixty minutes of her hands on his skin and the man was white-knuckling it like a penitent.</p>
+        <p>Good, she thought, and the thought had claws, and underneath the claws it had heat, and she despised that most of all.</p>
+        <p>"Flip," she said. "Face up. I'll hold the linen."</p>
+        <p>He turned over under the sheet, and she made the mistake of meeting his eyes.</p>
+        <p>Five years. He looked at her like no time had passed and all of it had, both at once, a man standing in the ruin of something he'd burned down himself with the match still in his hand. Nobody had looked at her that way since him. She'd made sure of it. She had arranged her entire life into a fortress of things that couldn't leave because she owned them, and he was on her table looking at her like the fortress was made of paper.</p>
+        <p>"Noelle." Quiet. "Ask me why."</p>
+        <p>"No."</p>
+        <p>"Then ask me how I found you, at least. You'll want that one."</p>
+        <p>Her hands went still on his shoulders. The quiet in his voice had changed. It was the sound of a man laying down a card he'd carried too long. She reached over him, picked up the clipboard from the console, and read the intake form again. M. Webb. Cash. No referral listed. And her studio wasn't searchable, wasn't listed under her name, was two years and one LLC removed from Noelle Marchand on paper, because she had built it that way on purpose, in the shape of a woman who never wanted to be found by exactly one person.</p>
+        <p>The clipboard came down on the console harder than she intended.</p>
+        <p>"There's no walk-ins here. No listing. Who's Webb?"</p>
+        <p>"Nobody. A name my lawyer uses for reservations."</p>
+        <p>"Your lawyer." Her pulse went hot and fast, and she stepped back from the table. "How long have you known where I was?"</p>
+        <p>"Eight months."</p>
+        <p>"Eight months."</p>
+        <p>"It took two years to find you. It took eight more months to be able to walk in." He sat up, and the linen pooled at his waist, and he made no move toward her at all, which somehow made it worse. "I've had this appointment booked and cancelled four times. Ask my lawyer. He thinks Webb is the most indecisive man in the city."</p>
+        <p>The fury arrived clean and bright, and it felt magnificent, and she let it off the leash.</p>
+        <p>"You hunted me." Her voice stayed low. She'd never been a shouter; her mother shouted, and Noelle had built herself in opposition. "I thought this was God's idea of a joke. Fate with a sick sense of humor, the last client of the night. But you hunted me, and you sat through an hour of my hands like, what, an installment plan? Penance by appointment?"</p>
+        <p>"Yes."</p>
+        <p>The honesty knocked her sideways. He didn't dress it up.</p>
+        <p>"You paid triple," she said, "to be touched by the woman you left."</p>
+        <p>"I paid triple to be in the room while you decided whether I deserved to be." He stood, sheet abandoned, trousers still on, bare chest rising and falling faster now, the surgical scar pale in the low light. "You want the why. Here it is, whether you're asking or not. My father's company was ninety days from collapse and he'd hidden it from everyone but the lawyers. There was a merger on the table that would save eleven hundred jobs, and the merger came with terms, and one of the terms was the majority partner's daughter." His mouth twisted around it. "A marriage clause. Medieval. Signed like a shipping contract."</p>
+        <p>"And you signed."</p>
+        <p>"I signed on a Tuesday." He didn't drop his eyes. "And I'd like to tell you I did it for the eleven hundred jobs. That's the version I told myself for a year. But part of me wanted what came with the signature. The chair. The name. My father finally looking at me like I was worth the inheritance. The jobs made it noble, Noelle. Wanting it made it easy."</p>
+        <p>She stared at him. Whatever she'd braced for, it wasn't this: a confession with the flattery stripped out.</p>
+        <p>"So you weren't cornered."</p>
+        <p>"I was cornered. And I still ran toward the corner, because the corner came with a crown." He let that sit, ugly and unvarnished, between them. "I came to see you that Friday. The last night. You remember the last night."</p>
+        <p>She remembered candlelight not unlike this. She remembered telling him about her mother, the leaving, the six apartments in four years, the lesson she'd taught herself: never ask anyone for anything, because asking was how you found out how little you were worth. She remembered saying the one word she'd never given anyone. Stay. One syllable, at two in the morning, into the skin of his shoulder, and she'd felt him go rigid and thought it meant the word mattered.</p>
+        <p>It had mattered. Just not the way she thought.</p>
+        <p>"You already knew," she said. The floor felt strange under her. "That night. I asked you to stay and you already knew you were leaving. You let me..." She stopped. Rebuilt her voice from the studs. "You let me hand you the only key I had, knowing."</p>
+        <p>"I came to say goodbye and I was a coward twice. Too much of one to say it, and too much of one to stay away from you for one last night I hadn't earned. I have not got one word to say in my own defense, Noelle. I've had five years to look for one." He took a single step closer, and stopped, leaving the distance hers to close or keep. "The marriage never happened. I broke the clause eighteen months in, before there was a wedding to call off. Eighteen months, when it should have been eighteen days. She lost a year and a half to my indecision too, and she was blameless, and that's on the same page of the ledger. It cost me forty percent of my inheritance and my father's last two years of speaking to me, and I would do it again slower just to enjoy it more. He died. I buried him, I rebuilt the company my own way, and then I spent every private resource I had looking for a woman who had very deliberately made herself impossible to find."</p>
+        <p>"Why." Her fortress, paper. "Why look. You could have anyone. Your world is full of women who'd sign whatever your lawyers put in front of them."</p>
+        <p>"Because I've been touched by exactly one person in my life who wasn't holding an invoice," he said, "and I left her, and there is no version of any life I build that stops being about that."</p>
+        <p>The room got very small and very warm.</p>
+        <p>"I hate you," she said, testing it, the way you test a rail before trusting it with your weight.</p>
+        <p>"That's fair."</p>
+        <p>"I burned everything you gave me."</p>
+        <p>"Good."</p>
+        <p>"I don't forgive you." She crossed the space between them, and her hands, her traitorous professional hands, landed flat on his bare chest, and his heart was slamming under her palm, and the strangest satisfaction rushed her: he wasn't calm either, he had never once been calm, the stillness was a lie he told with his body. "This doesn't forgive you."</p>
+        <p>"I know what this is," he said, low.</p>
+        <p>"Tell me."</p>
+        <p>"An appointment," he said. "I don't leave until you say time's up."</p>
+        <p>She kissed him like a fight, and he let her win it.</p>
+        <p class="break">***</p>
+        <p>Her rules. She said them against his mouth and he obeyed every one.</p>
+        <p>"Hands on the table." He gripped the padded edge behind him, knuckles going pale, and she took his mouth again, slow this time, deliberate, tasting whiskey he must have needed before he made it through her door. She kissed the corner of his jaw, the scar at his rib, and felt his whole frame shudder with the effort of stillness. "You don't touch me until I say. You gave up the right to reach for me. Tonight you get it back one piece at a time or not at all."</p>
+        <p>"Whatever pace you want." His voice had gone rough at the edges, wrecked already, and she'd barely touched him. "I've got nowhere to be for the rest of my life."</p>
+        <p>She stepped back and unzipped her work dress, and let it fall.</p>
+        <p>She watched him watch her. She'd imagined this a hundred humiliating times over the years, imagined being cold, being untouchable, showing him exactly what he'd walked away from. The reality was better and worse: his gaze moved over her like the first drink after a dry decade, unhurried and starving at once, and there was nothing performative in it, nothing smooth. The man ran a nine-figure company and looked one exhale from his knees.</p>
+        <p>"Say something," she said.</p>
+        <p>"I remembered wrong." His grip on the table flexed. "Five years I've been remembering you, and I still had it wrong. You're..." He stopped. Shook his head once. "There's no line that survives contact with you standing there. Come here and I'll do better with my mouth."</p>
+        <p>"Bold, for a man who isn't allowed to touch."</p>
+        <p>"You said hands." A dark flicker crossed his face, first ghost of the humor she used to love. "You didn't say mouth."</p>
+        <p>So she came to him, and she took his mouth for that, and unbuckled his belt while his hands strangled the table's edge and his breath went ragged against her lips. She freed his cock and wrapped her fingers around him, hard and heavy and already leaking at the tip, and the sound he made came from somewhere five years deep.</p>
+        <p>"Look at me," she said. He did. She stroked him slow, base to crown, thumb rolling over the slick head, and watched his composure die by degrees. "The night you left. Did you think about this? What you were walking away from?"</p>
+        <p>"Every night." No hesitation, voice frayed. "Noelle... every night since. I'd wake up reaching for you. Eighteen months chained to that contract and I never once touched her, couldn't, it would've felt like spending your money."</p>
+        <p>She hadn't known she needed that until it hit her bloodstream. Her grip firmed, and his hips punched forward into her fist before he caught himself, jaw grinding with the effort of letting her lead.</p>
+        <p>"On the table," she said. "On your back."</p>
+        <p>He went. The table was built for bodies and held him easily, and she stripped his trousers off and stood over him for a moment, letting him feel what it was to be the one laid out, the one waiting, the one who didn't know if the next minute held mercy. Then she shed the last of her own clothes, took his jaw in one oiled hand, and climbed up to straddle his thighs.</p>
+        <p>"The rules can change when I say." She guided his right hand off the table edge and pressed it flat over her breast, and they both exhaled at the contact, one long breath apiece. "That one's yours again. Earn the rest."</p>
+        <p>He earned it. God, he earned it, his thumb finding her nipple with five-year-old fluency, careful and reverent and not remotely timid, and when she leaned down and told him mouth, he took her breast with a groan she felt in her spine, sucked her until she was rocking against him mindless, until slickness coated the inside of her thighs and patience stopped being a virtue she owned.</p>
+        <p>She rose up, took his cock in hand, and sank down onto him without warning.</p>
+        <p>The stretch punched the air out of them both. He was thick, and it had been a long time, and she took him to the root in one slow unforgiving slide just to watch his head slam back against the table, tendons standing in his throat, her name torn out of him.</p>
+        <p>"Noelle. Fuck. You feel..."</p>
+        <p>"Say it."</p>
+        <p>"Like the only place I've ever been," he ground out, "that wanted me there."</p>
+        <p>She rode him and made it worship. Slow first, rolling her hips, both of his hands granted now and gripping her waist, guiding nothing, just holding on, a man in weather. The candlelight moved on his skin. The table creaked its professional objections. She braced her palms on his chest, right over the riot in it, and took him deep and dragging on every stroke, angling until the head of his cock hit the place that made her vision swim, until her rhythm turned greedy and her breath went to pieces above him.</p>
+        <p>"There," he said, watching her face like scripture. "Right there. Take it, take everything, that's it..." His thumb slid down between them and found her clit, slick tight circles, exactly the pressure she'd taught him half a decade ago, remembered perfectly, and the sound she made was nothing she'd ever let a client's building hear. "That's my girl. Come apart on me, Noelle. Five years. Let me feel every one of them."</p>
+        <p>She came first and didn't care. The orgasm rolled through her long and vicious, and she rode him straight through it, chasing the aftershocks, clenching around him until his control tore loose at last and he drove up into her from below, deep pounding strokes, one arm banded across her hips to hold her to it, and came inside her with her name in his teeth and his whole body shaking like the table might not hold.</p>
+        <p>Quiet, after. Her cheek on his chest, his heart slowing under her ear, his hand moving up and down her spine like he was memorizing it against future famine.</p>
+        <p>"Time's not up," she said, because the silence needed rules too.</p>
+        <p>His arm tightened. "Then I'm still here."</p>
+        <p class="break">***</p>
+        <p>He dressed slowly, the way men do when they're hoping for a stay of execution. She belted her robe and didn't offer one.</p>
+        <p>At the door he reached into his coat and set a card on the console, matte black, no title, no company. Just a name and a number, engraved deep enough to feel in the dark. The kind of card that never got handed to anyone by accident.</p>
+        <p>"I'm not booking another fake appointment," he said. "I'm not going to circle you. You know everything now, the ugly parts included, and the number's real, and it doesn't expire." He stayed a moment longer, the whole night still in his face. "Five years ago you asked me for one thing and I failed it. So it's the only thing I've got left to offer. I'm not moving again, Noelle. Not from the city, not from the number, not from this. The next appointment's yours to make or never make."</p>
+        <p>He left before she could decide what her face was doing. The chime sounded once behind him, and the studio went back to candlelight and eucalyptus and quiet, as if she'd dreamed the last hour on her feet.</p>
+        <p>Noelle stood a long time at the console.</p>
+        <p>Then she picked up the card, held one engraved corner to the candle flame, and watched it catch. The black stock burned slow. She let it, turning it so the fire took the whole thing, his name curling orange at the edges and going to ash in the little brass dish beside the oil warmers. Five years of him, gone in a ribbon of smoke that didn't even disturb the room.</p>
+        <p>She washed her hands. Turned off the table warmer, and stood in her own studio, in the middle of everything she owned outright, everything that couldn't leave.</p>
+        <p>Then she picked up her phone and typed a number she had never once dialed and never once forgotten, seven digits surfacing from wherever she'd kept them buried all this time, and wrote three words, and hit send before the fortress could talk her out of it.</p>
+        <p class="final-line">Same time Thursday.</p>
+        <p class="the-end">THE END</p>
+        <!-- STORY_END -->
+        <div class="end-matter">
+          <h2>Thank you for reading</h2>
+          <p>The Last Appointment was written as a gift for the readers who ride with me. Noelle and Calder are brand new blood in the House of DeNoir, and you met them before anyone else on earth.</p>
+          <p class="cta">Want to know what happens Thursday? So do I. If enough of you demand it, Noelle and Calder get a full book. Hit reply on my email, or tell me here: <a href="mailto:raven@ravendenoir.com?subject=Write%20Thursday">Write Thursday</a></p>
+          <p>Still hungry tonight? Vadim and Reyna's lost night, <em>King Takes Queen</em>, is also free for subscribers. Check your welcome email for the door.</p>
+          <div class="links-row">
+            <a href="https://www.amazon.com/author/raven.denoir">📚 Amazon: full catalog</a>
+            <a href="https://ravendenoir.com">🌐 ravendenoir.com</a>
+            <a href="https://www.instagram.com/ravendenoir">📸 Instagram</a>
+            <a href="https://www.tiktok.com/@ravendenoir">🎵 TikTok</a>
+            <a href="https://discord.gg/GNAFqznw">💬 Discord</a>
+            <a href="https://www.patreon.com/c/RavenDeNoir">🖤 Patreon</a>
+          </div>
+          <p class="rights">This exclusive read is for Raven DeNoir newsletter subscribers only. All rights reserved © Raven DeNoir.</p>
+          <p class="noindent" style="text-align:center;margin-top:1.2em">
+            <img src="https://hits.sh/ravendenoir.com/the-last-appointment.svg?style=flat&color=gold&labelColor=111" alt="visitor counter">
+          </p>
+        </div>
+      </div>
+    </div>
+    <button class="flip" id="nextBtn" aria-label="Next page">›</button>
+  </div>
+  <div class="pagecount" id="pageCount">&middot;</div>
+</div>
+
+<script>
+(function(){
+  var ACCESS_KEY = "raven-tla-2026";
+  var params = new URLSearchParams(location.search);
+  var hasAccess = params.get("access") === ACCESS_KEY || localStorage.getItem("tla_access") === "1";
+
+  var lock = document.getElementById("lockScreen");
+  var gate = document.getElementById("gate");
+  var reader = document.getElementById("reader");
+
+  if (hasAccess){
+    localStorage.setItem("tla_access","1");
+    lock.classList.add("hidden");
+    if (localStorage.getItem("tla_gate") === "1"){ showReader(); }
+    else { gate.classList.remove("hidden"); }
+  }
+
+  document.getElementById("enterBtn").addEventListener("click", function(){
+    localStorage.setItem("tla_gate","1");
+    gate.classList.add("hidden");
+    showReader();
+  });
+
+  /* ---------- pagination ---------- */
+  var book = document.getElementById("book");
+  var viewport = document.getElementById("viewport");
+  var prevBtn = document.getElementById("prevBtn");
+  var nextBtn = document.getElementById("nextBtn");
+  var fill = document.getElementById("progressFill");
+  var pageCount = document.getElementById("pageCount");
+  var GAP = 64;
+  var page = 0, pages = 1, colW = 0;
+
+  var fs = parseFloat(localStorage.getItem("tla_fs") || "1.15");
+  applyFont();
+
+  function applyFont(){
+    book.style.setProperty("--fs", fs + "rem");
+  }
+
+  function layout(){
+    colW = viewport.clientWidth - 16; /* padding horizontal 8+8 */
+    book.style.columnWidth = colW + "px";
+    book.style.width = colW + "px";
+    /* force reflow, then measure total scrollable width */
+    var total = book.scrollWidth;
+    pages = Math.max(1, Math.round((total + GAP) / (colW + GAP)));
+    if (page > pages - 1) page = pages - 1;
+    update();
+  }
+
+  function update(){
+    book.style.transform = "translateX(" + (-page * (colW + GAP)) + "px)";
+    prevBtn.disabled = page === 0;
+    nextBtn.disabled = page >= pages - 1;
+    fill.style.width = (pages > 1 ? (page/(pages-1))*100 : 100) + "%";
+    pageCount.textContent = "Page " + (page+1) + " of " + pages;
+    localStorage.setItem("tla_page", String(page));
+  }
+
+  function go(delta){
+    var next = Math.min(Math.max(page + delta, 0), pages - 1);
+    if (next !== page){ page = next; update(); }
+  }
+
+  prevBtn.addEventListener("click", function(){ go(-1); });
+  nextBtn.addEventListener("click", function(){ go(1); });
+
+  document.addEventListener("keydown", function(e){
+    if (reader.classList.contains("hidden")) return;
+    if (e.key === "ArrowRight") go(1);
+    if (e.key === "ArrowLeft") go(-1);
+  });
+
+  var touchX = null;
+  viewport.addEventListener("touchstart", function(e){ touchX = e.touches[0].clientX; }, {passive:true});
+  viewport.addEventListener("touchend", function(e){
+    if (touchX === null) return;
+    var dx = e.changedTouches[0].clientX - touchX;
+    if (Math.abs(dx) > 45) go(dx < 0 ? 1 : -1);
+    touchX = null;
+  }, {passive:true});
+
+  document.getElementById("fontUp").addEventListener("click", function(){
+    fs = Math.min(fs + 0.08, 1.6); applyFont(); saveFsRelayout();
+  });
+  document.getElementById("fontDown").addEventListener("click", function(){
+    fs = Math.max(fs - 0.08, 0.9); applyFont(); saveFsRelayout();
+  });
+  function saveFsRelayout(){
+    localStorage.setItem("tla_fs", String(fs));
+    requestAnimationFrame(layout);
+  }
+
+  window.addEventListener("resize", function(){ requestAnimationFrame(layout); });
+
+  function showReader(){
+    reader.classList.remove("hidden");
+    page = parseInt(localStorage.getItem("tla_page") || "0", 10) || 0;
+    requestAnimationFrame(function(){
+      layout();
+      /* second pass after fonts load */
+      setTimeout(layout, 350);
+    });
+  }
+  if (document.fonts && document.fonts.ready){
+    document.fonts.ready.then(function(){ if(!reader.classList.contains("hidden")) layout(); });
+  }
+})();
+</script>
+</body>
+</html>
