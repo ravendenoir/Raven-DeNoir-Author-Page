@@ -53,13 +53,44 @@
     }
   ],
   "events": [],
-  "topSellers": [],
+  "topSellers": [
+    {
+      "id": "mn0jh6lnu603",
+      "title": "Seabrook's Broken Veil",
+      "amazonUrl": "https://www.amazon.com/Nijume-Seabrooks-Broken-Warlord-Romance-ebook/dp/B0GPPXRWVG/",
+      "coverUrl": "https://m.media-amazon.com/images/I/716KZhxJKgL._SL1500_.jpg"
+    },
+    {
+      "id": "mtkrjwd0okz2",
+      "title": "Hudson & Frankie",
+      "amazonUrl": "https://www.amazon.com/Hudson-Frankie-Romance-Bookstore-Organized-ebook/dp/B0H73H6XHN/ref=sr_1_2?crid=1221O2Z6BVB4Z&dib=eyJ2IjoiMSJ9.zr_7fwS8MKQwL1r9IzvKCrgoXXyQaX4z8-uvtQybi294nidjy23HBv_4pzdd2dTvi9nHjSJh19FqNlFQfLvKw3s0wX4GViTct0IybOIIXO1zkEmiB6VHXRMzY7HGT2HFBcW55YJobJt5QmRjOPRFehklTUcgRYLAwvcrhJNTT7_9owkSXRpOLrCAGSyaH9AwkXFqW2QqHjv7OmcIhtHFeScSLmD09OyFqIUtYmjp_bLgyRFyotOTCVQeMZ-NY48jxD2OiuTtKqG2v7cHJlBdrzBhPsFHOAz9aY0j1r-K6l8.HCQegvzVW-ppaE4QqjgeWqi6k90OSPRHW-fTdF7tE0c&dib_tag=se&keywords=raven+denoir&qid=1788393882&sprefix=raven+denoir%2Caps%2C302&sr=8-2",
+      "coverUrl": "https://m.media-amazon.com/images/I/71HCvzXXBWL._SL1500_.jpg"
+    },
+    {
+      "id": "mtkrmaoxthdn",
+      "title": "Again With Feeling",
+      "amazonUrl": "https://www.amazon.com/Again-Feeling-Second-Billionaire-Romance-ebook/dp/B0H5G5QDND/ref=sr_1_3?crid=1221O2Z6BVB4Z&dib=eyJ2IjoiMSJ9.zr_7fwS8MKQwL1r9IzvKCrgoXXyQaX4z8-uvtQybi294nidjy23HBv_4pzdd2dTvi9nHjSJh19FqNlFQfLvKw3s0wX4GViTct0IybOIIXO1zkEmiB6VHXRMzY7HGT2HFBcW55YJobJt5QmRjOPRFehklTUcgRYLAwvcrhJNTT7_9owkSXRpOLrCAGSyaH9AwkXFqW2QqHjv7OmcIhtHFeScSLmD09OyFqIUtYmjp_bLgyRFyotOTCVQeMZ-NY48jxD2OiuTtKqG2v7cHJlBdrzBhPsFHOAz9aY0j1r-K6l8.HCQegvzVW-ppaE4QqjgeWqi6k90OSPRHW-fTdF7tE0c&dib_tag=se&keywords=raven+denoir&qid=1788393882&sprefix=raven+denoir%2Caps%2C302&sr=8-3",
+      "coverUrl": "https://m.media-amazon.com/images/I/81d+aPgAOwL._SL1500_.jpg"
+    }
+  ],
   "kuFavorites": [
+    {
+      "id": "b-manual-1769202795651",
+      "title": "Mine",
+      "amazonUrl": "https://www.amazon.com/Mine-Dangerous-Claim-Raven-DeNoir-ebook/dp/B0GHT1PDN8",
+      "coverUrl": "https://images-na.ssl-images-amazon.com/images/P/B0GHT1PDN8.01._SCLZZZZZZZ_.jpg"
+    },
     {
       "id": "b-manual-1769202658405",
       "title": "The Apology Wife",
       "amazonUrl": "https://www.amazon.com/Apology-Wife-Terms-Trust-Legacy-ebook/dp/B0GHPW7718",
       "coverUrl": "https://images-na.ssl-images-amazon.com/images/P/B0GHPW7718.01._SCLZZZZZZZ_.jpg"
+    },
+    {
+      "id": "mtkrjwd0okz2",
+      "title": "Hudson & Frankie",
+      "amazonUrl": "https://www.amazon.com/Hudson-Frankie-Romance-Bookstore-Organized-ebook/dp/B0H73H6XHN/ref=sr_1_2?crid=1221O2Z6BVB4Z&dib=eyJ2IjoiMSJ9.zr_7fwS8MKQwL1r9IzvKCrgoXXyQaX4z8-uvtQybi294nidjy23HBv_4pzdd2dTvi9nHjSJh19FqNlFQfLvKw3s0wX4GViTct0IybOIIXO1zkEmiB6VHXRMzY7HGT2HFBcW55YJobJt5QmRjOPRFehklTUcgRYLAwvcrhJNTT7_9owkSXRpOLrCAGSyaH9AwkXFqW2QqHjv7OmcIhtHFeScSLmD09OyFqIUtYmjp_bLgyRFyotOTCVQeMZ-NY48jxD2OiuTtKqG2v7cHJlBdrzBhPsFHOAz9aY0j1r-K6l8.HCQegvzVW-ppaE4QqjgeWqi6k90OSPRHW-fTdF7tE0c&dib_tag=se&keywords=raven+denoir&qid=1788393882&sprefix=raven+denoir%2Caps%2C302&sr=8-2",
+      "coverUrl": "https://m.media-amazon.com/images/I/71HCvzXXBWL._SL1500_.jpg"
     }
   ],
   "favoritesList": [
@@ -218,7 +249,7 @@
       "amazonUrl": "https://www.amazon.com/Mine-Dangerous-Claim-Raven-DeNoir-ebook/dp/B0GHT1PDN8",
       "coverUrl": "https://images-na.ssl-images-amazon.com/images/P/B0GHT1PDN8.01._SCLZZZZZZZ_.jpg",
       "isTopSeller": false,
-      "isKuFave": false
+      "isKuFave": true
     },
     {
       "id": "mn0jh6lnu603",
@@ -228,7 +259,7 @@
       "publishDate": "2026-03-27",
       "amazonUrl": "https://www.amazon.com/Nijume-Seabrooks-Broken-Warlord-Romance-ebook/dp/B0GPPXRWVG/",
       "coverUrl": "https://m.media-amazon.com/images/I/716KZhxJKgL._SL1500_.jpg",
-      "isTopSeller": false,
+      "isTopSeller": true,
       "isKuFave": false
     },
     {
@@ -664,14 +695,14 @@
       "publishDate": "2026-08-21",
       "amazonUrl": "https://www.amazon.com/Hudson-Frankie-Romance-Bookstore-Organized-ebook/dp/B0H73H6XHN/ref=sr_1_2?crid=1221O2Z6BVB4Z&dib=eyJ2IjoiMSJ9.zr_7fwS8MKQwL1r9IzvKCrgoXXyQaX4z8-uvtQybi294nidjy23HBv_4pzdd2dTvi9nHjSJh19FqNlFQfLvKw3s0wX4GViTct0IybOIIXO1zkEmiB6VHXRMzY7HGT2HFBcW55YJobJt5QmRjOPRFehklTUcgRYLAwvcrhJNTT7_9owkSXRpOLrCAGSyaH9AwkXFqW2QqHjv7OmcIhtHFeScSLmD09OyFqIUtYmjp_bLgyRFyotOTCVQeMZ-NY48jxD2OiuTtKqG2v7cHJlBdrzBhPsFHOAz9aY0j1r-K6l8.HCQegvzVW-ppaE4QqjgeWqi6k90OSPRHW-fTdF7tE0c&dib_tag=se&keywords=raven+denoir&qid=1788393882&sprefix=raven+denoir%2Caps%2C302&sr=8-2",
       "coverUrl": "https://m.media-amazon.com/images/I/71HCvzXXBWL._SL1500_.jpg",
-      "isTopSeller": false,
-      "isKuFave": false,
+      "isTopSeller": true,
+      "isKuFave": true,
       "isComingSoon": false
     },
     {
       "id": "mtkrl59z3819",
       "title": "Grown & Chosen",
-      "series": "Grown & Chosen",
+      "series": "AMBW",
       "seriesOrder": 7,
       "publishDate": "2026-08-28",
       "amazonUrl": "https://www.amazon.com/GROWN-CHOSEN-Billionaire-Romance-Collection-ebook/dp/B0HDYXJN1J/ref=sr_1_1?crid=1221O2Z6BVB4Z&dib=eyJ2IjoiMSJ9.zr_7fwS8MKQwL1r9IzvKCrgoXXyQaX4z8-uvtQybi294nidjy23HBv_4pzdd2dTvi9nHjSJh19FqNlFQfLvKw3s0wX4GViTct0IybOIIXO1zkEmiB6VHXRMzY7HGT2HFBcW55YJobJt5QmRjOPRFehklTUcgRYLAwvcrhJNTT7_9owkSXRpOLrCAGSyaH9AwkXFqW2QqHjv7OmcIhtHFeScSLmD09OyFqIUtYmjp_bLgyRFyotOTCVQeMZ-NY48jxD2OiuTtKqG2v7cHJlBdrzBhPsFHOAz9aY0j1r-K6l8.HCQegvzVW-ppaE4QqjgeWqi6k90OSPRHW-fTdF7tE0c&dib_tag=se&keywords=raven+denoir&qid=1788393882&sprefix=raven+denoir%2Caps%2C302&sr=8-1",
@@ -688,14 +719,14 @@
       "publishDate": "2026-07-31",
       "amazonUrl": "https://www.amazon.com/Again-Feeling-Second-Billionaire-Romance-ebook/dp/B0H5G5QDND/ref=sr_1_3?crid=1221O2Z6BVB4Z&dib=eyJ2IjoiMSJ9.zr_7fwS8MKQwL1r9IzvKCrgoXXyQaX4z8-uvtQybi294nidjy23HBv_4pzdd2dTvi9nHjSJh19FqNlFQfLvKw3s0wX4GViTct0IybOIIXO1zkEmiB6VHXRMzY7HGT2HFBcW55YJobJt5QmRjOPRFehklTUcgRYLAwvcrhJNTT7_9owkSXRpOLrCAGSyaH9AwkXFqW2QqHjv7OmcIhtHFeScSLmD09OyFqIUtYmjp_bLgyRFyotOTCVQeMZ-NY48jxD2OiuTtKqG2v7cHJlBdrzBhPsFHOAz9aY0j1r-K6l8.HCQegvzVW-ppaE4QqjgeWqi6k90OSPRHW-fTdF7tE0c&dib_tag=se&keywords=raven+denoir&qid=1788393882&sprefix=raven+denoir%2Caps%2C302&sr=8-3",
       "coverUrl": "https://m.media-amazon.com/images/I/81d+aPgAOwL._SL1500_.jpg",
-      "isTopSeller": false,
+      "isTopSeller": true,
       "isKuFave": false,
       "isComingSoon": false
     },
     {
       "id": "mtkrnb9rnbb9",
       "title": "Present Tense",
-      "series": "Grown & Chosen",
+      "series": "AMBW",
       "seriesOrder": 6,
       "publishDate": "2026-09-18",
       "amazonUrl": "https://www.amazon.com/Present-Tense-Getting-Romance-Chosen-ebook/dp/B0H78GPL98/ref=sr_1_4?crid=1221O2Z6BVB4Z&dib=eyJ2IjoiMSJ9.zr_7fwS8MKQwL1r9IzvKCrgoXXyQaX4z8-uvtQybi294nidjy23HBv_4pzdd2dTvi9nHjSJh19FqNlFQfLvKw3s0wX4GViTct0IybOIIXO1zkEmiB6VHXRMzY7HGT2HFBcW55YJobJt5QmRjOPRFehklTUcgRYLAwvcrhJNTT7_9owkSXRpOLrCAGSyaH9AwkXFqW2QqHjv7OmcIhtHFeScSLmD09OyFqIUtYmjp_bLgyRFyotOTCVQeMZ-NY48jxD2OiuTtKqG2v7cHJlBdrzBhPsFHOAz9aY0j1r-K6l8.HCQegvzVW-ppaE4QqjgeWqi6k90OSPRHW-fTdF7tE0c&dib_tag=se&keywords=raven+denoir&qid=1788393882&sprefix=raven+denoir%2Caps%2C302&sr=8-4",
@@ -707,7 +738,7 @@
     {
       "id": "mtkrop0ywb2d",
       "title": "Something Like Spring",
-      "series": "Grown & Chosen",
+      "series": "AMBW",
       "seriesOrder": null,
       "publishDate": "2026-12-04",
       "amazonUrl": "https://www.amazon.com/Something-Like-Spring-Forbidden-Romance-ebook/dp/B0H7R7PF13/ref=sr_1_14?crid=1221O2Z6BVB4Z&dib=eyJ2IjoiMSJ9.zr_7fwS8MKQwL1r9IzvKCrgoXXyQaX4z8-uvtQybi294nidjy23HBv_4pzdd2dTvi9nHjSJh19FqNlFQfLvKw3s0wX4GViTct0IybOIIXO1zkEmiB6VHXRMzY7HGT2HFBcW55YJobJt5QmRjOPRFehklTUcgRYLAwvcrhJNTT7_9owkSXRpOLrCAGSyaH9AwkXFqW2QqHjv7OmcIhtHFeScSLmD09OyFqIUtYmjp_bLgyRFyotOTCVQeMZ-NY48jxD2OiuTtKqG2v7cHJlBdrzBhPsFHOAz9aY0j1r-K6l8.HCQegvzVW-ppaE4QqjgeWqi6k90OSPRHW-fTdF7tE0c&dib_tag=se&keywords=raven+denoir&qid=1788393882&sprefix=raven+denoir%2Caps%2C302&sr=8-14",
@@ -760,6 +791,18 @@
       "publishDate": "2026-12-18",
       "amazonUrl": "https://www.amazon.com/Nijume-Seabrooks-Silent-Root-Romance-ebook/dp/B0H6L45N5F/ref=sr_1_42?crid=1221O2Z6BVB4Z&dib=eyJ2IjoiMSJ9.zr_7fwS8MKQwL1r9IzvKCrgoXXyQaX4z8-uvtQybi294nidjy23HBv_4pzdd2dTvi9nHjSJh19FqNlFQfLvKw3s0wX4GViTct0IybOIIXO1zkEmiB6VHXRMzY7HGT2HFBcW55YJobJt5QmRjOPRFehklTUcgRYLAwvcrhJNTT7_9owkSXRpOLrCAGSyaH9AwkXFqW2QqHjv7OmcIhtHFeScSLmD09OyFqIUtYmjp_bLgyRFyotOTCVQeMZ-NY48jxD2OiuTtKqG2v7cHJlBdrzBhPsFHOAz9aY0j1r-K6l8.HCQegvzVW-ppaE4QqjgeWqi6k90OSPRHW-fTdF7tE0c&dib_tag=se&keywords=raven+denoir&qid=1788393882&sprefix=raven+denoir%2Caps%2C302&sr=8-42",
       "coverUrl": "https://m.media-amazon.com/images/I/81YjPStK4uL._SL1500_.jpg",
+      "isTopSeller": false,
+      "isKuFave": false,
+      "isComingSoon": false
+    },
+    {
+      "id": "mtkrym3nsgov",
+      "title": "",
+      "series": "",
+      "seriesOrder": null,
+      "publishDate": "",
+      "amazonUrl": "",
+      "coverUrl": "",
       "isTopSeller": false,
       "isKuFave": false,
       "isComingSoon": false
