@@ -733,7 +733,7 @@
       "coverUrl": "https://m.media-amazon.com/images/I/71PIdZtEcXL._SL1500_.jpg",
       "isTopSeller": false,
       "isKuFave": false,
-      "isComingSoon": false
+      "isComingSoon": true
     },
     {
       "id": "mtkrop0ywb2d",
@@ -757,7 +757,7 @@
       "coverUrl": "https://m.media-amazon.com/images/I/81w9x5C8YdL._SL1500_.jpg",
       "isTopSeller": false,
       "isKuFave": false,
-      "isComingSoon": false
+      "isComingSoon": true
     },
     {
       "id": "mtkrre783fwu",
@@ -796,16 +796,28 @@
       "isComingSoon": false
     },
     {
-      "id": "mtkrym3nsgov",
-      "title": "",
-      "series": "",
-      "seriesOrder": null,
-      "publishDate": "",
-      "amazonUrl": "",
-      "coverUrl": "",
+      "id": "mtks7zil3oks",
+      "title": "The Wrong Number",
+      "series": "So, About Last Night",
+      "seriesOrder": 11,
+      "publishDate": "2026-11-06",
+      "amazonUrl": "https://www.amazon.com/Wrong-Number-Accidental-Age-Gap-Billionaire-ebook/dp/B0H7LDDRZM/ref=sr_1_36?crid=28EQ4GEORK2O9&dib=eyJ2IjoiMSJ9.zr_7fwS8MKQwL1r9IzvKCq0H85KR7aA3y4IZ3seru_0sgjwQC1Xg3XpnEFKnMjT6i9nHjSJh19FqNlFQfLvKw3s0wX4GViTct0IybOIIXO1zkEmiB6VHXRMzY7HGT2HFBcW55YJobJt5QmRjOPRFeqsisviilscoWz35iIXDl68UYAZXUKnWLZi_E1Wtlg57GJZYuzD-5AQ7QHiKOB0MH4Srv3WQe-ZUkYQ53-hq7kSPTRUgzhvJohQDw_GUE1fRMcSdS5Yrztvnr9XqFOwTkm02RkiP_3mB49S5m5-ctso.wwkABPapUBJemw6r3PCRu3WP4ELWfNUvrPA4rCVeFss&dib_tag=se&keywords=raven+denoir&qid=1788395028&sprefix=%2Caps%2C163&sr=8-36",
+      "coverUrl": "https://m.media-amazon.com/images/I/81Atca9JT5L._SL1500_.jpg",
       "isTopSeller": false,
       "isKuFave": false,
-      "isComingSoon": false
+      "isComingSoon": true
+    },
+    {
+      "id": "mtks9c9m7c1s",
+      "title": "The Destination",
+      "series": "So, About Last Night",
+      "seriesOrder": 12,
+      "publishDate": "2026-11-06",
+      "amazonUrl": "https://www.amazon.com/gp/product/B0H8HK8CHD?ref_=dbs_m_mng_rwt_calw_tkin_11&storeType=ebooks&qid=1788395028&sr=8-36",
+      "coverUrl": "https://m.media-amazon.com/images/I/71dE4bA8BLL._SL1500_.jpg",
+      "isTopSeller": false,
+      "isKuFave": false,
+      "isComingSoon": true
     }
   ]
 }
