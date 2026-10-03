@@ -52,7 +52,7 @@ html,body{background:var(--bg);color:var(--text-site);font-family:'Montserrat',s
 .nav-btn:hover{opacity:1;transform:scale(1.15)}
 .nav-btn:disabled{opacity:.15;cursor:default;transform:none}
 
-#book{width:100%;max-width:640px;background:var(--book-bg);color:var(--book-text);height:480px;display:flex;flex-direction:column;box-shadow:0 4px 40px #0008,0 0 0 1px #00000018;overflow:hidden}
+#book{width:100%;max-width:640px;background:var(--book-bg);color:var(--book-text);height:660px;display:flex;flex-direction:column;box-shadow:0 4px 40px #0008,0 0 0 1px #00000018;overflow:hidden}
 
 /* BOOK HEADER ROW */
 .book-hdr{display:flex;justify-content:space-between;align-items:center;padding:14px 28px 10px;border-bottom:1px solid var(--book-rule)}
@@ -60,8 +60,11 @@ html,body{background:var(--bg);color:var(--text-site);font-family:'Montserrat',s
 .book-hdr-right{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:13px;color:var(--book-mid);opacity:.7}
 
 /* BOOK PROSE AREA */
-#book-prose{flex:1;padding:24px 32px 16px;font-family:'Cormorant Garamond',serif;font-size:var(--fs);line-height:1.8;color:var(--book-text);overflow-y:auto}
-#book-prose p{margin-bottom:.9em;text-indent:2em}
+#book-prose{flex:1;padding:16px 28px 12px;font-family:'Cormorant Garamond',serif;font-size:var(--fs);line-height:1.7;color:var(--book-text);overflow-y:auto;overflow-x:hidden}
+#book-prose::-webkit-scrollbar{width:4px}
+#book-prose::-webkit-scrollbar-track{background:transparent}
+#book-prose::-webkit-scrollbar-thumb{background:var(--gold-d);border-radius:2px}
+#book-prose p{margin-bottom:.65em;text-indent:2em}
 #book-prose p.no-indent{text-indent:0}
 #book-prose p.drop-cap{text-indent:0}
 #book-prose p.drop-cap::first-letter{font-family:'Cormorant Garamond',serif;font-size:4.6em;font-weight:600;float:left;line-height:.78;margin:4px 8px -2px 0;color:var(--gold-d)}
@@ -363,48 +366,89 @@ const STORY = [
 {t:'p',s:'Same time Thursday.'},
 ];
 
-// ── PAGINATION ──────────────────────────────────────────────────
-// Group into pages: ~334 words per page; scene breaks flush the page.
-const TARGET_WORDS = 150;
-
-function wordCount(str){return str.trim().split(/\s+/).length;}
-
-const pages = [];
-let cur = [];
-let curW = 0;
-
-for(const item of STORY){
-  if(item.t === 'break'){
-    if(cur.length) pages.push(cur);
-    cur = [];
-    curW = 0;
-    // Add the break at the START of the next page
-    cur.push({t:'break'});
-  } else {
-    const w = wordCount(item.s);
-    if(curW + w > TARGET_WORDS && cur.length && !(cur.length===1 && cur[0].t==='break')){
-      pages.push(cur);
-      cur = [];
-      curW = 0;
-    }
-    cur.push(item);
-    curW += w;
-  }
-}
-if(cur.length) pages.push(cur);
-
 // ── STATE ────────────────────────────────────────────────────────
+let pages = [];
 let currentPage = 0;
 let pagesRead = 0;
 let maxReached = 0;
 let fontSize = 18; // px
+
+// ── DOM-MEASURED PAGINATION ──────────────────────────────────────
+// Measures actual rendered pixel height of each element so pages
+// never overflow and never have dead whitespace.
+function buildPages(){
+  const proseEl = document.getElementById('book-prose');
+  const proseH = proseEl.clientHeight;
+
+  // Hidden measuring sandbox — same width & font as the real prose area
+  const sandbox = document.createElement('div');
+  const cs = getComputedStyle(proseEl);
+  sandbox.style.cssText = [
+    'position:fixed','visibility:hidden','pointer-events:none','z-index:-1',
+    'top:0','left:0',
+    'width:' + proseEl.clientWidth + 'px',
+    'font-family:' + cs.fontFamily,
+    'font-size:' + cs.fontSize,
+    'line-height:' + cs.lineHeight,
+    'padding:0','overflow:visible'
+  ].join(';');
+  document.body.appendChild(sandbox);
+
+  const pGap = Math.round(fontSize * 0.65); // paragraph margin-bottom
+  const breakH = Math.round(fontSize * 1.7 * 2 + 32); // scene break height (two lines + margins)
+
+  const result = [];
+  let cur = [];
+  let curH = 0;
+
+  for(let i = 0; i < STORY.length; i++){
+    const item = STORY[i];
+    let el;
+
+    if(item.t === 'break'){
+      el = document.createElement('span');
+      el.style.cssText = 'display:block;text-align:center;font-family:\'Cormorant Garamond\',serif;font-size:18px;letter-spacing:.5em;margin:24px 0;';
+      el.textContent = '* * *';
+    } else {
+      el = document.createElement('p');
+      // drop-cap only on very first paragraph of entire story
+      const isVeryFirst = (result.length === 0 && cur.length === 0);
+      if(isVeryFirst){
+        el.style.cssText = 'margin-bottom:' + pGap + 'px;text-indent:0;';
+        // approximate drop-cap extra height
+      } else if(cur.length === 0 || (cur.length === 1 && cur[0].t === 'break')){
+        el.style.cssText = 'margin-bottom:' + pGap + 'px;text-indent:0;';
+      } else {
+        el.style.cssText = 'margin-bottom:' + pGap + 'px;text-indent:2em;';
+      }
+      el.textContent = item.s;
+    }
+
+    sandbox.appendChild(el);
+    const elH = el.offsetHeight + (item.t === 'break' ? 0 : pGap);
+    sandbox.removeChild(el);
+
+    // If adding this element would overflow and we already have content, start new page
+    if(curH + elH > proseH && cur.length > 0){
+      result.push(cur);
+      cur = [];
+      curH = 0;
+    }
+    cur.push(item);
+    curH += elH;
+  }
+  if(cur.length) result.push(cur);
+
+  document.body.removeChild(sandbox);
+  return result;
+}
 
 // ── RENDER ───────────────────────────────────────────────────────
 function renderPage(){
   const prose = document.getElementById('book-prose');
   prose.innerHTML = '';
   const pg = pages[currentPage];
-  let firstParagraph = true;
+  let firstOnPage = true;
 
   for(const item of pg){
     if(item.t === 'break'){
@@ -412,31 +456,27 @@ function renderPage(){
       el.className = 'scene-break';
       el.textContent = '* * *';
       prose.appendChild(el);
-      firstParagraph = true; // next p gets no-indent
+      firstOnPage = true;
     } else {
       const el = document.createElement('p');
-      if(currentPage === 0 && firstParagraph){
+      const isVeryFirst = currentPage === 0 && firstOnPage;
+      if(isVeryFirst){
         el.className = 'drop-cap';
-      } else if(firstParagraph){
+      } else if(firstOnPage){
         el.className = 'no-indent';
       }
       el.textContent = item.s;
       prose.appendChild(el);
-      firstParagraph = false;
+      firstOnPage = false;
     }
   }
 
-  // Update indicators
   document.getElementById('page-indicator').textContent =
     (currentPage+1) + ' of ' + pages.length;
   document.getElementById('pages-read-counter').textContent =
     'Pages read this session: ' + pagesRead;
-
-  // Update nav buttons
   document.getElementById('btn-prev').disabled = currentPage === 0;
   document.getElementById('btn-next').disabled = currentPage === pages.length - 1;
-
-  // Scroll book into view smoothly
   document.getElementById('reader-wrap').scrollIntoView({behavior:'smooth',block:'nearest'});
 }
 
@@ -454,10 +494,18 @@ function changePage(dir){
 function changeFontSize(dir){
   fontSize = Math.max(14, Math.min(24, fontSize + dir));
   document.documentElement.style.setProperty('--fs', fontSize + 'px');
+  // Rebuild pages at new font size then re-render
+  pages = buildPages();
+  currentPage = 0;
+  renderPage();
 }
 
 // ── INIT ─────────────────────────────────────────────────────────
-renderPage();
+// Wait for fonts so measurements are accurate, then build & render
+document.fonts.ready.then(function(){
+  pages = buildPages();
+  renderPage();
+});
 </script>
 </body>
 </html>
