@@ -2,8 +2,8 @@
   "ctaButtons": [
     {
       "id": "cta1",
-      "label": "",
-      "url": ""
+      "label": "Signup for newsletter.",
+      "url": "https://askli-forms.netlify.app/f/get-the-last-appointment-free"
     },
     {
       "id": "cta2",
