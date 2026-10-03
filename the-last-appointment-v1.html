@@ -52,7 +52,7 @@ html,body{background:var(--bg);color:var(--text-site);font-family:'Montserrat',s
 .nav-btn:hover{opacity:1;transform:scale(1.15)}
 .nav-btn:disabled{opacity:.15;cursor:default;transform:none}
 
-#book{width:100%;max-width:640px;background:var(--book-bg);color:var(--book-text);min-height:420px;display:flex;flex-direction:column;box-shadow:0 4px 40px #0008,0 0 0 1px #00000018}
+#book{width:100%;max-width:640px;background:var(--book-bg);color:var(--book-text);height:480px;display:flex;flex-direction:column;box-shadow:0 4px 40px #0008,0 0 0 1px #00000018;overflow:hidden}
 
 /* BOOK HEADER ROW */
 .book-hdr{display:flex;justify-content:space-between;align-items:center;padding:14px 28px 10px;border-bottom:1px solid var(--book-rule)}
@@ -60,7 +60,7 @@ html,body{background:var(--bg);color:var(--text-site);font-family:'Montserrat',s
 .book-hdr-right{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:13px;color:var(--book-mid);opacity:.7}
 
 /* BOOK PROSE AREA */
-#book-prose{flex:1;padding:24px 32px 16px;font-family:'Cormorant Garamond',serif;font-size:var(--fs);line-height:1.8;color:var(--book-text)}
+#book-prose{flex:1;padding:24px 32px 16px;font-family:'Cormorant Garamond',serif;font-size:var(--fs);line-height:1.8;color:var(--book-text);overflow-y:auto}
 #book-prose p{margin-bottom:.9em;text-indent:2em}
 #book-prose p.no-indent{text-indent:0}
 #book-prose p.drop-cap{text-indent:0}
