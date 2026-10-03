@@ -19,12 +19,6 @@
 *{box-sizing:border-box;margin:0;padding:0}
 html,body{background:var(--bg);color:var(--text-site);font-family:'Montserrat',sans-serif;min-height:100vh}
 
-/* PROMO BANNER */
-#promo{background:var(--gold-d);border-bottom:1px solid var(--gold);padding:10px 20px;display:flex;align-items:center;justify-content:center;gap:16px;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold-l);position:relative}
-#promo a{color:var(--gold-l);text-decoration:underline;text-underline-offset:3px}
-#promo button{background:none;border:none;color:var(--gold-l);cursor:pointer;font-size:16px;line-height:1;position:absolute;right:16px;top:50%;transform:translateY(-50%);opacity:.7}
-#promo button:hover{opacity:1}
-
 /* STICKY HEADER */
 #hdr{position:sticky;top:0;z-index:100;background:var(--bg2);border-bottom:1px solid #ffffff12;display:flex;align-items:center;justify-content:space-between;padding:0 24px;height:52px}
 #hdr-title{font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);opacity:.85}
@@ -37,11 +31,7 @@ html,body{background:var(--bg);color:var(--text-site);font-family:'Montserrat',s
 
 /* COVER BLOCK */
 #cover-block{display:flex;justify-content:center;margin-bottom:40px}
-.cover-img{width:260px;height:390px;background:linear-gradient(160deg,#0d0d0d 0%,#1a1506 40%,#0d0d0d 100%);border:1px solid var(--gold-d);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;position:relative;box-shadow:0 12px 48px #000a}
-.cover-img::before{content:'';position:absolute;inset:8px;border:1px solid #c9a53530}
-.cover-title{font-family:'Cormorant Garamond',serif;color:var(--gold);font-size:15px;letter-spacing:.16em;text-transform:uppercase;text-align:center;padding:0 20px;line-height:1.5}
-.cover-rule{width:60px;height:1px;background:var(--gold-d)}
-.cover-author{font-family:'Montserrat',sans-serif;color:var(--gold-l);font-size:9px;letter-spacing:.22em;text-transform:uppercase}
+.cover-img-real{width:260px;height:auto;display:block;box-shadow:0 12px 48px #000a}
 
 /* LABEL */
 .exclusive-label{text-align:center;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:28px;opacity:.75}
@@ -50,9 +40,6 @@ html,body{background:var(--bg);color:var(--text-site);font-family:'Montserrat',s
 .story-title{font-family:'Cormorant Garamond',serif;font-size:clamp(32px,5vw,54px);font-weight:300;letter-spacing:.06em;text-transform:uppercase;text-align:center;color:var(--text-site);line-height:1.1;margin-bottom:12px}
 .story-tagline{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:18px;color:var(--gold);text-align:center;margin-bottom:24px;letter-spacing:.04em}
 .author-row{display:flex;align-items:center;justify-content:center;gap:16px;margin-bottom:32px}
-.author-dot{width:4px;height:4px;border-radius:50%;background:var(--gold);opacity:.6}
-.author-name{font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--text-site);opacity:.7}
-.exclusive-badge{font-family:'Montserrat',sans-serif;font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);background:#c9a53515;border:1px solid var(--gold-d);padding:4px 12px;border-radius:2px}
 .meta-rule{width:80px;height:1px;background:linear-gradient(90deg,transparent,var(--gold-d),transparent);margin:0 auto 36px}
 
 /* CONTENT WARNING */
@@ -109,13 +96,6 @@ html,body{background:var(--bg);color:var(--text-site);font-family:'Montserrat',s
 </head>
 <body>
 
-<!-- PROMO BANNER -->
-<div id="promo">
-  <span>Also from Raven DeNoir:</span>
-  <a href="#">King Takes Queen &mdash; Now Available on KU</a>
-  <button onclick="this.parentElement.style.display='none'" aria-label="Dismiss">&times;</button>
-</div>
-
 <!-- STICKY HEADER -->
 <div id="hdr">
   <span id="hdr-title">The Last Appointment &nbsp;&middot;&nbsp; Raven DeNoir</span>
@@ -130,30 +110,20 @@ html,body{background:var(--bg);color:var(--text-site);font-family:'Montserrat',s
 
   <!-- COVER -->
   <div id="cover-block">
-    <div class="cover-img">
-      <div class="cover-title">The Last<br>Appointment</div>
-      <div class="cover-rule"></div>
-      <div class="cover-author">Raven DeNoir</div>
-    </div>
+    <img src="the-last-appointment-cover.png" alt="The Last Appointment by Raven DeNoir" class="cover-img-real">
   </div>
 
   <!-- LABELS + TITLE -->
   <div class="exclusive-label">A House of DeNoir Exclusive</div>
   <h1 class="story-title">The Last Appointment</h1>
-  <p class="story-tagline">Some debts can only be paid with your hands.</p>
-  <div class="author-row">
-    <div class="author-dot"></div>
-    <span class="author-name">Raven DeNoir</span>
-    <div class="author-dot"></div>
-    <span class="exclusive-badge">Exclusive Newsletter Read</span>
-    <div class="author-dot"></div>
-  </div>
+  <p class="story-tagline">&ldquo;He booked under a fake name. She never forgot his real one.&rdquo;</p>
   <div class="meta-rule"></div>
 
   <!-- CONTENT WARNING -->
   <div class="cw-box">
-    <p>Content Warning: Explicit sexual content. Adult readers only (18+).<br>
-    Second-chance romance. Emotional intensity. On-page heat.</p>
+    <p><strong>&#9888; CONTENT WARNING</strong></p>
+    <p style="text-transform:none;letter-spacing:0;font-size:13px;color:#c4b896;opacity:1;margin-top:10px;line-height:1.75;">This is a high-heat BWWM second-chance romance containing graphic, explicit sexual content and explicit language. Five years ago he walked away from the only woman who ever touched him without an invoice in her hand. Tonight he&rsquo;s on her table, under her rules, and every minute of the hour has a price.</p>
+    <p style="margin-top:14px;font-size:12px;"><strong>For mature readers 18+ only.</strong></p>
   </div>
 
   <!-- READER -->
@@ -182,18 +152,19 @@ html,body{background:var(--bg);color:var(--text-site);font-family:'Montserrat',s
   <div class="ty-rule"></div>
   <h2 class="ty-title">Thank You for Reading</h2>
   <p class="ty-sub">House of DeNoir &nbsp;&middot;&nbsp; Raven DeNoir</p>
-  <p class="ty-blurb">If this story found you at the right moment, leave a review &mdash; it costs nothing and means everything to an indie author.</p>
+  <p class="ty-blurb">The Last Appointment was written as a gift for the readers who ride with me. Noelle and Calder are brand new blood in the House of DeNoir, and you met them before anyone else on earth.</p>
+  <p class="ty-blurb" style="margin-top:16px;"><strong>Want to know what happens Thursday? So do I. If enough of you demand it, Noelle and Calder get a full book. Hit reply on my email, or tell me here: <a href="#" style="color:var(--gold)">Write Thursday</a></strong></p>
+  <p class="ty-blurb" style="margin-top:16px;">Still hungry tonight? Vadim and Reyna&rsquo;s last night is waiting: <a href="#" style="color:var(--gold)">Read King Takes Queen free</a></p>
   <div class="social-row">
-    <a href="#">Amazon / KU</a>
-    <a href="#">ravendenoir.com</a>
-    <a href="#">Instagram</a>
-    <a href="#">TikTok</a>
-    <a href="#">Discord</a>
-    <a href="#">Patreon</a>
+    <a href="#">&#128172; Amazon: full catalog</a>
+    <a href="#">&#127758; ravendenoir.com</a>
+    <a href="#">&#128247; Instagram</a>
+    <a href="#">&#127925; TikTok</a>
+    <a href="#">&#128172; Discord</a>
+    <a href="#">&#9749; Patreon</a>
   </div>
-  <a class="cta-btn" href="#">Read More from Raven DeNoir</a>
-  <div class="copyright">&copy; 2025 Raven DeNoir. All rights reserved. House of DeNoir.</div>
-  <div class="hits">reads since publication</div>
+  <div class="copyright">This exclusive read is for Raven DeNoir newsletter subscribers only. All rights reserved &copy; Raven DeNoir.</div>
+  <div class="hits">hits &#9889;</div>
 </div>
 
 <script>
