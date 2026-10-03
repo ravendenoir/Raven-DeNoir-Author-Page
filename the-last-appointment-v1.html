@@ -89,6 +89,79 @@ html,body{background:var(--bg);color:var(--text-site);font-family:'Montserrat',s
 .copyright{font-family:'Montserrat',sans-serif;font-size:10px;letter-spacing:.1em;color:var(--text-site);opacity:.3;margin-bottom:8px}
 .hits{font-family:'Montserrat',sans-serif;font-size:10px;color:var(--text-site);opacity:.2}
 
+/* ── VOTE BLOCK ─────────────────────────────────────────────── */
+#vote-block{
+  display:none;
+  text-align:center;
+  padding:28px 20px 24px;
+  max-width:640px;
+  margin:0 auto;
+}
+#vote-inner{
+  display:inline-flex;
+  flex-direction:column;
+  align-items:center;
+  gap:10px;
+  border:1px solid var(--gold-d);
+  padding:20px 32px;
+  background:#0d0d0d;
+}
+#vote-label{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  cursor:pointer;
+  font-family:'Montserrat',sans-serif;
+  font-size:11px;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  color:var(--gold-l);
+  user-select:none;
+}
+#vote-label.locked{
+  cursor:default;
+  opacity:.6;
+}
+#vote-check{
+  appearance:none;
+  -webkit-appearance:none;
+  width:18px;
+  height:18px;
+  border:1px solid var(--gold-d);
+  background:#000;
+  flex-shrink:0;
+  cursor:pointer;
+  position:relative;
+  transition:background .2s,border-color .2s;
+}
+#vote-check:hover:not(:disabled){
+  border-color:var(--gold);
+}
+#vote-check:checked{
+  background:var(--gold);
+  border-color:var(--gold);
+}
+#vote-check:checked::after{
+  content:'';
+  display:block;
+  position:absolute;
+  left:4px;top:1px;
+  width:6px;height:11px;
+  border:2px solid #000;
+  border-top:none;border-left:none;
+  transform:rotate(45deg);
+}
+#vote-check:disabled{
+  cursor:default;
+}
+#vote-tally{
+  font-family:'Cormorant Garamond',serif;
+  font-size:13px;
+  letter-spacing:.08em;
+  color:var(--gold-d);
+  min-height:18px;
+}
+
 @media(max-width:700px){
   #book-prose{padding:18px 16px 12px}
   .book-hdr,.book-ftr{padding:10px 14px}
@@ -150,6 +223,17 @@ html,body{background:var(--bg);color:var(--text-site);font-family:'Montserrat',s
   </div>
 
 </div><!-- end page-content -->
+
+<!-- VOTE BLOCK -->
+<div id="vote-block">
+  <div id="vote-inner">
+    <label id="vote-label" for="vote-check">
+      <input type="checkbox" id="vote-check" onchange="handleVote()">
+      <span id="vote-text">I want Noelle &amp; Calder&rsquo;s full story</span>
+    </label>
+    <div id="vote-tally"></div>
+  </div>
+</div>
 
 <!-- THANK YOU FOOTER -->
 <div id="ty-footer">
@@ -478,6 +562,13 @@ function renderPage(){
   document.getElementById('btn-prev').disabled = currentPage === 0;
   document.getElementById('btn-next').disabled = currentPage === pages.length - 1;
   document.getElementById('reader-wrap').scrollIntoView({behavior:'smooth',block:'nearest'});
+
+  // Show vote block only on the last page
+  if(currentPage === pages.length - 1){
+    showVoteBlock();
+  } else {
+    hideVoteBlock();
+  }
 }
 
 function changePage(dir){
@@ -498,6 +589,60 @@ function changeFontSize(dir){
   pages = buildPages();
   currentPage = 0;
   renderPage();
+}
+
+// ── VOTE BLOCK ───────────────────────────────────────────────────
+const VOTE_KEY = 'tla_voted_v1';
+const COUNT_NS = 'house-of-denoir';
+const COUNT_KEY = 'tla-full-book-votes';
+
+function showVoteBlock(){
+  const block = document.getElementById('vote-block');
+  if(!block) return;
+  block.style.display = 'block';
+  // Restore locked state if already voted on this device
+  if(localStorage.getItem(VOTE_KEY) === '1'){
+    const chk = document.getElementById('vote-check');
+    chk.checked = true;
+    chk.disabled = true;
+    document.getElementById('vote-label').classList.add('locked');
+  }
+  fetchVoteCount();
+}
+
+function hideVoteBlock(){
+  const block = document.getElementById('vote-block');
+  if(block) block.style.display = 'none';
+}
+
+function handleVote(){
+  const chk = document.getElementById('vote-check');
+  if(!chk.checked) return; // shouldn't happen but guard
+  // Lock immediately
+  chk.disabled = true;
+  document.getElementById('vote-label').classList.add('locked');
+  localStorage.setItem(VOTE_KEY, '1');
+  // Hit the counter
+  fetch('https://api.countapi.xyz/hit/' + COUNT_NS + '/' + COUNT_KEY)
+    .then(function(r){ return r.json(); })
+    .then(function(data){ renderVoteCount(data.value); })
+    .catch(function(){ renderVoteCount(null); });
+}
+
+function fetchVoteCount(){
+  fetch('https://api.countapi.xyz/get/' + COUNT_NS + '/' + COUNT_KEY)
+    .then(function(r){ return r.json(); })
+    .then(function(data){ renderVoteCount(data.value); })
+    .catch(function(){ /* silent — counter is non-critical */ });
+}
+
+function renderVoteCount(n){
+  const el = document.getElementById('vote-tally');
+  if(!el) return;
+  if(n === null || n === undefined){ el.textContent = ''; return; }
+  el.textContent = n === 1
+    ? '1 reader has asked for Thursday'
+    : n + ' readers have asked for Thursday';
 }
 
 // ── INIT ─────────────────────────────────────────────────────────
