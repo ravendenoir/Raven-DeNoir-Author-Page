@@ -27,32 +27,32 @@ html,body{background:var(--bg);color:var(--text-site);font-family:'Montserrat',s
 .fc-btn:hover{border-color:var(--gold);color:var(--gold)}
 
 /* PAGE CONTENT */
-.page-content{max-width:820px;margin:0 auto;padding:48px 24px 0}
+.page-content{max-width:820px;margin:0 auto;padding:28px 16px 0}
 
 /* COVER BLOCK */
-#cover-block{display:flex;justify-content:center;margin-bottom:40px}
-.cover-img-real{width:260px;height:auto;display:block;box-shadow:0 12px 48px #000a}
+#cover-block{display:flex;justify-content:center;margin-bottom:28px}
+.cover-img-real{width:min(340px,80vw);height:auto;display:block;box-shadow:0 12px 48px #000a}
 
 /* LABEL */
-.exclusive-label{text-align:center;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:28px;opacity:.75}
+.exclusive-label{text-align:center;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:14px;opacity:.75}
 
 /* TITLE BLOCK */
-.story-title{font-family:'Cormorant Garamond',serif;font-size:clamp(32px,5vw,54px);font-weight:300;letter-spacing:.06em;text-transform:uppercase;text-align:center;color:var(--text-site);line-height:1.1;margin-bottom:12px}
-.story-tagline{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:18px;color:var(--gold);text-align:center;margin-bottom:24px;letter-spacing:.04em}
+.story-title{font-family:'Cormorant Garamond',serif;font-size:clamp(28px,5vw,48px);font-weight:300;letter-spacing:.06em;text-transform:uppercase;text-align:center;color:var(--text-site);line-height:1.1;margin-bottom:8px}
+.story-tagline{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:17px;color:var(--gold);text-align:center;margin-bottom:16px;letter-spacing:.04em}
 .author-row{display:flex;align-items:center;justify-content:center;gap:16px;margin-bottom:32px}
-.meta-rule{width:80px;height:1px;background:linear-gradient(90deg,transparent,var(--gold-d),transparent);margin:0 auto 36px}
+.meta-rule{width:80px;height:1px;background:linear-gradient(90deg,transparent,var(--gold-d),transparent);margin:0 auto 20px}
 
 /* CONTENT WARNING */
-.cw-box{border:1px solid var(--gold-d);background:#c9a53508;border-radius:4px;padding:16px 20px;margin-bottom:36px;max-width:520px;margin-left:auto;margin-right:auto}
+.cw-box{border:1px solid var(--gold-d);background:#c9a53508;border-radius:4px;padding:14px 18px;margin-bottom:20px;max-width:520px;margin-left:auto;margin-right:auto}
 .cw-box p{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold-l);opacity:.8;line-height:1.7;text-align:center}
 
 /* THE BOOK READER */
-#reader-wrap{position:relative;display:flex;align-items:center;justify-content:center;gap:0;margin-bottom:60px}
+#reader-wrap{position:relative;display:flex;align-items:center;justify-content:center;gap:0;margin-bottom:40px}
 .nav-btn{background:none;border:none;color:var(--gold);cursor:pointer;font-size:28px;padding:0 16px;opacity:.7;transition:opacity .2s,transform .2s;flex-shrink:0;line-height:1}
 .nav-btn:hover{opacity:1;transform:scale(1.15)}
 .nav-btn:disabled{opacity:.15;cursor:default;transform:none}
 
-#book{width:100%;max-width:680px;background:var(--book-bg);color:var(--book-text);min-height:540px;display:flex;flex-direction:column;box-shadow:0 4px 40px #0008,0 0 0 1px #00000018}
+#book{width:100%;max-width:640px;background:var(--book-bg);color:var(--book-text);min-height:420px;display:flex;flex-direction:column;box-shadow:0 4px 40px #0008,0 0 0 1px #00000018}
 
 /* BOOK HEADER ROW */
 .book-hdr{display:flex;justify-content:space-between;align-items:center;padding:14px 28px 10px;border-bottom:1px solid var(--book-rule)}
@@ -60,7 +60,7 @@ html,body{background:var(--bg);color:var(--text-site);font-family:'Montserrat',s
 .book-hdr-right{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:13px;color:var(--book-mid);opacity:.7}
 
 /* BOOK PROSE AREA */
-#book-prose{flex:1;padding:36px 44px 24px;font-family:'Cormorant Garamond',serif;font-size:var(--fs);line-height:1.85;color:var(--book-text)}
+#book-prose{flex:1;padding:24px 32px 16px;font-family:'Cormorant Garamond',serif;font-size:var(--fs);line-height:1.8;color:var(--book-text)}
 #book-prose p{margin-bottom:.9em;text-indent:2em}
 #book-prose p.no-indent{text-indent:0}
 #book-prose p.drop-cap{text-indent:0}
@@ -73,7 +73,7 @@ html,body{background:var(--bg);color:var(--text-site);font-family:'Montserrat',s
 .pages-read-counter{font-family:'Montserrat',sans-serif;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--book-mid);opacity:.55}
 
 /* THANK YOU FOOTER */
-#ty-footer{background:var(--bg2);border-top:1px solid #ffffff0f;text-align:center;padding:60px 24px 48px}
+#ty-footer{background:var(--bg2);border-top:1px solid #ffffff0f;text-align:center;padding:40px 20px 36px}
 .ty-rule{width:80px;height:1px;background:linear-gradient(90deg,transparent,var(--gold-d),transparent);margin:0 auto 32px}
 .ty-title{font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:300;color:var(--text-site);margin-bottom:8px}
 .ty-sub{font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);opacity:.75;margin-bottom:28px}
@@ -87,10 +87,11 @@ html,body{background:var(--bg);color:var(--text-site);font-family:'Montserrat',s
 .hits{font-family:'Montserrat',sans-serif;font-size:10px;color:var(--text-site);opacity:.2}
 
 @media(max-width:700px){
-  #book-prose{padding:24px 20px 16px}
-  .book-hdr,.book-ftr{padding:12px 16px}
-  .nav-btn{padding:0 8px;font-size:22px}
-  .page-content{padding:32px 12px 0}
+  #book-prose{padding:18px 16px 12px}
+  .book-hdr,.book-ftr{padding:10px 14px}
+  .nav-btn{padding:0 6px;font-size:20px}
+  .page-content{padding:16px 8px 0}
+  .cover-img-real{width:min(280px,75vw)}
 }
 </style>
 </head>
@@ -364,7 +365,7 @@ const STORY = [
 
 // ── PAGINATION ──────────────────────────────────────────────────
 // Group into pages: ~334 words per page; scene breaks flush the page.
-const TARGET_WORDS = 334;
+const TARGET_WORDS = 150;
 
 function wordCount(str){return str.trim().split(/\s+/).length;}
 
