@@ -235,6 +235,12 @@ html,body{background:var(--bg);color:var(--text-site);font-family:'Montserrat',s
   </div>
 </div>
 
+<!-- Hidden Tally form for silent vote submission -->
+<form id="tally-vote-form" action="https://tally.so/r/ODO6WM" method="POST" target="tally-vote-sink" style="display:none">
+  <input name="answer_f0ee3b7d-0617-430d-a79c-9e78294b21a9" value="yes">
+</form>
+<iframe name="tally-vote-sink" id="tally-vote-sink" style="display:none" width="0" height="0" title="vote"></iframe>
+
 <!-- THANK YOU FOOTER -->
 <div id="ty-footer">
   <div class="ty-rule"></div>
@@ -593,8 +599,6 @@ function changeFontSize(dir){
 
 // ── VOTE BLOCK ───────────────────────────────────────────────────
 const VOTE_KEY = 'tla_voted_v1';
-const TALLY_FORM = 'ODO6WM';
-const TALLY_FIELD = 'f0ee3b7d-0617-430d-a79c-9e78294b21a9'; // question UUID
 
 function showVoteBlock(){
   const block = document.getElementById('vote-block');
@@ -619,17 +623,10 @@ function handleVote(){
   chk.disabled = true;
   document.getElementById('vote-label').classList.add('locked');
   localStorage.setItem(VOTE_KEY, '1');
-  // Silent POST to Tally
-  var payload = {
-    formId: TALLY_FORM,
-    fields: [{ uuid: TALLY_FIELD, value: 'yes' }]
-  };
-  fetch('https://tally.so/api/v1/respondents/' + TALLY_FORM, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(payload)
-  }).catch(function(){}); // silent — vote is already locked locally
-  document.getElementById('vote-tally').textContent = 'Your vote is in. ♥';
+  // Hidden form POST — bypasses CORS, browser allows cross-origin form submissions
+  document.getElementById('tally-vote-form').submit();
+  document.getElementById('vote-tally').innerHTML =
+    'Your vote is in. ♥<br><span style="font-size:11px;letter-spacing:.1em;color:var(--gold-d);font-family:\'Montserrat\',sans-serif;text-transform:uppercase;">Stay tuned &mdash; the decision drops in the newsletter.</span>';
 }
 
 // ── INIT ─────────────────────────────────────────────────────────
