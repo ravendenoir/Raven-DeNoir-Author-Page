@@ -235,11 +235,7 @@ html,body{background:var(--bg);color:var(--text-site);font-family:'Montserrat',s
   </div>
 </div>
 
-<!-- Hidden Tally form for silent vote submission -->
-<form id="tally-vote-form" action="https://tally.so/r/ODO6WM" method="POST" target="tally-vote-sink" style="display:none">
-  <input name="answer_f0ee3b7d-0617-430d-a79c-9e78294b21a9" value="yes">
-</form>
-<iframe name="tally-vote-sink" id="tally-vote-sink" style="display:none" width="0" height="0" title="vote"></iframe>
+<!-- Vote submission handled via Supabase REST API in handleVote() -->
 
 <!-- THANK YOU FOOTER -->
 <div id="ty-footer">
@@ -599,6 +595,26 @@ function changeFontSize(dir){
 
 // ── VOTE BLOCK ───────────────────────────────────────────────────
 const VOTE_KEY = 'tla_voted_v1';
+const SB_URL  = 'https://myelzkbeipgwgyxrtgcq.supabase.co';
+const SB_KEY  = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im15ZWx6a2JlaXBnd2d5eHJ0Z2NxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzI1Njg1NjIsImV4cCI6MjA4ODE0NDU2Mn0.DgcLH8ie77yaCiIr8-bvImxsPAGAftmwMcAa-d6WwLU';
+const FORM_ID = '68f96b36-3c0e-4229-ba5d-84f4e2025d39';
+
+async function fetchVoteCount(){
+  try{
+    const r = await fetch(
+      `${SB_URL}/rest/v1/submissions?form_id=eq.${FORM_ID}&select=id`,
+      { headers:{ apikey: SB_KEY, Authorization: `Bearer ${SB_KEY}`, Prefer: 'count=exact', Range: '0-0' } }
+    );
+    const count = r.headers.get('content-range');
+    if(count){
+      const total = count.split('/')[1];
+      if(total && total !== '*'){
+        return parseInt(total, 10);
+      }
+    }
+    return null;
+  } catch(e){ return null; }
+}
 
 function showVoteBlock(){
   const block = document.getElementById('vote-block');
@@ -609,7 +625,22 @@ function showVoteBlock(){
     chk.checked = true;
     chk.disabled = true;
     document.getElementById('vote-label').classList.add('locked');
+    document.getElementById('vote-tally').innerHTML =
+      'Your vote is in. ♥<br><span style="font-size:11px;letter-spacing:.1em;color:var(--gold-d);font-family:\'Montserrat\',sans-serif;text-transform:uppercase;">Stay tuned — the decision drops in the newsletter.</span>';
   }
+  // Load live vote count
+  fetchVoteCount().then(function(n){
+    if(n === null) return;
+    const tallyEl = document.getElementById('vote-tally');
+    if(!tallyEl) return;
+    const countLine = `<div style="margin-top:8px;font-family:'Montserrat',sans-serif;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-d)">${n.toLocaleString()} reader${n===1?'':'s'} voted yes</div>`;
+    if(localStorage.getItem(VOTE_KEY) === '1'){
+      tallyEl.innerHTML =
+        'Your vote is in. ♥<br><span style="font-size:11px;letter-spacing:.1em;color:var(--gold-d);font-family:\'Montserrat\',sans-serif;text-transform:uppercase;">Stay tuned — the decision drops in the newsletter.</span>' + countLine;
+    } else {
+      tallyEl.innerHTML = countLine;
+    }
+  });
 }
 
 function hideVoteBlock(){
@@ -623,10 +654,19 @@ function handleVote(){
   chk.disabled = true;
   document.getElementById('vote-label').classList.add('locked');
   localStorage.setItem(VOTE_KEY, '1');
-  // Hidden form POST — bypasses CORS, browser allows cross-origin form submissions
-  document.getElementById('tally-vote-form').submit();
+  // Submit to Supabase
+  fetch(`${SB_URL}/rest/v1/submissions`, {
+    method: 'POST',
+    headers:{
+      apikey: SB_KEY,
+      Authorization: `Bearer ${SB_KEY}`,
+      'Content-Type': 'application/json',
+      Prefer: 'return=minimal'
+    },
+    body: JSON.stringify({ form_id: FORM_ID, data: { vote: 'yes' } })
+  }).catch(()=>{});
   document.getElementById('vote-tally').innerHTML =
-    'Your vote is in. ♥<br><span style="font-size:11px;letter-spacing:.1em;color:var(--gold-d);font-family:\'Montserrat\',sans-serif;text-transform:uppercase;">Stay tuned &mdash; the decision drops in the newsletter.</span>';
+    'Your vote is in. ♥<br><span style="font-size:11px;letter-spacing:.1em;color:var(--gold-d);font-family:\'Montserrat\',sans-serif;text-transform:uppercase;">Stay tuned — the decision drops in the newsletter.</span>';
 }
 
 // ── INIT ─────────────────────────────────────────────────────────
