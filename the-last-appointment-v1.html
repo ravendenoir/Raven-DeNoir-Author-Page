@@ -593,21 +593,19 @@ function changeFontSize(dir){
 
 // ── VOTE BLOCK ───────────────────────────────────────────────────
 const VOTE_KEY = 'tla_voted_v1';
-const COUNT_NS = 'house-of-denoir';
-const COUNT_KEY = 'tla-full-book-votes';
+const TALLY_FORM = 'ODO6WM';
+const TALLY_FIELD = 'f0ee3b7d-0617-430d-a79c-9e78294b21a9'; // question UUID
 
 function showVoteBlock(){
   const block = document.getElementById('vote-block');
   if(!block) return;
   block.style.display = 'block';
-  // Restore locked state if already voted on this device
   if(localStorage.getItem(VOTE_KEY) === '1'){
     const chk = document.getElementById('vote-check');
     chk.checked = true;
     chk.disabled = true;
     document.getElementById('vote-label').classList.add('locked');
   }
-  fetchVoteCount();
 }
 
 function hideVoteBlock(){
@@ -617,32 +615,21 @@ function hideVoteBlock(){
 
 function handleVote(){
   const chk = document.getElementById('vote-check');
-  if(!chk.checked) return; // shouldn't happen but guard
-  // Lock immediately
+  if(!chk.checked) return;
   chk.disabled = true;
   document.getElementById('vote-label').classList.add('locked');
   localStorage.setItem(VOTE_KEY, '1');
-  // Hit the counter
-  fetch('https://api.countapi.xyz/hit/' + COUNT_NS + '/' + COUNT_KEY)
-    .then(function(r){ return r.json(); })
-    .then(function(data){ renderVoteCount(data.value); })
-    .catch(function(){ renderVoteCount(null); });
-}
-
-function fetchVoteCount(){
-  fetch('https://api.countapi.xyz/get/' + COUNT_NS + '/' + COUNT_KEY)
-    .then(function(r){ return r.json(); })
-    .then(function(data){ renderVoteCount(data.value); })
-    .catch(function(){ /* silent — counter is non-critical */ });
-}
-
-function renderVoteCount(n){
-  const el = document.getElementById('vote-tally');
-  if(!el) return;
-  if(n === null || n === undefined){ el.textContent = ''; return; }
-  el.textContent = n === 1
-    ? '1 reader has asked for Thursday'
-    : n + ' readers have asked for Thursday';
+  // Silent POST to Tally
+  var payload = {
+    formId: TALLY_FORM,
+    fields: [{ uuid: TALLY_FIELD, value: 'yes' }]
+  };
+  fetch('https://tally.so/api/v1/respondents/' + TALLY_FORM, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload)
+  }).catch(function(){}); // silent — vote is already locked locally
+  document.getElementById('vote-tally').textContent = 'Your vote is in. ♥';
 }
 
 // ── INIT ─────────────────────────────────────────────────────────
