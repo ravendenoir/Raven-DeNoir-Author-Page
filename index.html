@@ -469,7 +469,8 @@ async function init() {
       coverUrl: b.coverUrl
     }));
   const manualCS = (data.comingSoon||[]).filter(x => !catalogCS.find(c=>c.id===x.id));
-  const allCS = [...catalogCS, ...manualCS].slice(0,6);
+  const csTime = (x=>{const t=x.datetime?new Date(x.datetime).getTime():NaN;return isNaN(t)?Infinity:t});
+  const allCS = [...catalogCS, ...manualCS].sort((a,b)=>csTime(a)-csTime(b)).slice(0,6);
   renderComingSoon(allCS);
   renderAuthorSites(data.authorSites || []);
   renderEvents(data.events || []);
