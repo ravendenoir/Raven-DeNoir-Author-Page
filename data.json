@@ -739,6 +739,18 @@
       "isTopSeller": false,
       "isKuFave": false,
       "isComingSoon": true
+    },
+    {
+      "id": "mv8lgost78gq",
+      "title": "The Ache Boxset: Savor & ruined",
+      "series": "The Ache",
+      "seriesOrder": 7,
+      "publishDate": "2026-11-13",
+      "amazonUrl": "https://www.amazon.com/Ache-Boxset-Small-Town-Romance-Collection-ebook/dp/B0HM9JHC55",
+      "coverUrl": "https://m.media-amazon.com/images/I/81ZYgAUVfXL._SL1500_.jpg",
+      "isTopSeller": false,
+      "isKuFave": false,
+      "isComingSoon": true
     }
   ],
   "latestNewsletter": "https://ravendenoir.com/2026-10-october-newsletter-web.html"
