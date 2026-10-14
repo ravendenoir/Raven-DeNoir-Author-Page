@@ -197,6 +197,13 @@ img{display:block}
 .catalog-series-group{margin-bottom:32px}
 .series-label{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);font-weight:700;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid var(--border)}
 
+/* COUPLE VOTE */
+.couple-vote-banner{display:block;border-radius:6px;overflow:hidden;border:1px solid var(--border);transition:border-color .15s}
+.couple-vote-banner:hover{border-color:var(--gold)}
+.couple-vote-banner img{display:block;width:100%;height:auto}
+.couple-vote-cta{text-align:center;margin-top:20px}
+.couple-vote-btn{padding:14px 40px;font-size:13px}
+
 /* FOOTER */
 .footer{background:var(--bg2);border-top:1px solid var(--border);padding:32px 24px;text-align:center}
 .footer-name{font-family:'Cormorant Garamond',serif;font-size:20px;color:var(--gold);margin-bottom:8px}
@@ -218,7 +225,6 @@ img{display:block}
     <a class="nav-link" href="#reviews">Reviews</a>
     <a class="nav-link" href="#catalog">All Books</a>
   </div>
-  <div class="nav-socials" id="nav-socials"></div>
 </nav>
 
 
@@ -280,6 +286,17 @@ img{display:block}
 
 <div id="lm-section"></div>
 
+<section class="section couple-vote" id="couple-vote" style="max-width:1100px;margin:0 auto">
+  <a href="https://askli-forms.netlify.app/f/couple-vote-site" target="_blank" rel="noopener" class="couple-vote-banner">
+    <img src="couple-check-in.jpg" alt="Raven Couple Check-In: vote for the couple you want to revisit next" loading="lazy">
+  </a>
+  <div class="couple-vote-cta">
+    <a href="https://askli-forms.netlify.app/f/couple-vote-site" target="_blank" rel="noopener" class="review-buy-btn couple-vote-btn">Cast Your Vote</a>
+  </div>
+</section>
+
+<div class="divider"></div>
+
 <section class="section" id="reviews" style="max-width:1100px;margin:0 auto">
   <div class="section-title">Reader Reviews</div>
   <div class="section-bar"></div>
@@ -304,7 +321,7 @@ img{display:block}
 document.getElementById('yr').textContent = new Date().getFullYear();
 
 const SOCIAL_ICONS = {newsletter:'📧',amazon:'🛒',patreon:'🎭',tiktok:'🎵',instagram:'📸',facebook:'👥',discord:'💬',goodreads:'📚'};
-const SOCIAL_LABELS = {newsletter:'Newsletter',amazon:'Amazon',patreon:'Patreon',tiktok:'TikTok',instagram:'Instagram',facebook:'Facebook',discord:'Discord',goodreads:'Goodreads'};
+const SOCIAL_LABELS = {newsletter:'Latest Newsletter',amazon:'Amazon',patreon:'Patreon',tiktok:'TikTok',instagram:'Instagram',facebook:'Facebook',discord:'Discord',goodreads:'Goodreads'};
 
 async function loadData() {
   try {
@@ -426,7 +443,7 @@ async function init() {
   const data = await loadData();
   if (!data) return;
   renderProfile(data.profile || {}, data.ctaButtons || []);
-  renderSocials(data.socials || {});
+  renderSocials(Object.assign({}, data.socials || {}, data.latestNewsletter ? {newsletter: data.latestNewsletter} : {}));
   // Normalise any date format to YYYY-MM-DD for ISO datetime
   function toISODate(d) {
     if (!d) return '';
@@ -495,17 +512,14 @@ function renderProfile(p, ctaButtons) {
 }
 
 function renderSocials(s) {
-  const nav = document.getElementById('nav-socials');
   const footer = document.getElementById('footer-links');
   const bar = document.getElementById('social-bar-section');
-  const navHtml = [], footHtml = [], barHtml = [];
+  const footHtml = [], barHtml = [];
   Object.keys(SOCIAL_ICONS).forEach(k => {
     if (!s[k]) return;
-    navHtml.push(`<a class="nav-social" href="${esc(s[k])}" target="_blank" rel="noopener" title="${SOCIAL_LABELS[k]}">${SOCIAL_ICONS[k]}</a>`);
     footHtml.push(`<a class="footer-link" href="${esc(s[k])}" target="_blank" rel="noopener">${SOCIAL_LABELS[k]}</a>`);
     barHtml.push(`<a class="social-bar-btn" href="${esc(s[k])}" target="_blank" rel="noopener">${SOCIAL_ICONS[k]} ${SOCIAL_LABELS[k]}</a>`);
   });
-  if (nav) nav.innerHTML = navHtml.join('');
   if (footer) footer.innerHTML = footHtml.join('');
   if (bar && barHtml.length) bar.innerHTML = `<div class="social-bar"><div class="social-bar-inner">${barHtml.join('')}</div></div>`;
 }
