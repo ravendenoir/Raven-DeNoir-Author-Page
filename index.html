@@ -506,7 +506,7 @@ function renderProfile(p, ctaButtons) {
   if (ctaWrap && ctaButtons && ctaButtons.length) {
     const btns = ctaButtons.filter(b => b.label && b.url);
     if (btns.length) {
-      ctaWrap.innerHTML = btns.map(b => `<a href="${esc(b.url)}" target="_blank" rel="noopener" class="hero-cta-btn">${esc(b.label)}</a>`).join('');
+      ctaWrap.innerHTML = btns.map(b => { const u = /^[^\s@:\/]+@[^\s@]+\.[^\s@]+$/.test(b.url.trim()) ? 'mailto:' + b.url.trim() : b.url; return `<a href="${esc(u)}" target="_blank" rel="noopener" class="hero-cta-btn">${esc(b.label)}</a>`; }).join('');
     }
   }
 }
