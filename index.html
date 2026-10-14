@@ -101,7 +101,7 @@ img{display:block}
 /* COMING SOON */
 .cs-wrap{background:linear-gradient(135deg,var(--bg2),var(--bg3));border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:40px 24px}
 .cs-inner{max-width:1100px;margin:0 auto}
-.cs-grid{display:flex;gap:20px;flex-wrap:wrap;justify-content:center}
+.cs-grid{display:flex;gap:20px;flex-wrap:wrap;justify-content:center;max-width:880px;margin:0 auto}
 .cs-card{background:var(--bg);border:1px solid var(--border);border-radius:8px;overflow:hidden;display:flex;flex-direction:column;align-items:center;padding:20px;min-width:220px;max-width:280px;flex:1;text-align:center;transition:border-color .2s}
 .cs-card:hover{border-color:var(--gold-d)}
 .cs-cover{width:100px;height:150px;object-fit:cover;border-radius:4px;margin-bottom:14px;border:1px solid var(--border)}
@@ -468,7 +468,7 @@ async function init() {
       coverUrl: b.coverUrl
     }));
   const manualCS = (data.comingSoon||[]).filter(x => !catalogCS.find(c=>c.id===x.id));
-  const allCS = [...catalogCS, ...manualCS].slice(0,3);
+  const allCS = [...catalogCS, ...manualCS].slice(0,6);
   renderComingSoon(allCS);
   renderAuthorSites(data.authorSites || []);
   renderEvents(data.events || []);
