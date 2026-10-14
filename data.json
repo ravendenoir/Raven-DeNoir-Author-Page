@@ -2,13 +2,13 @@
   "ctaButtons": [
     {
       "id": "cta1",
-      "label": "Signup for newsletter.",
-      "url": "https://askli-forms.netlify.app/f/get-the-last-appointment-free"
+      "label": "Newsletter Sign-up",
+      "url": "https://askli-forms.netlify.app/f/ravens-newsletter"
     },
     {
       "id": "cta2",
-      "label": "Email",
-      "url": "Obsession@ravendenoir.com"
+      "label": "",
+      "url": ""
     },
     {
       "id": "cta3",
@@ -654,7 +654,7 @@
       "coverUrl": "https://m.media-amazon.com/images/I/71PIdZtEcXL._SL1500_.jpg",
       "isTopSeller": false,
       "isKuFave": false,
-      "isComingSoon": true
+      "isComingSoon": false
     },
     {
       "id": "mtkrop0ywb2d",
@@ -740,5 +740,6 @@
       "isKuFave": false,
       "isComingSoon": true
     }
-  ]
+  ],
+  "latestNewsletter": ""
 }
