@@ -183,6 +183,7 @@ h2{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:28px;color:v
 .label{font-size:11px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--dim)}
 .post-news{margin-top:36px;padding-top:22px;border-top:1px solid var(--border);color:var(--dim)}.post-news a{color:var(--gold-l);font-weight:700}
 .post-more{margin-top:64px}.post-more h2{text-align:center;margin-bottom:10px}
+.pager{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-top:40px;padding-top:20px;border-top:1px solid var(--border);font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase}.pager a{color:var(--gold)}.pager-n{color:var(--dim)}
 @media(max-width:640px){.post-list .post-card{flex-basis:100%}.post-book{flex-direction:column;text-align:center}.post-body{font-size:16px}}`;
 
 const SOCIAL_LABELS = { amazon: 'Amazon', patreon: 'Patreon', tiktok: 'TikTok', instagram: 'Instagram', facebook: 'Facebook', discord: 'Discord', goodreads: 'Goodreads' };
@@ -368,18 +369,27 @@ const dropTitle = (body, title) => { const parts = String(body || '').replace(/\
 const postCard = (p) => `<a class="post-card" href="${p.url}">${p.cover ? `<span class="pc-img"><img src="${esc(p.cover)}" alt="" loading="lazy"></span>` : ''}<span class="pc-body"><span class="pc-date">${esc(fmtDate(p.date))}</span><span class="pc-title">${esc(p.title)}</span><span class="pc-ex">${esc(p.excerpt)}</span><span class="pc-more">Read more →</span></span></a>`;
 const blogEmpty = `<div class="blog-empty"><p>The first post is on its way: release news, behind-the-book notes and the men who don't play fair.</p>${socials.newsletter ? `<a class="btn btn-gold" href="${esc(socials.newsletter)}" target="_blank" rel="noopener">Get it in your inbox</a>` : ''}</div>`;
 fs.rmSync(path.join(ROOT, 'blog'), { recursive: true, force: true });
-write('blog/index.html', page({
-  title: 'Blog | Raven DeNoir',
-  description: 'Release news, behind-the-book notes and updates from Raven DeNoir, author of BWWM dark mafia and dark romance.',
-  canonical: '/blog/', current: 'blog', noindex: !posts.length, image: posts.find((p) => p.cover)?.cover,
-  jsonld: [{ '@context': 'https://schema.org', '@type': 'Blog', name: 'Raven DeNoir Blog', url: SITE + '/blog/', author: person, blogPost: posts.map((p) => ({ '@type': 'BlogPosting', headline: p.title, url: SITE + p.url, datePublished: p.date })) }],
-  body: `<main class="wrap">
-<p class="crumbs"><a href="/">Home</a> / Blog</p>
+// The blog page shows 3 posts at a time, newest first; older posts move to /blog/page/2/, /blog/page/3/ …
+const PER_PAGE = 3;
+const blogPages = Math.max(1, Math.ceil(posts.length / PER_PAGE));
+for (let n = 1; n <= blogPages; n++) {
+  const url = n === 1 ? '/blog/' : `/blog/page/${n}/`;
+  const slice = posts.slice((n - 1) * PER_PAGE, n * PER_PAGE);
+  const pager = blogPages > 1 ? `<nav class="pager" aria-label="More posts">${n > 1 ? `<a href="${n === 2 ? '/blog/' : `/blog/page/${n - 1}/`}">← Newer posts</a>` : '<span></span>'}<span class="pager-n">Page ${n} of ${blogPages}</span>${n < blogPages ? `<a href="/blog/page/${n + 1}/">Older posts →</a>` : '<span></span>'}</nav>` : '';
+  write(url.slice(1) + 'index.html', page({
+    title: n === 1 ? 'Blog | Raven DeNoir' : `Blog, page ${n} | Raven DeNoir`,
+    description: 'Release news, behind-the-book notes and updates from Raven DeNoir, author of BWWM dark mafia and dark romance.',
+    canonical: url, current: 'blog', noindex: !posts.length, image: slice.find((p) => p.cover)?.cover,
+    jsonld: [{ '@context': 'https://schema.org', '@type': 'Blog', name: 'Raven DeNoir Blog', url: SITE + '/blog/', author: person, blogPost: slice.map((p) => ({ '@type': 'BlogPosting', headline: p.title, url: SITE + p.url, datePublished: p.date })) }],
+    body: `<main class="wrap">
+<p class="crumbs"><a href="/">Home</a> / ${n === 1 ? 'Blog' : `<a href="/blog/">Blog</a> / Page ${n}`}</p>
 <h1>From the Blog</h1>
-<p class="lede">Release news, behind-the-book notes and updates from the House of DeNoir.</p>
-${posts.length ? `<div class="post-list">${posts.map(postCard).join('')}</div>` : blogEmpty}
+${n === 1 ? '<p class="lede">Release news, behind-the-book notes and updates from the House of DeNoir.</p>' : ''}
+${slice.length ? `<div class="post-list">${slice.map(postCard).join('')}</div>` : blogEmpty}
+${pager}
 </main>`
-}));
+  }));
+}
 for (const p of posts) {
   const book = p.bookId ? books.find((b) => b.id === p.bookId) : null;
   const more = posts.filter((x) => x !== p).slice(0, 2);
@@ -427,7 +437,7 @@ write('books/index.json', JSON.stringify({
 }));
 
 // ---------- sitemap.xml + robots.txt ----------
-const urls = ['/', '/books/', ...seriesList.map((s) => s.url), ...books.map((b) => b.url), ...(posts.length ? ['/blog/', ...posts.map((p) => p.url)] : [])];
+const urls = ['/', '/books/', ...seriesList.map((s) => s.url), ...books.map((b) => b.url), ...(posts.length ? ['/blog/', ...Array.from({ length: Math.ceil(posts.length / 3) - 1 }, (_, i) => `/blog/page/${i + 2}/`), ...posts.map((p) => p.url)] : [])];
 if (fs.existsSync(path.join(ROOT, 'merch.html'))) urls.push('/merch.html');
 write('sitemap.xml', `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
