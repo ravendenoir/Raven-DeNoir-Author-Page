@@ -11,6 +11,13 @@ const data = JSON.parse(fs.readFileSync(path.join(ROOT, 'data.json'), 'utf8'));
 const catalog = (data.catalog || []).filter((b) => b && b.title);
 const socials = data.socials || {};
 const today = new Date().toISOString().slice(0, 10);
+// Optional descriptions kept outside the admin, in content/descriptions.json
+const descPath = path.join(ROOT, 'content', 'descriptions.json');
+const DESC = fs.existsSync(descPath) ? JSON.parse(fs.readFileSync(descPath, 'utf8')) : {};
+const bookDesc = (DESC.books) || {};
+const seriesDesc = (DESC.series) || {};
+const paras = (t) => String(t || '').split(/\n+/).map((x) => x.trim()).filter(Boolean).map((x) => `<p>${esc(x)}</p>`).join('');
+const snippet = (t, n = 155) => { t = String(t || '').replace(/\s+/g, ' ').trim(); if (t.length <= n) return t; t = t.slice(0, n); return t.slice(0, t.lastIndexOf(' ')).replace(/[,;:\-–—]+$/, '') + '…'; };
 
 // ---------- helpers ----------
 const esc = (s) => String(s ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
@@ -47,7 +54,7 @@ const books = catalog.map((b) => {
     released: !date || date <= today,
     url: `/books/${slug}/`,
     seriesSlug: isSeries(series) ? slugify(series) : '',
-    description: b.synopsis || b.description || ''
+    description: b.synopsis || b.description || (bookDesc[b.id] && bookDesc[b.id].description) || ''
   };
 });
 
@@ -84,6 +91,8 @@ img{display:block;max-width:100%}
 .nav-in{max-width:1160px;margin:0 auto;padding:0 20px;min-height:56px;display:flex;align-items:center;gap:20px;flex-wrap:wrap}
 .brand{font-family:'Cormorant Garamond',serif;font-size:21px;font-weight:600;color:var(--gold);letter-spacing:.04em;white-space:nowrap}
 .nav-links{display:flex;gap:2px;overflow-x:auto;flex:1;min-width:0}
+.nav-join{flex-shrink:0;margin-left:auto;padding:8px 14px;border:1px solid var(--gold);border-radius:4px;color:var(--gold);font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;white-space:nowrap}.nav-join:hover{background:var(--gold);color:#000}
+@media(max-width:640px){.nav-links{order:3;flex:1 1 100%}.brand{font-size:18px}}
 .nav-link{padding:10px 12px;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--dim);white-space:nowrap}
 .nav-link[aria-current]{color:var(--text);box-shadow:inset 0 -2px 0 var(--gold)}
 .wrap{max-width:1160px;margin:0 auto;padding:40px 20px 64px}
@@ -123,6 +132,7 @@ h2{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:28px;color:v
 .footer nav{display:flex;flex-wrap:wrap;justify-content:center;gap:4px 18px;font-size:13px}
 .footer .soc a{color:var(--dim)}
 .copy{font-size:12px;color:#9a9284}
+.synopsis{max-width:720px;color:#ddd5c6;font-size:16px;line-height:1.75}.synopsis p{margin-bottom:12px}
 [hidden]{display:none!important}`;
 
 const SOCIAL_LABELS = { amazon: 'Amazon', patreon: 'Patreon', tiktok: 'TikTok', instagram: 'Instagram', facebook: 'Facebook', discord: 'Discord', goodreads: 'Goodreads' };
@@ -142,7 +152,8 @@ const page = ({ title, description, canonical, current, body, jsonld = [], image
 <meta property="og:title" content="${esc(title)}">
 <meta property="og:description" content="${esc(description)}">
 <meta property="og:url" content="${SITE}${canonical}">
-${image && /^https?:/.test(image) ? `<meta property="og:image" content="${esc(image)}">` : ''}
+<meta property="og:image" content="${esc(image && /^https?:/.test(image) ? image : SITE + '/PageIcon.png')}">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="/PageIcon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -159,6 +170,7 @@ ${jsonld.map((j) => `<script type="application/ld+json">${JSON.stringify(j).repl
 <a class="nav-link" href="/books/#all-series"${current === 'series' ? ' aria-current="page"' : ''}>Series</a>
 <a class="nav-link" href="/#reviews">Reviews</a>
 </nav>
+${socials.newsletter ? `<a class="nav-join" href="${esc(socials.newsletter)}" target="_blank" rel="noopener">Join the Newsletter</a>` : ''}
 </div></header>
 ${body}
 <footer class="footer">
@@ -246,13 +258,14 @@ for (const s of seriesList) {
 <p class="crumbs"><a href="/">Home</a> / <a href="/books/">Books</a> / ${esc(s.name)}</p>
 <h1>${esc(s.name)}</h1>
 <p class="lede">The ${esc(s.name)} series by Raven DeNoir: ${s.books.length} ${s.books.length === 1 ? 'book' : 'books'} in reading order${released < s.books.length ? `, ${s.books.length - released} coming soon` : ''}.${first ? ` Start with <a href="${first.url}" style="color:var(--gold-l)">${esc(first.title)}</a>.` : ''}</p>
+${seriesDesc[s.name] ? `<div class="synopsis" style="margin-bottom:28px">${paras(seriesDesc[s.name])}</div>` : ''}
 <ol class="order">
 ${s.books.map((b) => `<li><span class="num">${b.order ?? '·'}</span><a href="${b.url}"><img src="${esc(b.cover)}" alt="${esc(b.title)} cover" loading="lazy" width="72" height="108"></a><div><h3 style="font-size:16px"><a href="${b.url}">${esc(b.title)}</a></h3><p class="meta">${b.date ? (b.released ? 'Published ' : 'Releases ') + esc(fmtDate(b.date)) : ''}</p><div class="badges">${badges(b)}</div></div></li>`).join('\n')}
 </ol>
 </main>`;
   write(`series/${s.slug}/index.html`, page({
     title: `${s.name} Series Reading Order | Raven DeNoir`,
-    description: `All ${s.books.length} books in the ${s.name} series by Raven DeNoir, in reading order${first ? `, starting with ${first.title}` : ''}.`,
+    description: seriesDesc[s.name] ? snippet(`${s.name} reading order: ${seriesDesc[s.name]}`) : `All ${s.books.length} books in the ${s.name} series by Raven DeNoir, in reading order${first ? `, starting with ${first.title}` : ''}.`,
     canonical: s.url, current: 'series', body, image: first?.cover,
     jsonld: [{ '@context': 'https://schema.org', '@type': 'BookSeries', name: s.name, url: SITE + s.url, author: person,
       hasPart: s.books.map((b) => ({ '@type': 'Book', name: b.title, url: SITE + b.url, ...(b.order ? { position: b.order } : {}) })) }]
@@ -274,7 +287,7 @@ for (const b of books) {
 <div class="badges">${badges(b)}</div>
 <h1>${esc(b.title)}</h1>
 <p class="meta" style="font-size:15px">by <a href="/" style="color:var(--text)">Raven DeNoir</a>${s ? ` · <a href="${s.url}" style="color:var(--gold-l)">${esc(s.name)}${b.order ? ', Book ' + b.order : ''}</a>` : ''}</p>
-${b.description ? `<div class="lede" style="margin:0">${esc(b.description).replace(/\n{2,}/g, '</p><p>').replace(/^/, '<p>').replace(/$/, '</p>')}</div>` : ''}
+${b.description ? `<div class="synopsis">${paras(b.description)}</div>` : ''}
 <dl class="facts">
 ${s ? `<dt>Series</dt><dd><a href="${s.url}">${esc(s.name)}</a>${b.order ? ', Book ' + b.order : ''}</dd>` : '<dt>Series</dt><dd>Standalone</dd>'}
 ${b.date ? `<dt>${b.released ? 'Published' : 'Release date'}</dt><dd>${esc(fmtDate(b.date))}</dd>` : ''}
@@ -287,12 +300,13 @@ ${s && (prev || next) ? `<p class="meta" style="display:flex;flex-wrap:wrap;gap:
   const series = s ? { isPartOf: { '@type': 'BookSeries', name: s.name, url: SITE + s.url }, ...(b.order ? { position: b.order } : {}) } : {};
   write(`books/${b.slug}/index.html`, page({
     title: `${b.title}${s ? ` (${s.name}${b.order ? ' Book ' + b.order : ''})` : ''} by Raven DeNoir`,
-    description: b.description ? b.description.slice(0, 155) : `${b.title} by Raven DeNoir${s ? `, ${s.name}${b.order ? ' Book ' + b.order : ''}` : ''}. ${b.released ? 'Available now' : 'Coming ' + fmtDate(b.date)} on Amazon.`,
+    description: b.description ? snippet(b.description) : `${b.title} by Raven DeNoir${s ? `, ${s.name}${b.order ? ' Book ' + b.order : ''}` : ''}. ${b.released ? 'Available now' : 'Coming ' + fmtDate(b.date)} on Amazon.`,
     canonical: b.url, current: 'books', body, image: b.cover,
     jsonld: [{ '@context': 'https://schema.org', '@type': 'Book', name: b.title, url: SITE + b.url, author: person,
       ...(b.cover && /^https?:/.test(b.cover) ? { image: b.cover } : {}),
       ...(b.date && b.released ? { datePublished: b.date } : {}),
       ...(/2nd edition|second edition/i.test(b.title) ? { bookEdition: 'Second Edition' } : {}),
+      ...(b.description ? { description: snippet(b.description, 300) } : {}),
       ...(buy ? { sameAs: buy } : {}), ...series }]
   }));
 }

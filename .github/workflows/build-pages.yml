@@ -6,7 +6,7 @@ name: Build book and series pages
 on:
   push:
     branches: [main]
-    paths: [data.json, scripts/build-pages.mjs, .github/workflows/build-pages.yml]
+    paths: [data.json, content/**, scripts/build-pages.mjs, .github/workflows/build-pages.yml]
   schedule:
     - cron: '17 9 * * *'
   workflow_dispatch:
