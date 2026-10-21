@@ -124,14 +124,14 @@ h2{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:28px;color:v
 .book .cover{flex:0 1 300px;width:300px;max-width:100%}
 .book-info{flex:1 1 380px;min-width:0;display:flex;flex-direction:column;gap:14px}
 .facts{display:grid;grid-template-columns:max-content 1fr;gap:6px 18px;font-size:14px}.facts dt{color:var(--dim)}
-.order{list-style:none;display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:24px 18px}
-.order li{display:flex;flex-direction:column;gap:6px;min-width:0}
+.order{list-style:none;display:flex;flex-wrap:wrap;justify-content:center;gap:24px 18px}
+.order li{display:flex;flex-direction:column;gap:6px;min-width:0;width:150px}
 .order .cv{position:relative;display:block}
 .order img{width:100%;aspect-ratio:2/3;object-fit:cover;border-radius:4px;border:1px solid var(--border);background:var(--bg3)}
 .num{position:absolute;top:6px;left:6px;min-width:28px;height:28px;padding:0 6px;border-radius:14px;background:rgba(8,8,8,.85);border:1px solid var(--gold);color:var(--gold);font-size:13px;font-weight:800;display:flex;align-items:center;justify-content:center}
 .order h3{font-size:13px;font-weight:700;line-height:1.3}
 .order .meta{font-size:11px}
-@media(max-width:640px){.grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:20px 10px}.card h3{font-size:12px}.card .meta{font-size:11px}.card .badge{font-size:9px;padding:2px 5px}.group{margin-bottom:28px}.order{grid-template-columns:repeat(3,minmax(0,1fr));gap:18px 10px}.order h3{font-size:12px}.order .badge{font-size:9px;padding:2px 5px}.wrap{padding-top:24px}.synopsis{font-size:15px}}
+@media(max-width:640px){.grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:20px 10px}.card h3{font-size:12px}.card .meta{font-size:11px}.card .badge{font-size:9px;padding:2px 5px}.group{margin-bottom:28px}.order{gap:18px 10px}.order li{width:calc((100% - 20px) / 3)}.order h3{font-size:12px}.order .badge{font-size:9px;padding:2px 5px}.wrap{padding-top:24px}.synopsis{font-size:15px}}
 .footer{background:var(--bg2);border-top:1px solid var(--border);padding:36px 20px;text-align:center;display:flex;flex-direction:column;gap:12px;align-items:center}
 .footer nav{display:flex;flex-wrap:wrap;justify-content:center;gap:4px 18px;font-size:13px}
 .footer .soc a{color:var(--dim)}
