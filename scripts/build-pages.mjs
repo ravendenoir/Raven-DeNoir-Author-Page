@@ -308,6 +308,12 @@ for (const dir of ['books', 'series']) {
   }
 }
 
+// ---------- lookup used by the homepage to link covers to book and series pages ----------
+write('books/index.json', JSON.stringify({
+  books: Object.fromEntries(books.filter((b) => b.id).map((b) => [b.id, b.url])),
+  series: seriesList.map((s) => { const first = s.books.find((b) => b.order === 1) || s.books[0]; return { name: s.name, url: s.url, count: s.books.length, first: first.title, cover: first.cover }; })
+}));
+
 // ---------- sitemap.xml + robots.txt ----------
 const urls = ['/', '/books/', ...seriesList.map((s) => s.url), ...books.map((b) => b.url)];
 if (fs.existsSync(path.join(ROOT, 'merch.html'))) urls.push('/merch.html');

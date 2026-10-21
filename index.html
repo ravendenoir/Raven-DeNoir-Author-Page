@@ -15,7 +15,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#080808;--bg2:#0f0f0f;--bg3:#161616;--gold:#c9a535;--gold-l:#e8c55a;--gold-d:#7a6010;--text:#e8e0d0;--dim:#888;--border:#222;--pink:#e91e8c;--blue:#00b4e6}
+:root{--bg:#080808;--bg2:#0f0f0f;--bg3:#161616;--gold:#c9a535;--gold-l:#e8c55a;--gold-d:#7a6010;--text:#e8e0d0;--dim:#b5ad9f;--border:#222;--border2:#3a3a3a;--pink:#e91e8c;--blue:#00b4e6}
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--text);font-family:'Montserrat',sans-serif;font-size:14px;line-height:1.6;min-height:100vh}
@@ -210,70 +210,121 @@ img{display:block}
 .couple-vote-cta{text-align:center;margin-top:20px}
 .couple-vote-btn{padding:14px 40px;font-size:13px}
 
+/* RESTRUCTURE */
+.nav{gap:16px;padding:0 clamp(16px,4vw,32px);flex-wrap:nowrap}
+.nav-brand{margin-right:8px}
+.nav-links{overflow-x:auto;min-width:0}
+.nav-join{flex-shrink:0;margin-left:auto;padding:8px 14px;border:1px solid var(--gold);border-radius:4px;color:var(--gold);font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;white-space:nowrap}
+.nav-join:hover{background:var(--gold);color:#000}
+.hero-sec{padding:48px 24px 40px}
+.hero-row{display:flex;gap:48px;align-items:center;justify-content:center}
+.hero-info{max-width:620px}
+.hero-bio{font-size:16px}
+.hero-bio p{margin-bottom:0}
+.hero-more{display:inline-block;margin-top:14px;font-size:13px;font-weight:700;color:var(--gold-l)}
+.hero-more:hover{color:var(--gold)}
+.section-head{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:6px 20px}
+.section-more{font-size:13px;font-weight:700;color:var(--gold-l)}
+.series-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:16px}
+.series-card{display:flex;gap:14px;align-items:center;padding:12px;background:var(--bg2);border:1px solid var(--border);border-radius:6px;transition:border-color .15s}
+.series-card:hover{border-color:var(--gold-d)}
+.series-card img{width:72px;flex:0 0 72px;aspect-ratio:2/3;object-fit:cover;border-radius:3px}
+.series-name{font-family:'Cormorant Garamond',serif;font-size:21px;font-weight:600;line-height:1.15;color:var(--text)}
+.series-count{font-size:12px;color:var(--dim)}
+.series-start{font-size:12px;font-weight:700;color:var(--gold-l)}
+.band{background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.about-sec{max-width:820px}
+.about-bio{font-size:15px;line-height:1.8;color:#ddd5c6}.about-bio p{margin-bottom:14px}
+.footer-nav{display:flex;gap:6px 18px;justify-content:center;flex-wrap:wrap;margin-bottom:10px;font-size:13px}
+.footer-nav a:hover{color:var(--gold)}
+@media(max-width:640px){.hero-row{flex-direction:column;align-items:center;text-align:center}.nav{flex-wrap:wrap;height:auto;padding-top:8px;padding-bottom:4px;gap:4px 12px}.nav-links{order:3;flex:1 1 100%}.nav-join{padding:7px 10px;font-size:10px}.nav-brand{font-size:18px}}
+
 /* FOOTER */
 .footer{background:var(--bg2);border-top:1px solid var(--border);padding:32px 24px;text-align:center}
 .footer-name{font-family:'Cormorant Garamond',serif;font-size:20px;color:var(--gold);margin-bottom:8px}
 .footer-links{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-bottom:12px}
 .footer-link{font-size:12px;color:var(--dim);transition:color .15s}.footer-link:hover{color:var(--gold)}
-.footer-copy{font-size:11px;color:var(--dim);opacity:.5}
+.footer-copy{font-size:11px;color:var(--dim);opacity:.8}
 
-@media(max-width:600px){.books-grid{grid-template-columns:repeat(auto-fill,minmax(100px,1fr))}.cs-grid{flex-direction:column;align-items:center}.nav-links{display:none}}
+@media(max-width:600px){.books-grid{grid-template-columns:repeat(auto-fill,minmax(100px,1fr))}.cs-grid{flex-direction:column;align-items:center}}
 </style>
 </head>
 <body>
 
-<nav class="nav">
-  <div class="nav-brand" id="nav-brand">RAVEN DENOIR</div>
+<nav class="nav" aria-label="Main">
+  <a class="nav-brand" id="nav-brand" href="/">RAVEN DENOIR</a>
   <div class="nav-links">
-    <a class="nav-link" href="#books">Books</a>
-    <a class="nav-link" href="#ku">Kindle Unlimited</a>
-    <a class="nav-link" href="#tbr">TBR</a>
+    <a class="nav-link" href="/books/">Books</a>
+    <a class="nav-link" href="#series">Series</a>
+    <a class="nav-link" href="#coming-soon">Coming Soon</a>
     <a class="nav-link" href="#reviews">Reviews</a>
-    <a class="nav-link" href="/books/">All Books</a>
+    <a class="nav-link" href="#about">About</a>
   </div>
+  <a class="nav-join" id="nav-join" href="https://ravens-forms.netlify.app/f/ravens-newsletter" target="_blank" rel="noopener">Join the Newsletter</a>
 </nav>
 
-
-<section class="section" style="max-width:1100px;margin:0 auto;padding:48px 24px 40px">
-  <div style="display:flex;gap:40px;align-items:flex-start" id="hero-section">
+<section class="section hero-sec">
+  <div class="hero-row" id="hero-section">
     <div class="hero-photo-ph" id="hero-photo-wrap">🪶</div>
     <div class="hero-info">
       <h1 class="hero-name" id="hero-name">Raven DeNoir</h1>
       <div class="hero-tagline">Love Stories With Body Counts</div>
       <div class="hero-bio" id="hero-bio"></div>
-
+      <a href="#about" class="hero-more">Read Raven's full bio &rarr;</a>
     </div>
   </div>
+</section>
+
+<div id="coming-soon"><div id="cs-section"></div></div>
+
+<div id="events-section"></div>
+
+<section class="section" id="series">
+  <div class="section-head"><h2 class="section-title">Start a Series</h2><a class="section-more" href="/books/">Browse all books &rarr;</a></div>
+  <div class="section-bar"></div>
+  <div class="series-grid" id="series-grid"></div>
 </section>
 
 <div class="divider"></div>
 
-<div id="cs-section"></div>
-<div id="carousel-section"></div>
-
-<div id="social-bar-section"></div>
-
-<div id="events-section"></div>
-
 <section class="section" id="books">
   <div class="section-2col">
     <div>
-      <div class="section-title">Top Sellers</div>
+      <h2 class="section-title">Top Sellers</h2>
       <div class="section-bar"></div>
       <div class="books-grid" id="ts-grid"></div>
     </div>
-    <div>
-      <div class="section-title">KU Favorites</div>
+    <div id="ku">
+      <h2 class="section-title">KU Favorites</h2>
       <div class="section-bar"></div>
-      <div class="books-grid" id="ku-grid" id="ku"></div>
+      <div class="books-grid" id="ku-grid"></div>
     </div>
   </div>
 </section>
 
-<div class="divider" id="ku"></div>
+<div id="lm-section"></div>
+
+<div class="divider"></div>
+
+<section class="section couple-vote" id="couple-vote">
+  <a href="https://askli-forms.netlify.app/f/couple-vote-site" target="_blank" rel="noopener" class="couple-vote-banner">
+    <img src="couple-check-in.jpg" alt="Raven Couple Check-In: vote for the couple you want to revisit next" loading="lazy">
+  </a>
+  <div class="couple-vote-cta">
+    <a href="https://askli-forms.netlify.app/f/couple-vote-site" target="_blank" rel="noopener" class="review-buy-btn couple-vote-btn">Cast Your Vote</a>
+  </div>
+</section>
+
+<section class="band" id="reviews">
+  <div class="section">
+    <h2 class="section-title">Reader Reviews</h2>
+    <div class="section-bar"></div>
+    <div id="reviews-carousel"></div>
+  </div>
+</section>
 
 <section class="section" id="tbr">
-  <div class="section-title">Raven DeNoir's TBR List</div>
+  <h2 class="section-title">Raven DeNoir's TBR List</h2>
   <div class="section-bar"></div>
   <div class="tbr-split">
     <div>
@@ -287,40 +338,22 @@ img{display:block}
   </div>
 </section>
 
-<div class="divider"></div>
-
-<div id="lm-section"></div>
-
-<section class="section couple-vote" id="couple-vote" style="max-width:1100px;margin:0 auto">
-  <a href="https://askli-forms.netlify.app/f/couple-vote-site" target="_blank" rel="noopener" class="couple-vote-banner">
-    <img src="couple-check-in.jpg" alt="Raven Couple Check-In: vote for the couple you want to revisit next" loading="lazy">
-  </a>
-  <div class="couple-vote-cta">
-    <a href="https://askli-forms.netlify.app/f/couple-vote-site" target="_blank" rel="noopener" class="review-buy-btn couple-vote-btn">Cast Your Vote</a>
+<section class="band" id="about">
+  <div class="section about-sec">
+    <h2 class="section-title">About Raven</h2>
+    <div class="section-bar"></div>
+    <div class="about-bio" id="about-bio"></div>
   </div>
+  <div id="social-bar-section"></div>
 </section>
-
-<div class="divider"></div>
-
-<section class="section" id="reviews" style="max-width:1100px;margin:0 auto">
-  <div class="section-title">Reader Reviews</div>
-  <div class="section-bar"></div>
-  <div id="reviews-carousel"></div>
-</section>
-
-<div class="divider"></div>
 
 <div id="sites-section"></div>
 
-<section class="section" id="catalog">
-  <div class="section-title">Full Catalog</div>
-  <div class="section-bar"></div>
-  <p style="margin:-12px 0 24px"><a href="/books/" style="color:var(--gold-l);font-weight:700;font-size:13px">Search all books and series reading order &rarr;</a></p>
-  <div id="catalog-grid"></div>
-</section>
+<div id="catalog"></div>
 
 <footer class="footer">
   <div class="footer-name">Raven DeNoir</div>
+  <nav class="footer-nav" aria-label="Footer"><a href="/books/">All Books</a><a href="#series">Series</a><a href="#coming-soon">Coming Soon</a><a href="#about">About</a></nav>
   <div class="footer-links" id="footer-links"></div>
   <div class="footer-copy">© <span id="yr"></span> Raven DeNoir. All rights reserved.</div>
 </footer>
@@ -491,8 +524,47 @@ async function init() {
   renderLeadMagnet(data.leadMagnet || {});
   renderReviews(data.reviews || []);
   renderCatalog(data.catalog || []);
-  renderCarousel(data.catalog || []);
+  renderSeriesGrid();
+  linkBookCovers();
+  const join = document.getElementById('nav-join');
+  if (join && data.socials && data.socials.newsletter) join.href = data.socials.newsletter;
   updateMeta(data.profile || {});
+}
+
+// Old #catalog links now open the full Books page
+if (location.hash === '#catalog') location.replace('/books/');
+
+let SITE_INDEX = null;
+async function siteIndex() {
+  if (SITE_INDEX) return SITE_INDEX;
+  try { const r = await fetch('/books/index.json?v=' + Date.now()); SITE_INDEX = r.ok ? await r.json() : {}; } catch (e) { SITE_INDEX = {}; }
+  return SITE_INDEX;
+}
+
+async function renderSeriesGrid() {
+  const grid = document.getElementById('series-grid');
+  if (!grid) return;
+  const idx = await siteIndex();
+  const list = (idx.series || []).slice(0, 8);
+  if (!list.length) { document.getElementById('series').style.display = 'none'; return; }
+  grid.innerHTML = list.map(s => `<a class="series-card" href="${esc(s.url)}">
+    <img src="${esc(s.cover)}" alt="${esc(s.name)} series" loading="lazy" onerror="this.style.visibility='hidden'">
+    <span style="display:flex;flex-direction:column;gap:3px;min-width:0">
+      <span class="series-name">${esc(s.name)}</span>
+      <span class="series-count">${s.count} ${s.count === 1 ? 'book' : 'books'}</span>
+      <span class="series-start">Start with ${esc(s.first)}</span>
+    </span></a>`).join('');
+}
+
+// Cover images on the homepage open each book's own page; Buy buttons still go to Amazon
+async function linkBookCovers() {
+  const idx = await siteIndex();
+  const byUrl = {};
+  try { const d = await loadData(); (d.catalog || []).forEach(b => { if (b.amazonUrl && idx.books && idx.books[b.id]) byUrl[b.amazonUrl] = idx.books[b.id]; }); } catch (e) {}
+  document.querySelectorAll('#ts-grid .book-card > a, #ku-grid .book-card > a').forEach(a => {
+    const u = byUrl[a.getAttribute('href')];
+    if (u) { a.href = u; a.removeAttribute('target'); }
+  });
 }
 
 function renderProfile(p, ctaButtons) {
@@ -505,6 +577,10 @@ function renderProfile(p, ctaButtons) {
       const cleaned = b.replace(/\\n/g,'\n');
       bio.innerHTML = cleaned.split(/\n\n+/).map(para => `<p>${para.replace(/\n/g,' ').trim()}</p>`).filter(x=>x!=='<p></p>').join('');
     }
+    const about = document.getElementById('about-bio');
+    if (about) about.innerHTML = bio.innerHTML;
+    const paras = bio.querySelectorAll('p');
+    if (paras.length > 1) { for (let i = 1; i < paras.length; i++) paras[i].remove(); }
   }
   const photoWrap = document.getElementById('hero-photo-wrap');
   if (photoWrap && p.photoUrl) {
