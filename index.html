@@ -297,7 +297,6 @@ img{display:block}
     <a class="nav-link" href="#reviews">Reviews</a>
     <a class="nav-link" href="#about">About</a>
   </div>
-  <a class="nav-join" id="nav-join" href="https://ravens-forms.netlify.app/f/ravens-newsletter" target="_blank" rel="noopener">Join the Newsletter</a>
 </nav>
 
 <section class="section hero-sec">
@@ -691,7 +690,8 @@ async function loadBlogRows() {
   if (!box) return;
   let d = { posts: [] };
   try { const r = await fetch('/blog/index.json?v=' + Date.now()); if (r.ok) d = await r.json(); } catch (e) {}
-  const nl = (document.getElementById('nav-join') || {}).href || '';
+  // newsletter link = the working "Newsletter Sign-Up" button under Raven's photo
+  const nl = ([...document.querySelectorAll('.hero-cta-btn, #hero-section a')].find(a => /sign.?up|join/i.test(a.textContent) && !/previous/i.test(a.textContent)) || {}).href || '';
   const nudge = (msg) => `<div class="blog-nudge">${msg}${nl ? `<br><a href="${esc(nl)}" target="_blank" rel="noopener">Get it in your inbox &rarr;</a>` : ''}</div>`;
   const posts = d.posts || [];
   if (!posts.length) { box.innerHTML = nudge('The first post is on its way: release news, behind-the-book notes and the men who don’t play fair.'); return; }

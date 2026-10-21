@@ -189,6 +189,9 @@ h2{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:28px;color:v
 const SOCIAL_LABELS = { amazon: 'Amazon', patreon: 'Patreon', tiktok: 'TikTok', instagram: 'Instagram', facebook: 'Facebook', discord: 'Discord', goodreads: 'Goodreads' };
 const sameAs = Object.keys(SOCIAL_LABELS).map((k) => socials[k]).filter((u) => /^https?:\/\//.test(u || ''));
 const latestNewsletter = data.latestNewsletter || socials.newsletter || '';
+// The working sign-up link is the "Newsletter Sign-up" button under Raven's photo; use it everywhere.
+const signupCta = (data.ctaButtons || []).find((c) => c && /^https?:/i.test(c.url || '') && /sign.?up|join/i.test(c.label || '') && !/previous/i.test(c.label || ''));
+const newsletterUrl = (signupCta && signupCta.url) || socials.newsletter || '';
 
 const page = ({ title, description, canonical, current, body, jsonld = [], image = '', type = 'website', noindex = false }) => `<!DOCTYPE html>
 <html lang="en">
@@ -222,7 +225,6 @@ ${jsonld.map((j) => `<script type="application/ld+json">${JSON.stringify(j).repl
 <a class="nav-link" href="/blog/"${current === 'blog' ? ' aria-current="page"' : ''}>Blog</a>
 <a class="nav-link" href="/#reviews">Reviews</a>
 </nav>
-${socials.newsletter ? `<a class="nav-join" href="${esc(socials.newsletter)}" target="_blank" rel="noopener">Join the Newsletter</a>` : ''}
 </div></header>
 ${body}
 <footer class="footer">
@@ -367,7 +369,7 @@ ${s && (prev || next) ? `<p class="meta" style="display:flex;flex-wrap:wrap;gap:
 const norm = (t) => String(t).replace(/[*#_\s]+/g, ' ').trim().toLowerCase();
 const dropTitle = (body, title) => { const parts = String(body || '').replace(/\r\n?/g, '\n').split(/\n{2,}/); return parts.length > 1 && norm(parts[0]) === norm(title) ? parts.slice(1).join('\n\n') : body; };
 const postCard = (p) => `<a class="post-card" href="${p.url}">${p.cover ? `<span class="pc-img"><img src="${esc(p.cover)}" alt="" loading="lazy"></span>` : ''}<span class="pc-body"><span class="pc-date">${esc(fmtDate(p.date))}</span><span class="pc-title">${esc(p.title)}</span><span class="pc-ex">${esc(p.excerpt)}</span><span class="pc-more">Read more →</span></span></a>`;
-const blogEmpty = `<div class="blog-empty"><p>The first post is on its way: release news, behind-the-book notes and the men who don't play fair.</p>${socials.newsletter ? `<a class="btn btn-gold" href="${esc(socials.newsletter)}" target="_blank" rel="noopener">Get it in your inbox</a>` : ''}</div>`;
+const blogEmpty = `<div class="blog-empty"><p>The first post is on its way: release news, behind-the-book notes and the men who don't play fair.</p>${newsletterUrl ? `<a class="btn btn-gold" href="${esc(newsletterUrl)}" target="_blank" rel="noopener">Get it in your inbox</a>` : ''}</div>`;
 fs.rmSync(path.join(ROOT, 'blog'), { recursive: true, force: true });
 // The blog page shows 3 posts at a time, newest first; older posts move to /blog/page/2/, /blog/page/3/ …
 const PER_PAGE = 3;
@@ -407,7 +409,7 @@ ${p.cover ? `<img class="post-cover" src="${esc(p.cover)}" alt="${esc(p.coverAlt
 <div class="post-body">${md(dropTitle(p.body, p.title))}</div>
 </article>
 ${book ? `<aside class="post-book"><a href="${book.url}"><img src="${esc(book.cover)}" alt="${esc(book.title)} by Raven DeNoir, book cover" width="300" height="450"></a><div><p class="label">The Book</p><h2><a href="${book.url}">${esc(book.title)}</a></h2><p class="meta">${esc(metaLine(book))} · ${book.released ? 'Available now' : 'Coming ' + esc(fmtDate(book.date))}</p>${buy ? `<a class="btn btn-gold" href="${esc(buy)}" target="_blank" rel="noopener">${book.released ? 'Read on Amazon' : 'Preorder on Amazon'}</a>` : ''}</div></aside>` : ''}
-${socials.newsletter ? `<p class="post-news">Want the next one in your inbox? <a href="${esc(socials.newsletter)}" target="_blank" rel="noopener">Join the newsletter →</a></p>` : ''}
+${newsletterUrl ? `<p class="post-news">Want the next one in your inbox? <a href="${esc(newsletterUrl)}" target="_blank" rel="noopener">Join the newsletter →</a></p>` : ''}
 ${more.length ? `<section class="post-more"><h2>More from the Blog</h2><div class="post-list">${more.map(postCard).join('')}</div></section>` : ''}
 </main>`
   }));
