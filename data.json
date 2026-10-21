@@ -75,12 +75,6 @@
   ],
   "kuFavorites": [
     {
-      "id": "b-manual-1769202795651",
-      "title": "Mine",
-      "amazonUrl": "https://www.amazon.com/Mine-Dangerous-Claim-Raven-DeNoir-ebook/dp/B0GHT1PDN8",
-      "coverUrl": "https://images-na.ssl-images-amazon.com/images/P/B0GHT1PDN8.01._SCLZZZZZZZ_.jpg"
-    },
-    {
       "id": "b-manual-1769202658405",
       "title": "The Apology Wife",
       "amazonUrl": "https://www.amazon.com/Apology-Wife-Terms-Trust-Legacy-ebook/dp/B0GHPW7718",
@@ -91,6 +85,12 @@
       "title": "Grown & Chosen",
       "amazonUrl": "https://www.amazon.com/GROWN-CHOSEN-Billionaire-Romance-Collection-ebook/dp/B0HDYXJN1J/ref=sr_1_1?crid=1221O2Z6BVB4Z&dib=eyJ2IjoiMSJ9.zr_7fwS8MKQwL1r9IzvKCrgoXXyQaX4z8-uvtQybi294nidjy23HBv_4pzdd2dTvi9nHjSJh19FqNlFQfLvKw3s0wX4GViTct0IybOIIXO1zkEmiB6VHXRMzY7HGT2HFBcW55YJobJt5QmRjOPRFehklTUcgRYLAwvcrhJNTT7_9owkSXRpOLrCAGSyaH9AwkXFqW2QqHjv7OmcIhtHFeScSLmD09OyFqIUtYmjp_bLgyRFyotOTCVQeMZ-NY48jxD2OiuTtKqG2v7cHJlBdrzBhPsFHOAz9aY0j1r-K6l8.HCQegvzVW-ppaE4QqjgeWqi6k90OSPRHW-fTdF7tE0c&dib_tag=se&keywords=raven+denoir&qid=1788393882&sprefix=raven+denoir%2Caps%2C302&sr=8-1",
       "coverUrl": "https://m.media-amazon.com/images/I/514zAScdOkL._SY445_SX342_QL70_FMwebp_.jpg"
+    },
+    {
+      "id": "mtkrq3shm3ij",
+      "title": "Why Choose",
+      "amazonUrl": "https://www.amazon.com/Why-Choose-Twins-Friend-Romance-ebook/dp/B0H785FPGW/ref=sr_1_30?crid=1221O2Z6BVB4Z&dib=eyJ2IjoiMSJ9.zr_7fwS8MKQwL1r9IzvKCrgoXXyQaX4z8-uvtQybi294nidjy23HBv_4pzdd2dTvi9nHjSJh19FqNlFQfLvKw3s0wX4GViTct0IybOIIXO1zkEmiB6VHXRMzY7HGT2HFBcW55YJobJt5QmRjOPRFehklTUcgRYLAwvcrhJNTT7_9owkSXRpOLrCAGSyaH9AwkXFqW2QqHjv7OmcIhtHFeScSLmD09OyFqIUtYmjp_bLgyRFyotOTCVQeMZ-NY48jxD2OiuTtKqG2v7cHJlBdrzBhPsFHOAz9aY0j1r-K6l8.HCQegvzVW-ppaE4QqjgeWqi6k90OSPRHW-fTdF7tE0c&dib_tag=se&keywords=raven+denoir&qid=1788393882&sprefix=raven+denoir%2Caps%2C302&sr=8-30",
+      "coverUrl": "https://m.media-amazon.com/images/I/81w9x5C8YdL._SL1500_.jpg"
     }
   ],
   "favoritesList": [
@@ -186,7 +186,7 @@
       "amazonUrl": "https://www.amazon.com/Mine-Dangerous-Claim-Raven-DeNoir-ebook/dp/B0GHT1PDN8",
       "coverUrl": "https://images-na.ssl-images-amazon.com/images/P/B0GHT1PDN8.01._SCLZZZZZZZ_.jpg",
       "isTopSeller": false,
-      "isKuFave": true
+      "isKuFave": false
     },
     {
       "id": "mn0jh6lnu603",
@@ -682,7 +682,7 @@
       "amazonUrl": "https://www.amazon.com/Why-Choose-Twins-Friend-Romance-ebook/dp/B0H785FPGW/ref=sr_1_30?crid=1221O2Z6BVB4Z&dib=eyJ2IjoiMSJ9.zr_7fwS8MKQwL1r9IzvKCrgoXXyQaX4z8-uvtQybi294nidjy23HBv_4pzdd2dTvi9nHjSJh19FqNlFQfLvKw3s0wX4GViTct0IybOIIXO1zkEmiB6VHXRMzY7HGT2HFBcW55YJobJt5QmRjOPRFehklTUcgRYLAwvcrhJNTT7_9owkSXRpOLrCAGSyaH9AwkXFqW2QqHjv7OmcIhtHFeScSLmD09OyFqIUtYmjp_bLgyRFyotOTCVQeMZ-NY48jxD2OiuTtKqG2v7cHJlBdrzBhPsFHOAz9aY0j1r-K6l8.HCQegvzVW-ppaE4QqjgeWqi6k90OSPRHW-fTdF7tE0c&dib_tag=se&keywords=raven+denoir&qid=1788393882&sprefix=raven+denoir%2Caps%2C302&sr=8-30",
       "coverUrl": "https://m.media-amazon.com/images/I/81w9x5C8YdL._SL1500_.jpg",
       "isTopSeller": true,
-      "isKuFave": false,
+      "isKuFave": true,
       "isComingSoon": false
     },
     {
