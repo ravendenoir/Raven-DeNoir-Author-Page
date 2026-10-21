@@ -1,8 +1,9 @@
-// Builds the static Books, Series and individual book pages, sitemap.xml and robots.txt
-// from data.json. Run automatically by .github/workflows/build-pages.yml whenever
+// Builds the static Books, Series, book pages, the blog, sitemap.xml and robots.txt
+// from data.json and content/posts/ (blog posts written in Blog Desk). Run automatically by .github/workflows/build-pages.yml whenever
 // data.json changes. Never edits data.json, index.html or the admin.
 import fs from 'node:fs';
 import path from 'node:path';
+import { md } from './md.mjs';
 
 const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..');
 const SITE = 'https://ravendenoir.com';
@@ -79,6 +80,17 @@ const seriesList = [...seriesMap.values()]
   .map((s) => ({ ...s, books: s.books.sort(readingOrder), url: `/series/${s.slug}/` }))
   .sort((a, b) => b.books.length - a.books.length || a.name.localeCompare(b.name));
 
+// ---------- blog posts (written in Blog Desk, saved as content/posts/<slug>.json) ----------
+// A post goes live once its date arrives, so a future date schedules it (the daily build publishes it).
+const POSTS_DIR = path.join(ROOT, 'content/posts');
+const localUrl = (u) => (u || '').startsWith(SITE) ? u.slice(SITE.length) : (u || '');
+const posts = (fs.existsSync(POSTS_DIR) ? fs.readdirSync(POSTS_DIR) : []).filter((f) => f.endsWith('.json')).map((f) => {
+  try { const p = JSON.parse(fs.readFileSync(path.join(POSTS_DIR, f), 'utf8')); return { ...p, slug: slugify(p.slug || f.replace(/\.json$/, '')), date: isoDate(p.date) || today }; } catch (e) { console.warn('Skipping bad post ' + f + ': ' + e.message); return null; }
+}).filter((p) => p && p.title && p.status !== 'draft' && p.date <= today)
+  .sort((a, b) => b.date.localeCompare(a.date) || a.title.localeCompare(b.title))
+  .map((p) => ({ ...p, url: `/blog/${p.slug}/`, cover: localUrl(p.cover), excerpt: p.excerpt || snippet(String(p.body || '').replace(/[#>*_\[\]()!-]/g, ' '), 160) }));
+const absUrl = (u) => (/^https?:/.test(u || '') ? u : SITE + (u || ''));
+
 const metaLine = (b) => (b.seriesSlug ? `${b.series}${b.order ? ', Book ' + b.order : ''}` : 'Standalone');
 
 // ---------- shared layout ----------
@@ -137,28 +149,62 @@ h2{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:28px;color:v
 .footer .soc a{color:var(--dim)}
 .copy{font-size:12px;color:#9a9284}
 .synopsis{max-width:720px;color:#ddd5c6;font-size:16px;line-height:1.75}.synopsis p{margin-bottom:12px}
-[hidden]{display:none!important}`;
+[hidden]{display:none!important}
+.post-list{display:flex;flex-wrap:wrap;justify-content:center;gap:24px;margin-top:8px}
+.post-card{flex:0 1 340px;display:flex;flex-direction:column;background:var(--bg2);border:1px solid var(--border);border-radius:6px;overflow:hidden;transition:border-color .2s,transform .2s}
+.post-card:hover{border-color:var(--gold);transform:translateY(-2px);color:inherit}
+.pc-img{display:block;aspect-ratio:16/9;overflow:hidden;background:var(--bg3)}.pc-img img{width:100%;height:100%;object-fit:cover}
+.pc-body{display:flex;flex-direction:column;gap:8px;padding:18px 20px 20px;flex:1}
+.pc-date{font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--dim)}
+.pc-title{font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:600;line-height:1.15;color:var(--gold)}
+.pc-ex{font-size:14px;color:#ddd5c6;flex:1}.pc-more{font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--gold-l)}
+.blog-empty{max-width:560px;margin:24px auto 0;text-align:center;border:1px dashed var(--border2);border-radius:6px;padding:32px 24px;color:var(--dim)}
+.blog-empty p{margin-bottom:18px}
+.post article,.post .crumbs,.post-book,.post-news{max-width:720px;margin-left:auto;margin-right:auto}
+.post-date{font-size:12px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);margin-bottom:6px}
+.post-cover{max-width:100%;max-height:560px;width:auto;margin:18px auto 8px;border-radius:4px;border:1px solid var(--border)}
+.post-body{font-size:17px;line-height:1.75;color:#ddd5c6;margin-top:22px}
+.post-body p,.post-body ul,.post-body ol,.post-body blockquote,.post-body figure{margin-bottom:.9em}
+.post-body h2{font-size:clamp(26px,4vw,32px);margin:1.5em 0 .45em;line-height:1.2}
+.post-body h2::after{content:'';display:block;width:44px;height:2px;background:var(--gold);opacity:.6;margin-top:10px}
+.post-body h3{font-family:'Cormorant Garamond',serif;font-size:23px;color:var(--gold);margin:1.3em 0 .35em}
+.post-body>h2:first-child,.post-body>h3:first-child{margin-top:.4em}
+.post-body ul,.post-body ol{padding-left:1.4em}.post-body li{margin-bottom:.35em}
+.post-body a{color:var(--gold-l);text-decoration:underline}
+.post-body blockquote{border-left:2px solid var(--gold);padding:4px 0 4px 20px;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:22px;color:var(--gold-l)}
+.post-body img{max-width:100%;height:auto;border-radius:4px;margin:0 auto}
+.post-body figcaption{text-align:center;font-size:13px;color:var(--dim);margin-top:8px}
+.post-body hr{border:0;text-align:center;margin:1.4em 0}.post-body hr::after{content:'✦';color:var(--gold);opacity:.7}
+.post-cta{margin:1.1em 0 1.3em}.post-body .post-cta a{display:inline-block;padding:11px 22px;border:1px solid var(--gold);border-radius:4px;color:var(--gold);font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;text-decoration:none}
+.post-body .post-cta a:hover{background:var(--gold);color:#080808}
+.post-book{margin-top:48px;display:flex;gap:24px;align-items:center;background:var(--bg2);border:1px solid var(--border);border-radius:6px;padding:22px}
+.post-book img{width:120px;height:auto;border-radius:3px;border:1px solid var(--border)}
+.post-book h2{font-size:26px;margin:2px 0 4px}.post-book .meta{margin-bottom:14px}
+.label{font-size:11px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--dim)}
+.post-news{margin-top:36px;padding-top:22px;border-top:1px solid var(--border);color:var(--dim)}.post-news a{color:var(--gold-l);font-weight:700}
+.post-more{margin-top:64px}.post-more h2{text-align:center;margin-bottom:10px}
+@media(max-width:640px){.post-list .post-card{flex-basis:100%}.post-book{flex-direction:column;text-align:center}.post-body{font-size:16px}}`;
 
 const SOCIAL_LABELS = { amazon: 'Amazon', patreon: 'Patreon', tiktok: 'TikTok', instagram: 'Instagram', facebook: 'Facebook', discord: 'Discord', goodreads: 'Goodreads' };
 const sameAs = Object.keys(SOCIAL_LABELS).map((k) => socials[k]).filter((u) => /^https?:\/\//.test(u || ''));
 const latestNewsletter = data.latestNewsletter || socials.newsletter || '';
 
-const page = ({ title, description, canonical, current, body, jsonld = [], image = '' }) => `<!DOCTYPE html>
+const page = ({ title, description, canonical, current, body, jsonld = [], image = '', type = 'website', noindex = false }) => `<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>${esc(title)}</title>
 <meta name="description" content="${esc(description)}">
-<link rel="canonical" href="${SITE}${canonical}">
-<meta property="og:type" content="website">
+<link rel="canonical" href="${SITE}${canonical}">${noindex ? '\n<meta name="robots" content="noindex">' : ''}
+<meta property="og:type" content="${type}">
 <meta property="og:site_name" content="${AUTHOR}">
 <meta property="og:title" content="${esc(title)}">
 <meta property="og:description" content="${esc(description)}">
 <meta property="og:url" content="${SITE}${canonical}">
-<meta property="og:image" content="${esc(image && /^https?:/.test(image) ? image : SITE + '/PageIcon.png')}">
+<meta property="og:image" content="${esc(image ? absUrl(image) : SITE + '/PageIcon.png')}">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="icon" href="/PageIcon.png">
+<link rel="icon" href="/PageIcon.png">${posts.length ? `\n<link rel="alternate" type="application/rss+xml" title="Raven DeNoir Blog" href="${SITE}/blog/feed.xml">` : ''}
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
@@ -172,6 +218,7 @@ ${jsonld.map((j) => `<script type="application/ld+json">${JSON.stringify(j).repl
 <a class="nav-link" href="/">Home</a>
 <a class="nav-link" href="/books/"${current === 'books' ? ' aria-current="page"' : ''}>Books</a>
 <a class="nav-link" href="/books/#all-series"${current === 'series' ? ' aria-current="page"' : ''}>Series</a>
+<a class="nav-link" href="/blog/"${current === 'blog' ? ' aria-current="page"' : ''}>Blog</a>
 <a class="nav-link" href="/#reviews">Reviews</a>
 </nav>
 ${socials.newsletter ? `<a class="nav-join" href="${esc(socials.newsletter)}" target="_blank" rel="noopener">Join the Newsletter</a>` : ''}
@@ -179,7 +226,7 @@ ${socials.newsletter ? `<a class="nav-join" href="${esc(socials.newsletter)}" ta
 ${body}
 <footer class="footer">
 <a class="brand" href="/">Raven DeNoir</a>
-<nav aria-label="Footer"><a href="/">Home</a><a href="/books/">All Books</a>${latestNewsletter ? `<a href="${esc(latestNewsletter)}">Latest Newsletter</a>` : ''}</nav>
+<nav aria-label="Footer"><a href="/">Home</a><a href="/books/">All Books</a><a href="/blog/">Blog</a>${latestNewsletter ? `<a href="${esc(latestNewsletter)}">Latest Newsletter</a>` : ''}</nav>
 <nav class="soc" aria-label="Social">${Object.keys(SOCIAL_LABELS).filter((k) => socials[k]).map((k) => `<a href="${esc(socials[k])}" target="_blank" rel="noopener">${SOCIAL_LABELS[k]}</a>`).join('')}</nav>
 <div class="copy">© ${new Date().getFullYear()} Raven DeNoir. All rights reserved.</div>
 </footer>
@@ -315,6 +362,53 @@ ${s && (prev || next) ? `<p class="meta" style="display:flex;flex-wrap:wrap;gap:
   }));
 }
 
+// ---------- /blog/ ----------
+const norm = (t) => String(t).replace(/[*#_\s]+/g, ' ').trim().toLowerCase();
+const dropTitle = (body, title) => { const parts = String(body || '').replace(/\r\n?/g, '\n').split(/\n{2,}/); return parts.length > 1 && norm(parts[0]) === norm(title) ? parts.slice(1).join('\n\n') : body; };
+const postCard = (p) => `<a class="post-card" href="${p.url}">${p.cover ? `<span class="pc-img"><img src="${esc(p.cover)}" alt="" loading="lazy"></span>` : ''}<span class="pc-body"><span class="pc-date">${esc(fmtDate(p.date))}</span><span class="pc-title">${esc(p.title)}</span><span class="pc-ex">${esc(p.excerpt)}</span><span class="pc-more">Read more →</span></span></a>`;
+const blogEmpty = `<div class="blog-empty"><p>The first post is on its way: release news, behind-the-book notes and the men who don't play fair.</p>${socials.newsletter ? `<a class="btn btn-gold" href="${esc(socials.newsletter)}" target="_blank" rel="noopener">Get it in your inbox</a>` : ''}</div>`;
+fs.rmSync(path.join(ROOT, 'blog'), { recursive: true, force: true });
+write('blog/index.html', page({
+  title: 'Blog | Raven DeNoir',
+  description: 'Release news, behind-the-book notes and updates from Raven DeNoir, author of BWWM dark mafia and dark romance.',
+  canonical: '/blog/', current: 'blog', noindex: !posts.length, image: posts.find((p) => p.cover)?.cover,
+  jsonld: [{ '@context': 'https://schema.org', '@type': 'Blog', name: 'Raven DeNoir Blog', url: SITE + '/blog/', author: person, blogPost: posts.map((p) => ({ '@type': 'BlogPosting', headline: p.title, url: SITE + p.url, datePublished: p.date })) }],
+  body: `<main class="wrap">
+<p class="crumbs"><a href="/">Home</a> / Blog</p>
+<h1>From the Blog</h1>
+<p class="lede">Release news, behind-the-book notes and updates from the House of DeNoir.</p>
+${posts.length ? `<div class="post-list">${posts.map(postCard).join('')}</div>` : blogEmpty}
+</main>`
+}));
+for (const p of posts) {
+  const book = p.bookId ? books.find((b) => b.id === p.bookId) : null;
+  const more = posts.filter((x) => x !== p).slice(0, 2);
+  const buy = book ? amazonHref(book.amazonUrl) : '';
+  write(`blog/${p.slug}/index.html`, page({
+    title: `${p.title} | Raven DeNoir`, description: snippet(p.excerpt), canonical: p.url, current: 'blog', type: 'article', image: p.cover || book?.cover,
+    jsonld: [{ '@context': 'https://schema.org', '@type': 'BlogPosting', headline: p.title, url: SITE + p.url, datePublished: p.date, ...(p.updated ? { dateModified: isoDate(p.updated) } : {}),
+      description: snippet(p.excerpt, 300), author: person, publisher: person, ...(p.cover ? { image: absUrl(p.cover) } : {}), mainEntityOfPage: SITE + p.url }],
+    body: `<main class="wrap post">
+<p class="crumbs"><a href="/">Home</a> / <a href="/blog/">Blog</a> / ${esc(p.title)}</p>
+<article>
+<p class="post-date"><time datetime="${p.date}">${esc(fmtDate(p.date))}</time></p>
+<h1>${esc(p.title)}</h1>
+${p.cover ? `<img class="post-cover" src="${esc(p.cover)}" alt="${esc(p.coverAlt || p.title)}">` : ''}
+<div class="post-body">${md(dropTitle(p.body, p.title))}</div>
+</article>
+${book ? `<aside class="post-book"><a href="${book.url}"><img src="${esc(book.cover)}" alt="${esc(book.title)} by Raven DeNoir, book cover" width="300" height="450"></a><div><p class="label">The Book</p><h2><a href="${book.url}">${esc(book.title)}</a></h2><p class="meta">${esc(metaLine(book))} · ${book.released ? 'Available now' : 'Coming ' + esc(fmtDate(book.date))}</p>${buy ? `<a class="btn btn-gold" href="${esc(buy)}" target="_blank" rel="noopener">${book.released ? 'Read on Amazon' : 'Preorder on Amazon'}</a>` : ''}</div></aside>` : ''}
+${socials.newsletter ? `<p class="post-news">Want the next one in your inbox? <a href="${esc(socials.newsletter)}" target="_blank" rel="noopener">Join the newsletter →</a></p>` : ''}
+${more.length ? `<section class="post-more"><h2>More from the Blog</h2><div class="post-list">${more.map(postCard).join('')}</div></section>` : ''}
+</main>`
+  }));
+}
+// latest posts for the homepage's blog column
+write('blog/index.json', JSON.stringify({ posts: posts.slice(0, 3).map((p) => ({ title: p.title, url: p.url, date: p.date, dateLabel: fmtDate(p.date), excerpt: snippet(p.excerpt, 110), cover: p.cover })), total: posts.length }));
+if (posts.length) {
+  const x = (t) => esc(t);
+  write('blog/feed.xml', `<?xml version="1.0" encoding="UTF-8"?>\n<rss version="2.0"><channel><title>Raven DeNoir Blog</title><link>${SITE}/blog/</link><description>Release news and behind-the-book notes from Raven DeNoir</description>\n${posts.slice(0, 20).map((p) => `<item><title>${x(p.title)}</title><link>${SITE}${p.url}</link><guid>${SITE}${p.url}</guid><pubDate>${new Date(p.date + 'T12:00:00Z').toUTCString()}</pubDate><description>${x(p.excerpt)}</description></item>`).join('\n')}\n</channel></rss>\n`);
+}
+
 // ---------- remove pages for books/series no longer in data.json ----------
 for (const dir of ['books', 'series']) {
   const keep = new Set(dir === 'books' ? books.map((b) => b.slug) : seriesList.map((s) => s.slug));
@@ -333,7 +427,7 @@ write('books/index.json', JSON.stringify({
 }));
 
 // ---------- sitemap.xml + robots.txt ----------
-const urls = ['/', '/books/', ...seriesList.map((s) => s.url), ...books.map((b) => b.url)];
+const urls = ['/', '/books/', ...seriesList.map((s) => s.url), ...books.map((b) => b.url), ...(posts.length ? ['/blog/', ...posts.map((p) => p.url)] : [])];
 if (fs.existsSync(path.join(ROOT, 'merch.html'))) urls.push('/merch.html');
 write('sitemap.xml', `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
@@ -346,4 +440,4 @@ Allow: /
 Sitemap: ${SITE}/sitemap.xml
 `);
 
-console.log(`Built ${books.length} book pages, ${seriesList.length} series pages, /books/, sitemap (${urls.length} URLs).`);
+console.log(`Built ${books.length} book pages, ${seriesList.length} series pages, /books/, ${posts.length} blog posts, sitemap (${urls.length} URLs).`);

@@ -125,6 +125,37 @@ img{display:block}
 .cs-sep{font-size:20px;color:var(--gold-d);align-self:flex-start;padding-top:2px}
 .cs-btn{display:inline-block;padding:8px 20px;background:var(--gold);color:#000;border-radius:4px;font-size:12px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;transition:background .15s}
 .cs-btn:hover{background:var(--gold-l)}
+/* COMING SOON + BLOG SPLIT */
+.split{max-width:1180px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1.6fr) 1px minmax(0,1fr);gap:0 44px;align-items:stretch}
+.split::before{content:'';grid-column:2;grid-row:1;background:linear-gradient(to bottom,transparent,var(--gold-d) 12%,var(--gold-d) 88%,transparent)}
+.split-col{min-width:0;display:flex;flex-direction:column;grid-row:1}
+.cs-col{grid-column:1}.blog-col{grid-column:3}
+.split-head{text-align:center;margin-bottom:24px}.split-head .section-title{margin-bottom:6px}.split-head .section-bar{margin:0 auto}
+.split .cs-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;max-width:none;margin:0}
+.split .cs-card{min-width:0;max-width:none;padding:14px 10px}
+.split .cs-cover{width:100%;max-width:120px;height:auto;aspect-ratio:2/3;margin-bottom:10px}
+.split .cs-title{font-size:16px;margin-bottom:8px}
+.split .cs-countdown{gap:4px;margin-bottom:10px;margin-top:auto}
+.split .cs-unit{background:var(--bg3);border:1px solid var(--border);border-radius:3px;padding:4px 5px;min-width:34px}
+.split .cs-num{font-size:16px}.split .cs-lbl{font-size:8px;letter-spacing:.06em}
+.split .cs-sep{display:none}
+.split .cs-btn{padding:7px 12px;font-size:10px}
+.split-more{text-align:center;margin-top:auto;padding-top:24px;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+.split-more a{color:var(--gold)}.split-more a:hover{color:var(--gold-l)}
+.cs-note{text-align:center;color:var(--dim)}
+.post-rows{display:flex;flex-direction:column;gap:14px}
+.post-row{display:flex;gap:14px;align-items:center;background:var(--bg);border:1px solid var(--border);border-radius:6px;padding:12px;transition:border-color .2s}
+.post-row:hover{border-color:var(--gold-d)}
+.pr-img{flex:0 0 92px;height:92px;border-radius:4px;overflow:hidden;background:var(--bg3)}.pr-img img{width:100%;height:100%;object-fit:cover;display:block}
+.pr-body{display:flex;flex-direction:column;gap:3px;min-width:0}
+.pr-date{font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--dim)}
+.pr-title{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:600;line-height:1.15;color:var(--gold)}
+.pr-ex{font-size:12.5px;color:var(--dim);line-height:1.5}
+.blog-nudge{text-align:center;border:1px dashed var(--border2);border-radius:6px;padding:22px 18px;color:var(--dim);font-size:13px}
+.blog-nudge a{display:inline-block;margin-top:10px;color:var(--gold);font-weight:700;font-size:12px;letter-spacing:.08em;text-transform:uppercase}
+.blog-col .post-rows+.blog-nudge{margin-top:14px}
+@media(max-width:980px){.split{grid-template-columns:1fr;gap:0}.split::before{display:none}.cs-col,.blog-col{grid-column:1;grid-row:auto}.blog-col{max-width:640px;width:100%;margin:40px auto 0;padding-top:40px;border-top:1px solid var(--gold-d)}}
+@media(max-width:600px){.split .cs-grid{gap:8px}.split .cs-card{padding:10px 4px}.split .cs-title{font-size:13px}.split .cs-badge{font-size:8px;letter-spacing:.08em}.split .cs-unit{min-width:0;padding:3px 2px;flex:1}.split .cs-num{font-size:12px}.split .cs-lbl{font-size:7px;letter-spacing:0}.split .cs-countdown{width:100%}.split .cs-btn{padding:6px 6px;font-size:9px;letter-spacing:0}.pr-img{flex-basis:76px;height:76px}}
 
 /* BOOKS GRID */
 .books-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:16px}
@@ -251,7 +282,7 @@ img{display:block}
 .footer-link{font-size:12px;color:var(--dim);transition:color .15s}.footer-link:hover{color:var(--gold)}
 .footer-copy{font-size:11px;color:var(--dim);opacity:.8}
 
-@media(max-width:600px){.books-grid{grid-template-columns:repeat(auto-fill,minmax(100px,1fr))}.cs-grid{flex-direction:column;align-items:center}}
+@media(max-width:600px){.books-grid{grid-template-columns:repeat(auto-fill,minmax(100px,1fr))}.cs-grid:not(.split .cs-grid){flex-direction:column;align-items:center}}
 </style>
 </head>
 <body>
@@ -262,6 +293,7 @@ img{display:block}
     <a class="nav-link" href="/books/">Books</a>
     <a class="nav-link" href="#series">Series</a>
     <a class="nav-link" href="#coming-soon">Coming Soon</a>
+    <a class="nav-link" href="/blog/">Blog</a>
     <a class="nav-link" href="#reviews">Reviews</a>
     <a class="nav-link" href="#about">About</a>
   </div>
@@ -358,7 +390,7 @@ img{display:block}
 
 <footer class="footer">
   <div class="footer-name">Raven DeNoir</div>
-  <nav class="footer-nav" aria-label="Footer"><a href="/books/">All Books</a><a href="#series">Series</a><a href="#coming-soon">Coming Soon</a><a href="#about">About</a></nav>
+  <nav class="footer-nav" aria-label="Footer"><a href="/books/">All Books</a><a href="#series">Series</a><a href="#coming-soon">Coming Soon</a><a href="/blog/">Blog</a><a href="#about">About</a></nav>
   <div class="footer-links" id="footer-links"></div>
   <div class="footer-copy">© <span id="yr"></span> Raven DeNoir. All rights reserved.</div>
 </footer>
@@ -615,10 +647,8 @@ function renderSocials(s) {
 }
 
 function renderComingSoon(items) {
-  if (!items.length) return;
   const sec = document.getElementById('cs-section');
   const cards = items.map(it => {
-    const ts = it.datetime ? new Date(it.datetime).getTime() : 0;
     const cdId = 'cd-' + it.id;
     return `<div class="cs-card">
       ${it.coverUrl ? `<img src="${esc(it.coverUrl)}" class="cs-cover" alt="${esc(it.title)}" onerror="this.style.display='none'">` : ''}
@@ -628,7 +658,19 @@ function renderComingSoon(items) {
       ${it.amazonUrl ? `<a href="${esc(it.amazonUrl)}" target="_blank" rel="noopener" class="cs-btn">Pre-Order Now</a>` : ''}
     </div>`;
   }).join('');
-  sec.innerHTML = `<div class="cs-wrap"><div class="cs-inner"><div class="section-title" style="text-align:center;margin-bottom:6px">Coming Soon</div><div class="section-bar" style="margin:0 auto 24px"></div><div class="cs-grid">${cards}</div></div></div>`;
+  sec.innerHTML = `<div class="cs-wrap"><div class="split">
+    <div class="split-col cs-col">
+      <div class="split-head"><div class="section-title">Coming Soon</div><div class="section-bar"></div></div>
+      ${items.length ? `<div class="cs-grid">${cards}</div>` : '<p class="cs-note">New release dates land in the newsletter first.</p>'}
+      <p class="split-more"><a href="/books/">See every book and release date &rarr;</a></p>
+    </div>
+    <div class="split-col blog-col" id="blog">
+      <div class="split-head"><div class="section-title">From the Blog</div><div class="section-bar"></div></div>
+      <div id="blog-rows"></div>
+      <p class="split-more"><a href="/blog/">Read the blog &rarr;</a></p>
+    </div>
+  </div></div>`;
+  loadBlogRows();
   items.forEach(it => {
     if (!it.datetime) return;
     const target = new Date(it.datetime).getTime();
@@ -642,6 +684,18 @@ function renderComingSoon(items) {
     }
     tick(); setInterval(tick, 1000);
   });
+}
+
+async function loadBlogRows() {
+  const box = document.getElementById('blog-rows');
+  if (!box) return;
+  let d = { posts: [] };
+  try { const r = await fetch('/blog/index.json?v=' + Date.now()); if (r.ok) d = await r.json(); } catch (e) {}
+  const nl = (document.getElementById('nav-join') || {}).href || '';
+  const nudge = (msg) => `<div class="blog-nudge">${msg}${nl ? `<br><a href="${esc(nl)}" target="_blank" rel="noopener">Get it in your inbox &rarr;</a>` : ''}</div>`;
+  const posts = d.posts || [];
+  if (!posts.length) { box.innerHTML = nudge('The first post is on its way: release news, behind-the-book notes and the men who don’t play fair.'); return; }
+  box.innerHTML = `<div class="post-rows">${posts.map(p => `<a class="post-row" href="${esc(p.url)}">${p.cover ? `<span class="pr-img"><img src="${esc(p.cover)}" alt="" loading="lazy"></span>` : ''}<span class="pr-body"><span class="pr-date">${esc(p.dateLabel || p.date)}</span><span class="pr-title">${esc(p.title)}</span><span class="pr-ex">${esc(p.excerpt || '')}</span></span></a>`).join('')}</div>${posts.length < 3 ? nudge('More notes from the House of DeNoir are on the way.') : ''}`;
 }
 
 function renderEvents(items) {

@@ -1,12 +1,12 @@
 name: Build book and series pages
 
-# Rebuilds /books/, /series/, sitemap.xml and robots.txt from data.json.
+# Rebuilds /books/, /series/, /blog/, sitemap.xml and robots.txt from data.json and content/posts/.
 # Runs when the admin publishes data.json, when the builder changes,
 # and once a day so "Coming soon" books flip to "Available" on release day.
 on:
   push:
     branches: [main]
-    paths: [data.json, content/**, scripts/build-pages.mjs, .github/workflows/build-pages.yml]
+    paths: [data.json, content/**, scripts/**, .github/workflows/build-pages.yml]
   schedule:
     - cron: '17 9 * * *'
   workflow_dispatch:
@@ -26,16 +26,19 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
-      - run: node scripts/build-pages.mjs
-      - name: Commit generated pages
+      - name: Build and commit generated pages
         run: |
           git config user.name "House of Raven Pages Bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add books series sitemap.xml robots.txt
-          if git diff --cached --quiet; then echo "No changes"; exit 0; fi
-          git commit -m "Rebuild book and series pages from data.json"
-          for i in 1 2 3; do
-            git pull --rebase origin main && git push origin HEAD:main && exit 0
-            sleep 5
+          # If another update lands while this runs, start over from the newest version instead of merging.
+          for i in 1 2 3 4 5; do
+            git fetch -q origin main
+            git reset -q --hard origin/main
+            node scripts/build-pages.mjs
+            git add -A books series blog sitemap.xml robots.txt
+            if git diff --cached --quiet; then echo "No changes"; exit 0; fi
+            git commit -q -m "Rebuild book, series and blog pages"
+            git push origin HEAD:main && exit 0
+            sleep $((i * 4))
           done
           exit 1
