@@ -55,12 +55,6 @@
   "events": [],
   "topSellers": [
     {
-      "id": "mn0jh6lnu603",
-      "title": "Seabrook's Broken Veil",
-      "amazonUrl": "https://www.amazon.com/Nijume-Seabrooks-Broken-Warlord-Romance-ebook/dp/B0GPPXRWVG/",
-      "coverUrl": "https://m.media-amazon.com/images/I/716KZhxJKgL._SL1500_.jpg"
-    },
-    {
       "id": "mtkrjwd0okz2",
       "title": "Hudson & Frankie",
       "amazonUrl": "https://www.amazon.com/Hudson-Frankie-Romance-Bookstore-Organized-ebook/dp/B0H73H6XHN/ref=sr_1_2?crid=1221O2Z6BVB4Z&dib=eyJ2IjoiMSJ9.zr_7fwS8MKQwL1r9IzvKCrgoXXyQaX4z8-uvtQybi294nidjy23HBv_4pzdd2dTvi9nHjSJh19FqNlFQfLvKw3s0wX4GViTct0IybOIIXO1zkEmiB6VHXRMzY7HGT2HFBcW55YJobJt5QmRjOPRFehklTUcgRYLAwvcrhJNTT7_9owkSXRpOLrCAGSyaH9AwkXFqW2QqHjv7OmcIhtHFeScSLmD09OyFqIUtYmjp_bLgyRFyotOTCVQeMZ-NY48jxD2OiuTtKqG2v7cHJlBdrzBhPsFHOAz9aY0j1r-K6l8.HCQegvzVW-ppaE4QqjgeWqi6k90OSPRHW-fTdF7tE0c&dib_tag=se&keywords=raven+denoir&qid=1788393882&sprefix=raven+denoir%2Caps%2C302&sr=8-2",
@@ -71,6 +65,18 @@
       "title": "Again With Feeling",
       "amazonUrl": "https://www.amazon.com/Again-Feeling-Second-Billionaire-Romance-ebook/dp/B0H5G5QDND/ref=sr_1_3?crid=1221O2Z6BVB4Z&dib=eyJ2IjoiMSJ9.zr_7fwS8MKQwL1r9IzvKCrgoXXyQaX4z8-uvtQybi294nidjy23HBv_4pzdd2dTvi9nHjSJh19FqNlFQfLvKw3s0wX4GViTct0IybOIIXO1zkEmiB6VHXRMzY7HGT2HFBcW55YJobJt5QmRjOPRFehklTUcgRYLAwvcrhJNTT7_9owkSXRpOLrCAGSyaH9AwkXFqW2QqHjv7OmcIhtHFeScSLmD09OyFqIUtYmjp_bLgyRFyotOTCVQeMZ-NY48jxD2OiuTtKqG2v7cHJlBdrzBhPsFHOAz9aY0j1r-K6l8.HCQegvzVW-ppaE4QqjgeWqi6k90OSPRHW-fTdF7tE0c&dib_tag=se&keywords=raven+denoir&qid=1788393882&sprefix=raven+denoir%2Caps%2C302&sr=8-3",
       "coverUrl": "https://m.media-amazon.com/images/I/81d+aPgAOwL._SL1500_.jpg"
+    },
+    {
+      "id": "mtkrq3shm3ij",
+      "title": "Why Choose",
+      "amazonUrl": "https://www.amazon.com/Why-Choose-Twins-Friend-Romance-ebook/dp/B0H785FPGW/ref=sr_1_30?crid=1221O2Z6BVB4Z&dib=eyJ2IjoiMSJ9.zr_7fwS8MKQwL1r9IzvKCrgoXXyQaX4z8-uvtQybi294nidjy23HBv_4pzdd2dTvi9nHjSJh19FqNlFQfLvKw3s0wX4GViTct0IybOIIXO1zkEmiB6VHXRMzY7HGT2HFBcW55YJobJt5QmRjOPRFehklTUcgRYLAwvcrhJNTT7_9owkSXRpOLrCAGSyaH9AwkXFqW2QqHjv7OmcIhtHFeScSLmD09OyFqIUtYmjp_bLgyRFyotOTCVQeMZ-NY48jxD2OiuTtKqG2v7cHJlBdrzBhPsFHOAz9aY0j1r-K6l8.HCQegvzVW-ppaE4QqjgeWqi6k90OSPRHW-fTdF7tE0c&dib_tag=se&keywords=raven+denoir&qid=1788393882&sprefix=raven+denoir%2Caps%2C302&sr=8-30",
+      "coverUrl": "https://m.media-amazon.com/images/I/81w9x5C8YdL._SL1500_.jpg"
+    },
+    {
+      "id": "mvhe46kvtfdp",
+      "title": "Names We Inherit",
+      "amazonUrl": "https://www.amazon.com/Names-We-Inherit-Obligation-Billionaire-ebook/dp/B0GHLKK3SZ",
+      "coverUrl": "https://m.media-amazon.com/images/I/71pkvROWt1L._SL1500_.jpg"
     }
   ],
   "kuFavorites": [
@@ -196,7 +202,7 @@
       "publishDate": "2026-03-27",
       "amazonUrl": "https://www.amazon.com/Nijume-Seabrooks-Broken-Warlord-Romance-ebook/dp/B0GPPXRWVG/",
       "coverUrl": "https://m.media-amazon.com/images/I/716KZhxJKgL._SL1500_.jpg",
-      "isTopSeller": true,
+      "isTopSeller": false,
       "isKuFave": false
     },
     {
@@ -692,7 +698,7 @@
       "publishDate": "2026-10-16",
       "amazonUrl": "https://www.amazon.com/Why-Choose-Twins-Friend-Romance-ebook/dp/B0H785FPGW/ref=sr_1_30?crid=1221O2Z6BVB4Z&dib=eyJ2IjoiMSJ9.zr_7fwS8MKQwL1r9IzvKCrgoXXyQaX4z8-uvtQybi294nidjy23HBv_4pzdd2dTvi9nHjSJh19FqNlFQfLvKw3s0wX4GViTct0IybOIIXO1zkEmiB6VHXRMzY7HGT2HFBcW55YJobJt5QmRjOPRFehklTUcgRYLAwvcrhJNTT7_9owkSXRpOLrCAGSyaH9AwkXFqW2QqHjv7OmcIhtHFeScSLmD09OyFqIUtYmjp_bLgyRFyotOTCVQeMZ-NY48jxD2OiuTtKqG2v7cHJlBdrzBhPsFHOAz9aY0j1r-K6l8.HCQegvzVW-ppaE4QqjgeWqi6k90OSPRHW-fTdF7tE0c&dib_tag=se&keywords=raven+denoir&qid=1788393882&sprefix=raven+denoir%2Caps%2C302&sr=8-30",
       "coverUrl": "https://m.media-amazon.com/images/I/81w9x5C8YdL._SL1500_.jpg",
-      "isTopSeller": false,
+      "isTopSeller": true,
       "isKuFave": false,
       "isComingSoon": false
     },
@@ -767,6 +773,18 @@
       "isTopSeller": false,
       "isKuFave": false,
       "isComingSoon": true
+    },
+    {
+      "id": "mvhe46kvtfdp",
+      "title": "Names We Inherit",
+      "series": "AMBW",
+      "seriesOrder": null,
+      "publishDate": "2026-02-26",
+      "amazonUrl": "https://www.amazon.com/Names-We-Inherit-Obligation-Billionaire-ebook/dp/B0GHLKK3SZ",
+      "coverUrl": "https://m.media-amazon.com/images/I/71pkvROWt1L._SL1500_.jpg",
+      "isTopSeller": true,
+      "isKuFave": false,
+      "isComingSoon": false
     }
   ],
   "latestNewsletter": "https://ravendenoir.com/2026-10-october-newsletter-web.html"
