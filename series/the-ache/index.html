@@ -59,10 +59,14 @@ h2{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:28px;color:v
 .book .cover{flex:0 1 300px;width:300px;max-width:100%}
 .book-info{flex:1 1 380px;min-width:0;display:flex;flex-direction:column;gap:14px}
 .facts{display:grid;grid-template-columns:max-content 1fr;gap:6px 18px;font-size:14px}.facts dt{color:var(--dim)}
-.order{list-style:none;display:flex;flex-direction:column;gap:14px}
-.order li{display:flex;gap:16px;align-items:center;padding:12px;background:var(--bg2);border:1px solid var(--border);border-radius:6px}
-.order img{width:72px;flex:0 0 72px;aspect-ratio:2/3;object-fit:cover;border-radius:3px}
-.num{font-family:'Cormorant Garamond',serif;font-size:26px;color:var(--gold);width:34px;text-align:center;flex:0 0 34px}
+.order{list-style:none;display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:24px 18px}
+.order li{display:flex;flex-direction:column;gap:6px;min-width:0}
+.order .cv{position:relative;display:block}
+.order img{width:100%;aspect-ratio:2/3;object-fit:cover;border-radius:4px;border:1px solid var(--border);background:var(--bg3)}
+.num{position:absolute;top:6px;left:6px;min-width:28px;height:28px;padding:0 6px;border-radius:14px;background:rgba(8,8,8,.85);border:1px solid var(--gold);color:var(--gold);font-size:13px;font-weight:800;display:flex;align-items:center;justify-content:center}
+.order h3{font-size:13px;font-weight:700;line-height:1.3}
+.order .meta{font-size:11px}
+@media(max-width:640px){.grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:20px 10px}.card h3{font-size:12px}.card .meta{font-size:11px}.card .badge{font-size:9px;padding:2px 5px}.group{margin-bottom:28px}.order{grid-template-columns:repeat(3,minmax(0,1fr));gap:18px 10px}.order h3{font-size:12px}.order .badge{font-size:9px;padding:2px 5px}.wrap{padding-top:24px}.synopsis{font-size:15px}}
 .footer{background:var(--bg2);border-top:1px solid var(--border);padding:36px 20px;text-align:center;display:flex;flex-direction:column;gap:12px;align-items:center}
 .footer nav{display:flex;flex-wrap:wrap;justify-content:center;gap:4px 18px;font-size:13px}
 .footer .soc a{color:var(--dim)}
@@ -88,12 +92,12 @@ h2{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:28px;color:v
 <p class="lede">The The Ache series by Raven DeNoir: 6 books in reading order, 1 coming soon. Start with <a href="/books/unbound/" style="color:var(--gold-l)">Unbound</a>.</p>
 <div class="synopsis" style="margin-bottom:28px"><p>The Ache delivers emotionally raw, high-heat BWWM romance in both novels and sharp, addictive novellas. Each standalone centers a strong Black woman who chooses herself first, matched with a man who meets her where she stands. No fade to black, only grown-folks love that heals what hurt, whether in bakery kitchens, storm-lashed cabins, small-town dive bars, or sleek penthouses.</p></div>
 <ol class="order">
-<li><span class="num">1</span><a href="/books/unbound/"><img src="https://images-na.ssl-images-amazon.com/images/P/B0FCBQW6D5.01._SCLZZZZZZZ_.jpg" alt="Unbound cover" loading="lazy" width="72" height="108"></a><div><h3 style="font-size:16px"><a href="/books/unbound/">Unbound</a></h3><p class="meta">Published July 19, 2025</p><div class="badges"></div></div></li>
-<li><span class="num">2</span><a href="/books/savor/"><img src="https://images-na.ssl-images-amazon.com/images/P/B0FCZK8435.01._SCLZZZZZZZ_.jpg" alt="Savor cover" loading="lazy" width="72" height="108"></a><div><h3 style="font-size:16px"><a href="/books/savor/">Savor</a></h3><p class="meta">Published July 25, 2025</p><div class="badges"></div></div></li>
-<li><span class="num">3</span><a href="/books/ruined/"><img src="https://images-na.ssl-images-amazon.com/images/P/B0FDXKST4Z.01._SCLZZZZZZZ_.jpg" alt="Ruined cover" loading="lazy" width="72" height="108"></a><div><h3 style="font-size:16px"><a href="/books/ruined/">Ruined</a></h3><p class="meta">Published September 5, 2025</p><div class="badges"></div></div></li>
-<li><span class="num">4</span><a href="/books/inked/"><img src="https://images-na.ssl-images-amazon.com/images/P/B0FCBTCDM6.01._SCLZZZZZZZ_.jpg" alt="Inked cover" loading="lazy" width="72" height="108"></a><div><h3 style="font-size:16px"><a href="/books/inked/">Inked</a></h3><p class="meta">Published August 29, 2025</p><div class="badges"></div></div></li>
-<li><span class="num">5</span><a href="/books/fractured/"><img src="https://images-na.ssl-images-amazon.com/images/P/B0FCBH69MJ.01._SCLZZZZZZZ_.jpg" alt="Fractured cover" loading="lazy" width="72" height="108"></a><div><h3 style="font-size:16px"><a href="/books/fractured/">Fractured</a></h3><p class="meta">Published August 29, 2025</p><div class="badges"></div></div></li>
-<li><span class="num">7</span><a href="/books/the-ache-boxset-savor-and-ruined/"><img src="https://m.media-amazon.com/images/I/81ZYgAUVfXL._SL1500_.jpg" alt="The Ache Boxset: Savor &amp; ruined cover" loading="lazy" width="72" height="108"></a><div><h3 style="font-size:16px"><a href="/books/the-ache-boxset-savor-and-ruined/">The Ache Boxset: Savor &amp; ruined</a></h3><p class="meta">Releases November 13, 2026</p><div class="badges"><span class="badge b-soon">Coming November 13</span></div></div></li>
+<li><a class="cv" href="/books/unbound/"><img src="https://images-na.ssl-images-amazon.com/images/P/B0FCBQW6D5.01._SCLZZZZZZZ_.jpg" alt="Unbound cover" loading="lazy" width="200" height="300"><span class="num" aria-label="Book 1">1</span></a><h3><a href="/books/unbound/">Unbound</a></h3><p class="meta">July 2025</p></li>
+<li><a class="cv" href="/books/savor/"><img src="https://images-na.ssl-images-amazon.com/images/P/B0FCZK8435.01._SCLZZZZZZZ_.jpg" alt="Savor cover" loading="lazy" width="200" height="300"><span class="num" aria-label="Book 2">2</span></a><h3><a href="/books/savor/">Savor</a></h3><p class="meta">July 2025</p></li>
+<li><a class="cv" href="/books/ruined/"><img src="https://images-na.ssl-images-amazon.com/images/P/B0FDXKST4Z.01._SCLZZZZZZZ_.jpg" alt="Ruined cover" loading="lazy" width="200" height="300"><span class="num" aria-label="Book 3">3</span></a><h3><a href="/books/ruined/">Ruined</a></h3><p class="meta">September 2025</p></li>
+<li><a class="cv" href="/books/inked/"><img src="https://images-na.ssl-images-amazon.com/images/P/B0FCBTCDM6.01._SCLZZZZZZZ_.jpg" alt="Inked cover" loading="lazy" width="200" height="300"><span class="num" aria-label="Book 4">4</span></a><h3><a href="/books/inked/">Inked</a></h3><p class="meta">August 2025</p></li>
+<li><a class="cv" href="/books/fractured/"><img src="https://images-na.ssl-images-amazon.com/images/P/B0FCBH69MJ.01._SCLZZZZZZZ_.jpg" alt="Fractured cover" loading="lazy" width="200" height="300"><span class="num" aria-label="Book 5">5</span></a><h3><a href="/books/fractured/">Fractured</a></h3><p class="meta">August 2025</p></li>
+<li><a class="cv" href="/books/the-ache-boxset-savor-and-ruined/"><img src="https://m.media-amazon.com/images/I/81ZYgAUVfXL._SL1500_.jpg" alt="The Ache Boxset: Savor &amp; ruined cover" loading="lazy" width="200" height="300"><span class="num" aria-label="Book 7">7</span></a><h3><a href="/books/the-ache-boxset-savor-and-ruined/">The Ache Boxset: Savor &amp; ruined</a></h3><div class="badges"><span class="badge b-soon">Coming November 13</span></div></li>
 </ol>
 </main>
 <footer class="footer">

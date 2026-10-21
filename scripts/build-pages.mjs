@@ -124,10 +124,14 @@ h2{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:28px;color:v
 .book .cover{flex:0 1 300px;width:300px;max-width:100%}
 .book-info{flex:1 1 380px;min-width:0;display:flex;flex-direction:column;gap:14px}
 .facts{display:grid;grid-template-columns:max-content 1fr;gap:6px 18px;font-size:14px}.facts dt{color:var(--dim)}
-.order{list-style:none;display:flex;flex-direction:column;gap:14px}
-.order li{display:flex;gap:16px;align-items:center;padding:12px;background:var(--bg2);border:1px solid var(--border);border-radius:6px}
-.order img{width:72px;flex:0 0 72px;aspect-ratio:2/3;object-fit:cover;border-radius:3px}
-.num{font-family:'Cormorant Garamond',serif;font-size:26px;color:var(--gold);width:34px;text-align:center;flex:0 0 34px}
+.order{list-style:none;display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:24px 18px}
+.order li{display:flex;flex-direction:column;gap:6px;min-width:0}
+.order .cv{position:relative;display:block}
+.order img{width:100%;aspect-ratio:2/3;object-fit:cover;border-radius:4px;border:1px solid var(--border);background:var(--bg3)}
+.num{position:absolute;top:6px;left:6px;min-width:28px;height:28px;padding:0 6px;border-radius:14px;background:rgba(8,8,8,.85);border:1px solid var(--gold);color:var(--gold);font-size:13px;font-weight:800;display:flex;align-items:center;justify-content:center}
+.order h3{font-size:13px;font-weight:700;line-height:1.3}
+.order .meta{font-size:11px}
+@media(max-width:640px){.grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:20px 10px}.card h3{font-size:12px}.card .meta{font-size:11px}.card .badge{font-size:9px;padding:2px 5px}.group{margin-bottom:28px}.order{grid-template-columns:repeat(3,minmax(0,1fr));gap:18px 10px}.order h3{font-size:12px}.order .badge{font-size:9px;padding:2px 5px}.wrap{padding-top:24px}.synopsis{font-size:15px}}
 .footer{background:var(--bg2);border-top:1px solid var(--border);padding:36px 20px;text-align:center;display:flex;flex-direction:column;gap:12px;align-items:center}
 .footer nav{display:flex;flex-wrap:wrap;justify-content:center;gap:4px 18px;font-size:13px}
 .footer .soc a{color:var(--dim)}
@@ -260,7 +264,7 @@ for (const s of seriesList) {
 <p class="lede">The ${esc(s.name)} series by Raven DeNoir: ${s.books.length} ${s.books.length === 1 ? 'book' : 'books'} in reading order${released < s.books.length ? `, ${s.books.length - released} coming soon` : ''}.${first ? ` Start with <a href="${first.url}" style="color:var(--gold-l)">${esc(first.title)}</a>.` : ''}</p>
 ${seriesDesc[s.name] ? `<div class="synopsis" style="margin-bottom:28px">${paras(seriesDesc[s.name])}</div>` : ''}
 <ol class="order">
-${s.books.map((b) => `<li><span class="num">${b.order ?? '·'}</span><a href="${b.url}"><img src="${esc(b.cover)}" alt="${esc(b.title)} cover" loading="lazy" width="72" height="108"></a><div><h3 style="font-size:16px"><a href="${b.url}">${esc(b.title)}</a></h3><p class="meta">${b.date ? (b.released ? 'Published ' : 'Releases ') + esc(fmtDate(b.date)) : ''}</p><div class="badges">${badges(b)}</div></div></li>`).join('\n')}
+${s.books.map((b) => `<li><a class="cv" href="${b.url}"><img src="${esc(b.cover)}" alt="${esc(b.title)} cover" loading="lazy" width="200" height="300">${b.order ? `<span class="num" aria-label="Book ${b.order}">${b.order}</span>` : ''}</a><h3><a href="${b.url}">${esc(b.title)}</a></h3>${b.released ? `<p class="meta">${esc(fmtDate(b.date).replace(/^(\w+) \d+, /, '$1 '))}</p>` : `<div class="badges">${badges(b)}</div>`}</li>`).join('\n')}
 </ol>
 </main>`;
   write(`series/${s.slug}/index.html`, page({
