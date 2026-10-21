@@ -1,0 +1,41 @@
+name: Build book and series pages
+
+# Rebuilds /books/, /series/, sitemap.xml and robots.txt from data.json.
+# Runs when the admin publishes data.json, when the builder changes,
+# and once a day so "Coming soon" books flip to "Available" on release day.
+on:
+  push:
+    branches: [main]
+    paths: [data.json, scripts/build-pages.mjs, .github/workflows/build-pages.yml]
+  schedule:
+    - cron: '17 9 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: build-pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: node scripts/build-pages.mjs
+      - name: Commit generated pages
+        run: |
+          git config user.name "House of Raven Pages Bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add books series sitemap.xml robots.txt
+          if git diff --cached --quiet; then echo "No changes"; exit 0; fi
+          git commit -m "Rebuild book and series pages from data.json"
+          for i in 1 2 3; do
+            git pull --rebase origin main && git push origin HEAD:main && exit 0
+            sleep 5
+          done
+          exit 1
