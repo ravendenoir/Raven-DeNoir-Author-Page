@@ -659,7 +659,7 @@ function buildPages(){
   const proseEl = document.getElementById('book-prose');
   const pcs = getComputedStyle(proseEl);
   // measure the text area only (inside the page padding) so pages never overflow
-  const proseH = proseEl.clientHeight - parseFloat(pcs.paddingTop) - parseFloat(pcs.paddingBottom) - 4;
+  const proseH = proseEl.clientHeight - parseFloat(pcs.paddingTop) - parseFloat(pcs.paddingBottom) - 12;
   const proseW = proseEl.clientWidth - parseFloat(pcs.paddingLeft) - parseFloat(pcs.paddingRight);
 
   // Hidden measuring sandbox — same width & font as the real prose area
@@ -689,7 +689,7 @@ function buildPages(){
 
     if(item.t === 'break'){
       el = document.createElement('span');
-      el.style.cssText = 'display:block;text-align:center;font-family:\'Cormorant Garamond\',serif;font-size:18px;letter-spacing:.5em;margin:24px 0;';
+      el.style.cssText = 'display:block;text-align:center;font-family:\'Cormorant Garamond\',serif;font-size:18px;letter-spacing:.5em;margin:28px 0;';
       el.textContent = '* * *';
     } else if(item.t === 'pov'){
       el = document.createElement('span');
