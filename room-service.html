@@ -1,0 +1,910 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Room Service</title>
+<meta name="description" content="Room Service: a Raven DeNoir newsletter exclusive short story.">
+<meta property="og:title" content="Room Service by Raven DeNoir">
+<meta property="og:description" content="A Raven DeNoir Newsletter Exclusive. He sent dinner back twice. She brought the third one up herself.">
+<meta property="og:image" content="https://ravendenoir.com/room-service-banner.jpg">
+<meta property="og:type" content="article">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0a090c;--bg2:#120e13;
+  --gold:#c7cad3;--gold-l:#eceef2;--gold-d:#7d2148;
+  --plum:#5c1233;--plum-l:#a8456f;
+  --text-site:#ebe7ea;
+  --book-bg:#faf8f4;--book-text:#1a1a1a;--book-mid:#4a4a4a;
+  --book-rule:#7d214840;
+  --fs:18px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:var(--bg);color:var(--text-site);font-family:'Montserrat',sans-serif;min-height:100vh}
+
+/* STICKY HEADER */
+#hdr{position:sticky;top:0;z-index:100;background:var(--bg2);border-bottom:1px solid #ffffff12;display:flex;align-items:center;justify-content:space-between;padding:0 24px;height:52px}
+#hdr-title{font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);opacity:.85}
+#font-ctrl{display:flex;align-items:center;gap:4px}
+.fc-btn{background:none;border:1px solid #ffffff22;color:var(--text-site);cursor:pointer;padding:4px 10px;font-size:13px;font-family:'Montserrat',sans-serif;border-radius:3px;transition:border-color .2s}
+.fc-btn:hover{border-color:var(--gold);color:var(--gold)}
+
+/* PAGE CONTENT */
+.page-content{max-width:820px;margin:0 auto;padding:28px 16px 0}
+
+/* COVER BLOCK */
+#cover-block{display:flex;justify-content:center;margin-bottom:28px}
+.cover-img-real{width:min(340px,80vw);height:auto;display:block;box-shadow:0 12px 48px #000a}
+
+/* LABEL */
+.exclusive-label{text-align:center;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:14px;opacity:.75}
+
+/* TITLE BLOCK */
+.story-title{font-family:'Cormorant Garamond',serif;font-size:clamp(28px,5vw,48px);font-weight:300;letter-spacing:.06em;text-transform:uppercase;text-align:center;color:var(--text-site);line-height:1.1;margin-bottom:8px}
+.story-tagline{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:17px;color:var(--gold);text-align:center;margin-bottom:16px;letter-spacing:.04em}
+.author-row{display:flex;align-items:center;justify-content:center;gap:16px;margin-bottom:32px}
+.meta-rule{width:80px;height:1px;background:linear-gradient(90deg,transparent,var(--gold-d),transparent);margin:0 auto 20px}
+
+/* CONTENT WARNING */
+.cw-box{border:1px solid var(--gold-d);background:#7d214812;border-radius:4px;padding:14px 18px;margin-bottom:20px;max-width:520px;margin-left:auto;margin-right:auto}
+.cw-box p{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold-l);opacity:.8;line-height:1.7;text-align:center}
+
+/* THE BOOK READER */
+#reader-wrap{position:relative;display:flex;align-items:center;justify-content:center;gap:0;margin-bottom:40px}
+.nav-btn{background:none;border:none;color:var(--gold);cursor:pointer;font-size:28px;padding:0 16px;opacity:.7;transition:opacity .2s,transform .2s;flex-shrink:0;line-height:1}
+.nav-btn:hover{opacity:1;transform:scale(1.15)}
+.nav-btn:disabled{opacity:.15;cursor:default;transform:none}
+
+#book{width:100%;max-width:640px;background:var(--book-bg);color:var(--book-text);height:660px;display:flex;flex-direction:column;box-shadow:0 4px 40px #0008,0 0 0 1px #00000018;overflow:hidden}
+
+/* BOOK HEADER ROW */
+.book-hdr{display:flex;justify-content:space-between;align-items:center;padding:14px 28px 10px;border-bottom:1px solid var(--book-rule)}
+.book-hdr-left{font-family:'Montserrat',sans-serif;font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--book-mid);opacity:.7}
+.book-hdr-right{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:13px;color:var(--book-mid);opacity:.7}
+
+/* BOOK PROSE AREA */
+#book-prose{flex:1;padding:16px 28px 12px;font-family:'Cormorant Garamond',serif;font-size:var(--fs);line-height:1.7;color:var(--book-text);overflow-y:auto;overflow-x:hidden}
+#book-prose::-webkit-scrollbar{width:4px}
+#book-prose::-webkit-scrollbar-track{background:transparent}
+#book-prose::-webkit-scrollbar-thumb{background:var(--gold-d);border-radius:2px}
+#book-prose p{margin-bottom:.65em;text-indent:2em}
+#book-prose p.no-indent{text-indent:0}
+#book-prose p.drop-cap{text-indent:0}
+#book-prose p.drop-cap::first-letter{font-family:'Cormorant Garamond',serif;font-size:4.6em;font-weight:600;float:left;line-height:.78;margin:4px 8px -2px 0;color:var(--gold-d)}
+.pov-label{display:block;text-align:center;font-family:'Montserrat',sans-serif;font-size:11px;font-weight:600;letter-spacing:.32em;text-transform:uppercase;color:var(--gold-d);margin:6px 0 18px}
+#book-prose p.note{font-style:italic;text-indent:0;padding-left:2em;margin-bottom:.3em}
+.the-end{display:block;text-align:center;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.1em;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-d);margin:28px 0 8px}
+.scene-break{text-align:center;font-family:'Cormorant Garamond',serif;color:#7d214899;font-size:18px;letter-spacing:.5em;margin:28px 0;display:block}
+
+/* BOOK FOOTER ROW */
+.book-ftr{display:flex;justify-content:space-between;align-items:center;padding:10px 28px 14px;border-top:1px solid var(--book-rule)}
+.page-indicator{font-family:'Montserrat',sans-serif;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--book-mid);opacity:.65}
+.pages-read-counter{font-family:'Montserrat',sans-serif;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--book-mid);opacity:.55}
+
+/* THANK YOU FOOTER */
+#ty-footer{background:var(--bg2);border-top:1px solid #ffffff0f;text-align:center;padding:40px 20px 36px}
+.ty-rule{width:80px;height:1px;background:linear-gradient(90deg,transparent,var(--gold-d),transparent);margin:0 auto 32px}
+.ty-title{font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:300;color:var(--text-site);margin-bottom:8px}
+.ty-sub{font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);opacity:.75;margin-bottom:28px}
+.ty-blurb{font-family:'Cormorant Garamond',serif;font-size:16px;color:var(--text-site);opacity:.75;line-height:1.8;max-width:440px;margin:0 auto 36px}
+.social-row{display:flex;justify-content:center;gap:16px;flex-wrap:wrap;margin-bottom:40px}
+.social-row a{font-family:'Montserrat',sans-serif;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-l);border:1px solid var(--gold-d);padding:8px 16px;border-radius:2px;text-decoration:none;transition:background .2s,color .2s}
+.social-row a:hover{background:var(--gold);color:#000}
+.cta-btn{display:inline-block;font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#000;background:var(--gold);border:none;padding:14px 36px;cursor:pointer;text-decoration:none;margin-bottom:40px;transition:background .2s}
+.cta-btn:hover{background:var(--gold-l)}
+.copyright{font-family:'Montserrat',sans-serif;font-size:10px;letter-spacing:.1em;color:var(--text-site);opacity:.3;margin-bottom:8px}
+.hits{font-family:'Montserrat',sans-serif;font-size:10px;color:var(--text-site);opacity:.2}
+
+/* ── VOTE BLOCK ─────────────────────────────────────────────── */
+#vote-block{
+  display:none;
+  text-align:center;
+  padding:28px 20px 24px;
+  max-width:640px;
+  margin:0 auto;
+}
+#vote-inner{
+  display:inline-flex;
+  flex-direction:column;
+  align-items:center;
+  gap:10px;
+  border:1px solid var(--gold-d);
+  padding:20px 32px;
+  background:#0d0d0d;
+}
+#vote-label{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  cursor:pointer;
+  font-family:'Montserrat',sans-serif;
+  font-size:11px;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  color:var(--gold-l);
+  user-select:none;
+}
+#vote-label.locked{
+  cursor:default;
+  opacity:.6;
+}
+#vote-check{
+  appearance:none;
+  -webkit-appearance:none;
+  width:18px;
+  height:18px;
+  border:1px solid var(--gold-d);
+  background:#000;
+  flex-shrink:0;
+  cursor:pointer;
+  position:relative;
+  transition:background .2s,border-color .2s;
+}
+#vote-check:hover:not(:disabled){
+  border-color:var(--gold);
+}
+#vote-check:checked{
+  background:var(--gold);
+  border-color:var(--gold);
+}
+#vote-check:checked::after{
+  content:'';
+  display:block;
+  position:absolute;
+  left:4px;top:1px;
+  width:6px;height:11px;
+  border:2px solid #000;
+  border-top:none;border-left:none;
+  transform:rotate(45deg);
+}
+#vote-check:disabled{
+  cursor:default;
+}
+#vote-tally{
+  font-family:'Cormorant Garamond',serif;
+  font-size:13px;
+  letter-spacing:.08em;
+  color:var(--gold-d);
+  min-height:18px;
+}
+
+@media(max-width:700px){
+  #book-prose{padding:18px 16px 12px}
+  .book-hdr,.book-ftr{padding:10px 14px}
+  .nav-btn{padding:0 6px;font-size:20px}
+  .page-content{padding:16px 8px 0}
+  .cover-img-real{width:min(280px,75vw)}
+}
+</style>
+</head>
+<body>
+
+<!-- STICKY HEADER -->
+<div id="hdr">
+  <span id="hdr-title">Room Service &nbsp;&middot;&nbsp; Raven DeNoir</span>
+  <div id="font-ctrl">
+    <button class="fc-btn" onclick="changeFontSize(-1)" aria-label="Decrease font size">A&minus;</button>
+    <button class="fc-btn" onclick="changeFontSize(1)" aria-label="Increase font size">A+</button>
+  </div>
+</div>
+
+<!-- MAIN PAGE CONTENT -->
+<div class="page-content">
+
+  <!-- COVER -->
+  <div id="cover-block">
+    <img src="room-service-cover.jpg" alt="Room Service by Raven DeNoir" class="cover-img-real">
+  </div>
+
+  <!-- LABELS + TITLE -->
+  <div class="exclusive-label">A Raven DeNoir Newsletter Exclusive</div>
+  <h1 class="story-title">Room Service</h1>
+  <p class="story-tagline">&ldquo;He sent dinner back twice. She brought the third one up herself.&rdquo;</p>
+  <div class="meta-rule"></div>
+
+  <!-- CONTENT WARNING -->
+  <div class="cw-box">
+    <p><strong>&#9888; CONTENT WARNING</strong></p>
+    <p style="text-transform:none;letter-spacing:0;font-size:13px;color:#d9d2d8;opacity:1;margin-top:10px;line-height:1.75;">This is a high-heat BWWM romance containing graphic, explicit sexual content and explicit language. It&rsquo;s two in the morning after Thanksgiving, her overnight manager has the flu, and the man in Suite 1201 has sent back two bowls of pasta. She&rsquo;s bringing the third one up herself.</p>
+    <p style="margin-top:14px;font-size:12px;"><strong>For mature readers 18+ only.</strong></p>
+  </div>
+
+  <!-- READER -->
+  <div id="reader-wrap">
+    <button class="nav-btn" id="btn-prev" onclick="changePage(-1)" disabled aria-label="Previous page">&#8592;</button>
+
+    <div id="book">
+      <div class="book-hdr">
+        <span class="book-hdr-left">Room Service</span>
+        <span class="book-hdr-right">Raven DeNoir</span>
+      </div>
+      <div id="book-prose"></div>
+      <div class="book-ftr">
+        <span class="page-indicator" id="page-indicator">1 of 1</span>
+        <span class="pages-read-counter" id="pages-read-counter">Pages read this session: 0</span>
+      </div>
+    </div>
+
+    <button class="nav-btn" id="btn-next" onclick="changePage(1)" aria-label="Next page">&#8594;</button>
+  </div>
+
+</div><!-- end page-content -->
+
+<!-- VOTE BLOCK -->
+<div id="vote-block">
+  <div id="vote-inner">
+    <label id="vote-label" for="vote-check">
+      <input type="checkbox" id="vote-check" onchange="handleVote()">
+      <span id="vote-text">I want Veda &amp; Vittorio&rsquo;s full story</span>
+    </label>
+    <div id="vote-tally"></div>
+  </div>
+</div>
+
+<!-- Vote submission handled via Supabase REST API in handleVote() -->
+
+<!-- THANK YOU FOOTER -->
+<div id="ty-footer">
+  <div class="ty-rule"></div>
+  <h2 class="ty-title">Thank You for Reading</h2>
+  <p class="ty-sub">House of DeNoir &nbsp;&middot;&nbsp; Raven DeNoir</p>
+  <p class="ty-blurb">Thank you for spending Thanksgiving night at the Ashgrove with me.</p>
+  <p class="ty-blurb" style="margin-top:16px;">This one is for every woman who has worked a holiday so everybody else could have one, and who still walks in through the front door. Veda earned her nine days in Como. I hope you get yours.</p>
+  <p class="ty-blurb" style="margin-top:16px;"><strong>Until next month, keep your sheets soft and your standards high.</strong></p>
+  <p class="ty-blurb" style="margin-top:16px;">Still hungry tonight? Noelle and Calder&rsquo;s hour is waiting: <a href="https://ravendenoir.com/the-last-appointment-v1.html" style="color:var(--gold)">Read The Last Appointment</a></p>
+  <div class="social-row">
+    <a href="https://www.amazon.com/author/raven.denoir" target="_blank" rel="noopener">&#128172; Amazon: full catalog</a>
+    <a href="https://ravendenoir.com/" target="_blank" rel="noopener">&#127758; ravendenoir.com</a>
+    <a href="https://www.instagram.com/ravendenoir" target="_blank" rel="noopener">&#128247; Instagram</a>
+    <a href="https://www.tiktok.com/@ravendenoir" target="_blank" rel="noopener">&#127925; TikTok</a>
+    <a href="https://discord.gg/GNAFqznw" target="_blank" rel="noopener">&#128172; Discord</a>
+    <a href="https://www.patreon.com/c/RavenDeNoir" target="_blank" rel="noopener">&#9749; Patreon</a>
+  </div>
+  <div class="copyright">This exclusive read is for Raven DeNoir newsletter subscribers only. All rights reserved &copy; Raven DeNoir.</div>
+  <div class="hits">hits &#9889;</div>
+</div>
+
+<script>
+// ── STORY DATA ────────────────────────────────────────────────
+// type: 'p' = paragraph | 'break' = scene break (***) | 'pov' = POV heading | 'note' = handwritten note | 'end' = The End
+const STORY = [
+{t:"pov",s:"VEDA"},
+{t:"p",s:"Suite 1201 has sent back two bowls of cacio e pepe since one-fifteen, and the third is riding up beside me in the service elevator because I have run out of people to blame."},
+{t:"p",s:"The first bowl went up cold. The second went up with pepper ground like driveway gravel, because Benny, my overnight cook, panicked and overcorrected. Both of those were ours. I stood over him for the third. Pecorino grated to snow, pasta tossed until it went glossy, a ladle of starch water at the end. I told him if the penthouse sends this one back, he can ride up and apologize in person, in Italian."},
+{t:"p",s:"Benny laughed. Then he looked at my face and plated faster."},
+{t:"p",s:"It is 1:58 on the Friday morning after Thanksgiving. I have been inside the Ashgrove since six o’clock Thursday morning because my overnight manager has the flu, my front desk is two clerks deep, and the guest in the penthouse is the only person in this building who has wanted dinner since midnight. My feet are screaming in shoes that cost more than my first car note. My locs started the day in a neat twist at the crown and have been negotiating their release since the dinner rush."},
+{t:"p",s:"The doors open on twelve. I push the cart down the hall myself. A general manager delivering room service at two in the morning is either a crisis or a statement, and I haven’t decided which one this is."},
+{t:"p",s:"I knock twice. “In-room dining.”"},
+{t:"p",s:"The door opens on a man who ducks out of habit, though the frame clears him. Six-five at least, shoulders that make my doorway look cheap. Dark hair going silver at the temples, a close-cut beard, a gray sweater with the sleeves shoved to the elbow, reading glasses hooked in the collar. At five-ten in heels I look most guests dead in the eye. With him I have to tip my chin up, and I resent it on principle."},
+{t:"p",s:"He reads the badge on my lapel. Then he looks at my face, not over my shoulder at the empty hallway, where most men go looking for the real manager the second they see a Black woman wearing that badge."},
+{t:"p",s:"“They sent the general manager,” he says. The accent is Italian, unhurried, amused. “So I am very important or very much in trouble.”"},
+{t:"p",s:"“Neither. You’re hungry, and we’ve fucked it up twice.” I roll the cart past him. “Excuse my language. Mr. Carbone, I’m Veda King. This one is right. If it isn’t, I’ll fire myself and save corporate the paperwork.”"},
+{t:"p",s:"“Please don’t apologize for the language. It’s the first honest sentence anyone in this country has said to me all week.”"},
+{t:"p",s:"The suite smells like the cedar diffuser housekeeping swears by and, under it, his cologne, bergamot and whatever expensive leather does when it gets rained on. He lifts the cloche and eats the first forkful standing at the cart, like a man who has been betrayed by pasta before."},
+{t:"p",s:"I wait, which I’m very good at. It’s half the job."},
+{t:"p",s:"“Tell your cook,” he says, “that this is better than my aunt’s. And never tell my aunt.”"},
+{t:"p",s:"“His name is Benny.”"},
+{t:"p",s:"“Benny.” He repeats it once under his breath, committing it. “The young man who brought the first two bowls. He is not in trouble?”"},
+{t:"p",s:"That stops me for a second. Andre is nineteen, two months on the job, and has been hiding in the service corridor since the second bowl came back. “Andre? No. He carried what the kitchen gave him.”"},
+{t:"p",s:"“Good. He apologized four times. I told him the pasta was the criminal, not the messenger.”"},
+{t:"p",s:"My radio crackles on my hip. “Ms. King, I’m so sorry, it’s Aisha at the desk. Seven-oh-four says the ice machine on his floor is making noises like it’s possessed.”"},
+{t:"p",s:"I thumb the button. “Tell seven-oh-four the ice machine has been possessed since 2019 and we’ve made our peace with it. Send him a bucket from the bar with my compliments.”"},
+{t:"p",s:"“Yes, ma’am. Thank you, ma’am.”"},
+{t:"p",s:"When I look up, Mr. Carbone is watching me with the fork halfway to his mouth."},
+{t:"p",s:"“What?”"},
+{t:"p",s:"“Nothing. Your staff says ma’am like they mean it.” He sets the fork down. “May I complain about one more thing, since you are here? Not the kitchen. The kitchen is forgiven.”"},
+{t:"p",s:"“Go ahead. I’m collecting complaints tonight.”"},
+{t:"p",s:"He reaches through the bedroom doorway without going in and comes back with a pillow. He strips the case off with one tug and holds the fabric up to the lamp. Light pours through it."},
+{t:"p",s:"“Your sheets,” he says, “are a crime against cotton. Six hundred thread count, it says on the little card. I could read a newspaper through this. Someone sold your company a very confident polyester blend and called it Egyptian.”"},
+{t:"p",s:"I stare at the pillowcase. Then at him."},
+{t:"p",s:"“Belvoir,” I say. “They pill after forty washes, and corporate signed a three-year contract because their sales rep golfs with my regional vice president. I have written four memos. I have overnighted a pilled pillowcase to headquarters in Baltimore.”"},
+{t:"p",s:"“Forty washes?” He considers the fabric with real offense. “I would have said thirty.”"},
+{t:"p",s:"“Who the hell are you, the thread police?”"},
+{t:"p",s:"“Close. My family weaves linen outside Como. Four generations. My mother is seventy-eight and still checks every bolt that leaves the mill with her own hands.” He folds the pillowcase over his arm like a waiter’s towel. “So yes. I am biased.”"},
+{t:"p",s:"“You’re biased.”"},
+{t:"p",s:"“I’m correct. Bias is a separate question.”"},
+{t:"p",s:"I laugh before I can stop it, a real one, up from the bottom of a twenty-hour shift, and he looks pleased about it. I don’t trust that. I’m too tired to trust anything except Benny’s pasta."},
+{t:"p",s:"“Enjoy your dinner, Mr. Carbone. Leave the cart in the hall when you’re done.”"},
+{t:"p",s:"“Ms. King.” He follows me to the door. Not crowding. Just there. “Do you ever eat, or only feed people?”"},
+{t:"p",s:"“I eat at three in the morning standing up in my office.”"},
+{t:"p",s:"“There is enough pasta for two and most of a bottle of Barolo I shouldn’t finish alone.” He keeps his hand on the door and doesn’t block me with it. “If at some point tonight you stop being the general manager, the door is open. If not, I’ll tell Benny he’s a genius in writing and go to bed on your terrible sheets.”"},
+{t:"p",s:"“I don’t drink with guests.”"},
+{t:"p",s:"“Of course.” He says it without a gram of sulk. “Goodnight, then.”"},
+{t:"p",s:"The door shuts. I stand in the hall with the radio quiet on my hip, thinking about Barolo, and a man who asked about Andre before he asked about anything else."},
+{t:"p",s:"Then I take the stairs down twelve floors, because the elevator is too slow for whatever this is."},
+{t:"pov",s:"VEDA"},
+{t:"p",s:"Tomás Quiroga walks into my office at 2:51 with a coffee in each hand and the look of a man who got texted at midnight by his boss and wants hazard pay."},
+{t:"p",s:"“Status,” he says, handing me one."},
+{t:"p",s:"“Seven-oh-four’s ice machine is haunted, and he’s been compensated. The Delgado wedding in the nine hundreds will be loud until four and dead until noon. Benny redeemed himself. The penthouse is fed.” I drink half the coffee. “Andre’s in the corridor thinking he’s fired. He’s not. Tell him.”"},
+{t:"p",s:"“Understood. You’re relieved.” Tomás is thirty-four, the best assistant GM I’ve ever trained, and he has a mouth on him. “Go home before you fall asleep at a red light on Rhode Island Avenue.”"},
+{t:"p",s:"“I’m going.”"},
+{t:"p",s:"I’m not going. I’m in the staff bathroom with my emergency gym bag, trading the black suit for jeans and a cream sweater soft enough to apologize for the day. I take my locs down, and my scalp says thank you, and I look at myself in the mirror above the sink one time."},
+{t:"p",s:"Forty-four, brown, tired around the eyes, with a mouth that has said no to a lot of men in a lot of rooms."},
+{t:"p",s:"The badge is still on the suit jacket. VEDA KING, GENERAL MANAGER, gold on black. I unclip it and put it in my back pocket instead of my bag."},
+{t:"p",s:"Tomás catches me in the hall. He takes in the jeans, the hair, the bag, and his eyebrows go up very slowly."},
+{t:"p",s:"“Big plans at three in the morning, boss?”"},
+{t:"p",s:"“Goodnight, Tomás.”"},
+{t:"p",s:"“That’s not the exit.”"},
+{t:"p",s:"“I know where the fucking exit is. I designed the evacuation map.” I keep walking toward the service elevator. “Building’s yours. Call me if it burns down. Don’t call me for anything less.”"},
+{t:"pov",s:"VITTORIO"},
+{t:"p",s:"At 3:12 she knocks once."},
+{t:"p",s:"I have been sitting at the dining table for twenty minutes with two plates, two glasses and the decent wine, telling myself the second plate is optimism and not arrogance. My sister Chiara would say it’s both. She has spent eleven Thanksgivings in Alexandria trying to make me love an American turkey, and I have spent eleven Thanksgivings lying to her."},
+{t:"p",s:"When I open the door, the general manager is gone."},
+{t:"p",s:"The woman in my hallway wears jeans and a sweater the color of fresh cream, and her hair is down. Long locs, black at the root and warmer at the ends, falling over her shoulders and halfway down her back. Without the suit she looks taller. She looks like she knows it."},
+{t:"p",s:"She holds up her badge between two fingers and walks past me to the room service cart. She sets it face down on the white cloth."},
+{t:"p",s:"“Management is off the clock,” she says. “I handed the building to my assistant GM at 3:04. Tomás is qualified, rested and nosy, so if anything burns down, he’ll call me, and I’ll make him regret it.”"},
+{t:"p",s:"“And the rule about guests?”"},
+{t:"p",s:"“Still stands. I don’t drink with guests.” She turns to face me. “So for whatever this is, you’re not a guest. You’re Penthouse. I’m Management. Tomorrow you’re Mr. Carbone again, and I never saw you in socks.”"},
+{t:"p",s:"I look down at my socks. They are blue and have small yellow lemons on them, a gift from my niece, and I have no defense."},
+{t:"p",s:"“Penthouse,” I repeat. “I can live with Penthouse.”"},
+{t:"p",s:"“You don’t have a choice. I already put it in the system.”"},
+{t:"p",s:"I pull out her chair. She decides I’m not being cute, and sits. I pour, and she watches the level in the glass, and I understand I am being inspected by a professional and will be graded."},
+{t:"p",s:"Here is what I saw downstairs and did not say, because it would have sounded like flattery and she would have thrown the pasta at me."},
+{t:"p",s:"The clerk at the desk was frightened before she keyed the radio and relieved after one sentence from Veda King. The cook will remember tonight as the night his boss stood over him and he didn’t fail. The boy with the first two bowls apologized to me four times, and every apology came with a glance down the hall, like he was afraid of disappointing someone, and the someone was not me."},
+{t:"p",s:"I have run a company of three hundred people for twenty-two years. I know what it costs to be that kind of boss at two in the morning on a holiday. Nobody pays you back for it. You do it anyway, and if you’re lucky, somebody notices."},
+{t:"p",s:"I noticed. I’m keeping it to myself for now."},
+{t:"p",s:"“You’re staring,” she says."},
+{t:"p",s:"“I’m deciding what to say so you don’t leave.”"},
+{t:"p",s:"“Start with something true. I can smell bullshit from the lobby.”"},
+{t:"p",s:"“True.” I sit across from her. “I ordered that third bowl because I was stubborn and hungry. I invited you up because you laughed at a pillowcase. I haven’t laughed at anything since Tuesday.”"},
+{t:"p",s:"She takes a long sip and sets the glass down. Her nails are short and neat and dark red."},
+{t:"p",s:"“Okay, Penthouse,” she says. “Eat your pasta.”"},
+{t:"pov",s:"VEDA"},
+{t:"p",s:"The pasta is cold again, and neither of us cares."},
+{t:"p",s:"He tells me about the mill, the real one and not the brochure version. His great-grandfather started it with two looms in a barn, and his grandmother kept it alive through a war by weaving parachute cord for whichever army was closest. His father nearly sold it in the nineties to a group from Milan, and his mother threw the paperwork into Lake Como from the end of their dock."},
+{t:"p",s:"“She threw it in the lake?”"},
+{t:"p",s:"“Every page. Then she came inside and made risotto, and nobody in our family has ever mentioned it again.” He refills my glass by two fingers, no more. “She is seventy-eight now and she still frightens the bankers.”"},
+{t:"p",s:"“I’d like her.”"},
+{t:"p",s:"“She would like you. She would also inspect your sheets.”"},
+{t:"p",s:"He asks about the Ashgrove, and I tell him about the hotel instead of the brand. The boiler with opinions. Miss Pearl in housekeeping, thirty-one years in this building, who calls me baby in private and Ms. King in public and taught me to make a bed you could bounce a quarter off."},
+{t:"p",s:"“My grandmother cleaned rooms in a hotel six blocks from here,” I say. I don’t know why I’m saying it, at three-forty in the morning to an Italian in lemon socks. “Twenty-six years. She was never once allowed to use the front entrance. Staff door, back alley, every day.”"},
+{t:"p",s:"He doesn’t say he’s sorry, and he doesn’t reach for my hand. He waits."},
+{t:"p",s:"“I walk in through the lobby doors every morning,” I say. “Even when it’s raining and the staff entrance is closer. Every single morning.”"},
+{t:"p",s:"“Good,” he says. That’s all. He says it like a fact about the weather that he’s glad of."},
+{t:"p",s:"My chest unclenches a notch, and I don’t love it, and I take another sip of Barolo to punish it."},
+{t:"p",s:"“What about you?” I say. “Married? Kids? Secret Italian family on the other side of the lake?”"},
+{t:"p",s:"“Engaged once, at thirty. She married my cousin.”"},
+{t:"p",s:"I put my glass down. “Shut up.”"},
+{t:"p",s:"“They’re very happy. He gained thirty kilos. Every Christmas she sends me a photograph of the two of them, and every year it is a small revenge.” His mouth tilts. “And you?”"},
+{t:"p",s:"“Eleven years with a man who wanted me home by six. I took this job instead. He married a dental hygienist in Bowie who’s home by five-thirty, and I hope they’re very happy.” I shrug. “I bought a rowhouse in Brookland when I was thirty-nine. I painted the porch myself. Nobody gets to tell me what time to come home to it.”"},
+{t:"p",s:"“Brookland.”"},
+{t:"p",s:"“Northeast. You’ve never heard of it.”"},
+{t:"p",s:"“I’ve heard of it now.”"},
+{t:"p",s:"The clock on the cable box says 4:07. The wedding nine floors down has finally gone quiet. He’s leaning back with his long legs stretched under the table, glasses still hooked in his collar, and I have been looking at his hands for an hour. Big hands, a pale scar across the base of one thumb. Hands that have spent a lifetime touching fabric to see if it’s lying."},
+{t:"p",s:"I’m forty-four years old. I’ve sized up men my whole life. I know exactly what I’m about to do, and I’m too damn tired to talk myself out of it."},
+{t:"p",s:"“Penthouse.”"},
+{t:"p",s:"“Management.”"},
+{t:"p",s:"“I’m about to break a rule.”"},
+{t:"p",s:"He doesn’t move. “Which one?”"},
+{t:"p",s:"“All of them, probably.”"},
+{t:"p",s:"I stand up and come around the table. He turns his chair to face me, slow, and lets me come to him. I take his reading glasses out of his collar and fold them beside his plate."},
+{t:"p",s:"“You won’t need those,” I say."},
+{t:"p",s:"Then I put one knee on the chair beside his thigh. I take his face in both hands and kiss him."},
+{t:"p",s:"He lets me lead for three seconds. Then his hand comes up into my hair, careful of the locs, cradling the back of my skull, and he kisses me back like a man who has been told yes and intends to be thorough about it. He tastes like Barolo and pecorino. His beard is shorter than it looks and rougher than I expected, and I make a sound into his mouth I haven’t made since the Obama administration."},
+{t:"p",s:"He pulls back an inch. His thumb moves along my jaw."},
+{t:"p",s:"“You can walk out,” he says, low. “Right now, or in ten minutes, or at any minute after that. I will still tell Benny he’s a genius.”"},
+{t:"p",s:"“I know.” I don’t let go of his face. “Here’s how this goes. You’re used to running things. Tonight you can run this. Up to a point.”"},
+{t:"p",s:"“And the point?”"},
+{t:"p",s:"“The word is checkout. I say checkout, everything stops. No questions, no pouting, no Italian sulking.”"},
+{t:"p",s:"His mouth curves under the lamp, and his hand tightens in my hair, just enough."},
+{t:"p",s:"“And if you don’t say it?”"},
+{t:"p",s:"“Then you’d better not stop,” I say, “or I’m writing you up.”"},
+{t:"break",s:""},
+{t:"pov",s:"VEDA"},
+{t:"p",s:"He stands, and he takes me with him, and for a second I’m off the floor entirely, my legs around his hips, his hands under my thighs. I’m not a small woman. I’ve got hips and thighs and an ass that has been the subject of unsolicited comments since the seventh grade. He holds all of it like he’s been waiting to."},
+{t:"p",s:"“The table,” he says against my throat."},
+{t:"p",s:"“The cart’s closer.”"},
+{t:"p",s:"He sets me on the room service cart. The cart, which has wheels, which I know because I bought these carts, immediately rolls three feet backward into the wall with me on it, rattling every spoon on the tray. I grab the rail. He grabs me. “Porca miseria,” he says, and we stare at each other."},
+{t:"p",s:"Then I’m laughing so hard I have to hold onto his shoulders, and he’s laughing into my neck, and the cart is still creaking."},
+{t:"p",s:"“Your equipment,” he says, “is also a crime.”"},
+{t:"p",s:"“Put me on the fucking table, Carbone.”"},
+{t:"p",s:"“Penthouse,” he corrects, and lifts me again."},
+{t:"p",s:"He clears the table with one arm, plates and all, and the plates go into the chair cushions instead of the floor because he planned the sweep. Of course he did. He sets me on the edge of the wood and steps between my knees."},
+{t:"p",s:"Then he slows all the way down."},
+{t:"p",s:"He takes the hem of my sweater and lifts it an inch at a time, and his knuckles drag up my ribs as it goes. When he gets it over my head, he folds it once and drops it on the chair. My bra is plain black, the one I wear under suits, and for one second I’m a tired woman in a bra with a bent hook."},
+{t:"p",s:"He looks at me like I’m the best thing anybody has ever brought to his room."},
+{t:"p",s:"“Madonna,” he breathes, and touches me."},
+{t:"p",s:"Not my breasts, not yet. My shoulders and collarbones. The soft place under my arm, the curve of my waist, the roll of my stomach when I sit. He touches me the way he touched that pillowcase, slow and flat-palmed, reading me, lingering wherever my skin changes. When his thumbs finally brush over my nipples through the cotton, I arch so hard the table creaks."},
+{t:"p",s:"“Tell me,” he says. “What you like. I won’t guess.”"},
+{t:"p",s:"“Take it off.”"},
+{t:"p",s:"He unhooks the bra one-handed. Takes his time drawing the straps down. Then his mouth is on me, hot and wet and patient, and he sucks one nipple into his mouth while his thumb rolls the other, and I make a noise that would get me reported at a staff meeting."},
+{t:"p",s:"“Fuck,” I say to the ceiling. “Okay. That. More of that.”"},
+{t:"p",s:"He gives me more of that."},
+{t:"p",s:"He undoes my jeans and draws them down my legs with my underwear. Then he kneels to pull them off my ankles. He’s so tall that kneeling puts his face level with my stomach. He kisses it. My hip bone. The inside of my knee. He hooks one of my legs over his shoulder and looks up at me, and I watch him decide to be a menace."},
+{t:"p",s:"“Lie back, Management.”"},
+{t:"p",s:"I lie back on a dining table in my own hotel at four in the morning with my locs spread across the wood and a fifty-year-old Italian between my thighs, and I think, distinctly, Miss Pearl would kill me."},
+{t:"p",s:"Then his mouth is on my pussy and I stop thinking about anyone."},
+{t:"p",s:"He’s not in a hurry. He licks me in one long pass from the bottom to my clit and then does it again, and again, until I’m wet enough to hear it. He finds my clit and circles it with the flat of his tongue and then the tip, and he listens. When I lift my hips, he does it again. When I grab his hair, he hums against me, and the vibration goes straight up my spine."},
+{t:"p",s:"“Two fingers,” I manage. “Please.”"},
+{t:"p",s:"He gives me one. Slow. Then two. He curls them and finds the spot on the first try, damn him, and presses up while he sucks my clit, and my thighs start shaking around his head."},
+{t:"p",s:"My phone rings."},
+{t:"p",s:"It’s in the back pocket of my jeans, on the floor, playing the ringtone I set for the hotel. I know that tone in my sleep."},
+{t:"p",s:"He lifts his head, mouth shining, and waits for an answer."},
+{t:"p",s:"“It’s Tomás,” I say. “If I don’t pick up, he’ll send security to check on me.”"},
+{t:"p",s:"“Then pick up.” His fingers stay in me, still. “I’ll be good.”"},
+{t:"p",s:"He fishes my jeans off the floor with his free hand and passes me the phone. I swipe it on and answer in my daytime voice. “Tomás.”"},
+{t:"p",s:"“Sorry, boss. Super quick. Where’s the master key log? The binder’s not on the shelf.”"},
+{t:"p",s:"Vittorio lowers his head and licks me. One slow pass."},
+{t:"p",s:"I put a hand flat over my own mouth and breathe through my nose."},
+{t:"p",s:"“Boss?”"},
+{t:"p",s:"“Second drawer,” I say through my fingers. “Left side. The red binder. Housekeeping moved it Tuesday.”"},
+{t:"p",s:"His tongue circles my clit. His fingers start moving again, slow and deep, curling on every stroke. I reach down and shove his shoulder. He stops at once and looks up, and waits, and asks without a word."},
+{t:"p",s:"I fist my hand in his hair and push his face back down where I want it."},
+{t:"p",s:"“Got it,” Tomás says. “You okay? You sound weird.”"},
+{t:"p",s:"“I’m fine. I’m eating.”"},
+{t:"p",s:"Vittorio makes a sound against me I feel in my teeth."},
+{t:"p",s:"“Okay. Sorry. Goodnight, boss.”"},
+{t:"p",s:"“Goodnight, Tomás. Don’t call me again unless there’s a fire.”"},
+{t:"p",s:"I end the call and drop the phone on the table beside my head, and he doesn’t let up for even a second. He sucks my clit hard and fucks me with his fingers and I come so fast it’s embarrassing, both heels braced on the table edge, hips lifting off the wood, a long broken sound tearing out of me that I’ve never heard myself make. He holds me through it with his mouth, softer and softer, until I’m twitching and have to push his head away."},
+{t:"p",s:"He rests his cheek against my thigh. He’s breathing hard. He’s grinning."},
+{t:"p",s:"“You’re eating,” he says."},
+{t:"p",s:"“Shut up.”"},
+{t:"p",s:"“You told your assistant you were eating.”"},
+{t:"p",s:"“I was technically being eaten. I’m a professional. I don’t lie to my staff.” I pull at his sweater with both hands. “Off. Everything. I want to see what I’m working with.”"},
+{t:"break",s:""},
+{t:"pov",s:"VITTORIO"},
+{t:"p",s:"She sits up on the table and undresses me herself, and she’s not gentle about it."},
+{t:"p",s:"The sweater goes over my head, the undershirt after it. Her hands go flat against my chest and push through the hair there and down over my stomach, which is not the stomach I had at thirty, and she doesn’t care, she grips my sides like handles. She opens my trousers. When she gets her hand around my cock, she looks me in the eye and squeezes, slow, base to tip, and I say a word in Italian my mother would wash out of my mouth with soap."},
+{t:"p",s:"“What does that one mean?”"},
+{t:"p",s:"“Nothing you’d say at work.”"},
+{t:"p",s:"“Teach me later.” She strokes me again, firmer, her thumb dragging over the head where I’m already wet for her. “Bed, Penthouse. I’m not doing this on a table at my age.”"},
+{t:"p",s:"I carry her. She allows it this time. She bites my shoulder on the way and laughs when I swear again."},
+{t:"p",s:"The bedroom is dark except for the city coming in around the curtains, orange and blue, the Washington Monument blinking red far off. I lay her down on the sheets I complained about, and she says, “Don’t even think it,” before I can open my mouth."},
+{t:"p",s:"“I said nothing.”"},
+{t:"p",s:"“You thought it. I could hear you thinking about thread count.”"},
+{t:"p",s:"I stretch out over her, holding my weight on my forearms, and she spreads her legs to make room for me without being asked. She is warm and soft everywhere I touch her, and her skin is a deep brown that the streetlight turns to copper along her shoulder, and her thighs are strong around my hips. I have dreamed less beautiful things."},
+{t:"p",s:"“Tell me how,” I say. “I want it right.”"},
+{t:"p",s:"“Slow first.” She reaches down between us and guides me to her. “Then I’ll tell you.”"},
+{t:"p",s:"I push into her a little at a time. She is very wet and very tight, and she breathes out long and shaky as I sink into her, and her hands slide down my back and grip my ass and pull me the rest of the way in. When I’m fully inside her, we both stop moving. Her eyes are open. So are mine."},
+{t:"p",s:"“Cazzo,” I whisper. “You feel like a sin I’ll go to confession for and not regret.”"},
+{t:"p",s:"“You don’t go to confession.”"},
+{t:"p",s:"“I’ll start.”"},
+{t:"p",s:"I move. Slow, as she asked. Long strokes, pulling almost all the way out and sliding back in until my hips meet hers, and I learn her on every stroke. A tilt of the hips and she gasps. A grind at the bottom and her nails bite. When I find the angle she likes best, she grabs my face and says, “There, right there, stay right there,” and I stay exactly there."},
+{t:"p",s:"Her heels lock behind my thighs. She starts meeting me, lifting her hips into every thrust, and the bed starts knocking softly against the wall, and I think of the guest in the suite below and decide I don’t care about him."},
+{t:"p",s:"“Harder,” she says. “Now you can run it.”"},
+{t:"p",s:"I take her wrists in one hand and press them into the pillow over her head, loose enough that she can pull free, and she doesn’t pull. She smiles at me. She tests my grip once, just to make sure I’m paying attention, and then she lets her arms go slack and gives me the wheel."},
+{t:"p",s:"I fuck her harder. Deep, steady, the headboard keeping time. She’s talking now, filthy and breathless. “Fuck me like you mean it. Deeper. Your dick is ridiculous, you know that? Don’t stop. If you stop, I’ll have you banned from every Marriott in North America.” I’m laughing and fucking her at once, and I don’t think I’ve ever done both in my life."},
+{t:"p",s:"She comes first. I feel it start, her body tightening, her thighs shaking, her back bowing off those terrible sheets, and she cries out with her head thrown back, my name nowhere in it, just sound. I hold still deep inside her while she rides it out, feeling every pulse of her around me, and when she opens her eyes again, she looks wrecked and smug at once."},
+{t:"p",s:"I let go of her wrists. I take her face in my hand."},
+{t:"p",s:"“Veda,” I say."},
+{t:"p",s:"Her eyes flash. “That’s cheating.”"},
+{t:"p",s:"“Then disqualify me.”"},
+{t:"p",s:"She pulls me down into a kiss that is all teeth, and she rolls her hips under me, slow and deliberate, and says against my mouth, “Finish, Vittorio. Come on. I want to feel it.”"},
+{t:"p",s:"My own name in her mouth for the first time undoes me faster than anything else she’s done tonight. I drive into her three more times, four, losing the rhythm completely, and I come buried deep inside her with my face in her neck and her hand on the back of my head, holding me there like she’s decided I belong to her for the next few hours and I’ll do as I’m told."},
+{t:"p",s:"For a long time neither of us moves."},
+{t:"p",s:"Then she pats my back twice, like a coach. “Okay. You can get off me now. You weigh as much as a minibar.”"},
+{t:"p",s:"I roll onto my back. She rolls with me and settles against my side, one leg thrown over mine, her locs spread across my chest and my pillow and half my face. I don’t move them. Her breath slows against my ribs."},
+{t:"p",s:"“These sheets,” she mumbles, already halfway gone, “really are garbage.”"},
+{t:"p",s:"“I told you.”"},
+{t:"p",s:"“Don’t gloat. It’s unattractive in a man your age.”"},
+{t:"p",s:"She sleeps. I don’t, for a while. I lie in the dark under the worst sheets in Washington with a woman who called me by my name like she’d been saving it, and I think about what I’ll do when she wakes up and becomes the general manager again."},
+{t:"p",s:"Nothing, I decide. I’ll do nothing. If she wants this to be one night, she will have one perfect night, and I will go home to my mother and my looms and remember it until I die."},
+{t:"p",s:"At 5:20 I fall asleep with her hair in my mouth."},
+{t:"pov",s:"VEDA"},
+{t:"p",s:"At 6:40 my body wakes me on hotel time, as it has every morning for nineteen years."},
+{t:"p",s:"I’m in the penthouse. I’m naked. There is a very large Italian man asleep on his back beside me with one arm thrown over his face and the other hand resting on my hip like it was put there on purpose. The sheets are tangled around our waists. They have, of course, already started to pill."},
+{t:"p",s:"I lie still for a minute and let myself look at him in the gray light. The silver at his temples. The lemon socks, still on his feet. The scar on his thumb."},
+{t:"p",s:"I’m not ashamed of one second of last night. I want that clear in my own head before I do anything else. I’m a grown woman who chose a man and a night, and I would choose both again."},
+{t:"p",s:"But I’m also not about to be the GM who does the walk of shame through her own lobby at seven in the morning while the breakfast shift watches. And I’m not about to wake up in a penthouse and become a story he tells about a trip to America."},
+{t:"p",s:"If he wants to know me, he can find me where I live."},
+{t:"p",s:"I slide out from under his hand and dress in the living room. My bra is under the table next to a bowl of congealed cacio e pepe. I knot my hair up and find the Ashgrove stationery in the desk drawer, the heavy cream stock I approved last spring."},
+{t:"p",s:"I write it standing at the room service cart."},
+{t:"note",s:"Penthouse,"},
+{t:"note",s:"Dolly’s on Twelfth Street NE, Brookland. Saturday, 9:00 a.m."},
+{t:"note",s:"No car service. Take the Red Line like a citizen. Get off at Brookland. Walk."},
+{t:"note",s:"If you’re not there by 9:30, I’ll know, and no hard feelings. If you are, the coffee’s on me."},
+{t:"note",s:"Management"},
+{t:"p",s:"I lay the note on the white cloth and set my badge on top of it, face up this time. VEDA KING, GENERAL MANAGER."},
+{t:"p",s:"I have a spare in my desk drawer. He doesn’t need to know that."},
+{t:"p",s:"On my way out, I ride the guest elevator down to the lobby and walk out through the front doors past the doorman, who says, “Morning, Ms. King,” without blinking, because I trained him."},
+{t:"pov",s:"VITTORIO"},
+{t:"p",s:"At 8:51 on Saturday morning I am on the Red Line, standing because every seat is taken by a family in matching Wizards jerseys, and I am holding a hotel badge in my coat pocket like a teenager with a love letter."},
+{t:"p",s:"Yesterday at lunch Chiara took one look at my face over the leftover turkey and said, “Who is she?” I said, “Nobody,” and her husband Neil laughed so hard he had to leave the table."},
+{t:"p",s:"Brookland, when I come up out of the station, is rowhouses in brick and painted wood, porches with chairs on them, a man walking three dogs, a church bell somewhere. Nobody here has heard of my family’s mill. It’s the first neighborhood in this city where nobody is trying to sell me anything."},
+{t:"p",s:"Dolly’s is a narrow storefront on Twelfth Street with a hand-painted sign, a line out the door, and windows fogged from the inside. A bell rings over my head when I duck in. It smells like coffee and butter and cinnamon and fried chicken, all at once, at nine in the morning."},
+{t:"p",s:"The woman behind the counter is seventy if she’s a day, silver braids, reading glasses on a beaded chain. She looks me up and down and says, “You’re the tall one.”"},
+{t:"p",s:"“Excuse me?”"},
+{t:"p",s:"“Booth in the back, baby. She’s been here since quarter to.” She points a pair of tongs. “You want the chicken and waffle. Don’t argue with me, I already put it in.”"},
+{t:"p",s:"Veda is in the last booth with two coffees and her back to the wall, where she can see the whole room. She’s in a dark green sweater and gold hoops, and her hair is down again, and she watches me walk the length of the café without smiling, like she’s daring me to be anything other than what she remembers."},
+{t:"p",s:"I slide into the booth across from her. The seat is cracked red vinyl. My knees hit the table."},
+{t:"p",s:"“You took the train,” she says."},
+{t:"p",s:"“I took the train. A child sneezed on me at Union Station. I survived.”"},
+{t:"p",s:"“And you walked.”"},
+{t:"p",s:"“Like a citizen.”"},
+{t:"p",s:"Now she smiles. It goes all the way up into her eyes, and I feel it in my stomach like a missed step on a staircase."},
+{t:"p",s:"I take the badge out of my pocket and slide it across the table to her."},
+{t:"p",s:"“You left this,” I say."},
+{t:"p",s:"“I have a spare.”"},
+{t:"p",s:"“I assumed you had a spare. You’re a woman with a spare of everything.” I leave my hand on the table near hers, not touching. “I brought it anyway. I wanted a reason to give you something back.”"},
+{t:"p",s:"She looks at the badge for a long moment. Then she picks it up and tucks it into her bag without a word."},
+{t:"p",s:"“Vittorio,” she says."},
+{t:"p",s:"It’s the first time she’s said it in daylight. In a café full of strangers, with her real voice, not the hotel one and not the one from the dark."},
+{t:"p",s:"“Veda.”"},
+{t:"p",s:"“Here’s my problem with Penthouse and Management.” She wraps both hands around her coffee mug. “They were fun. They were a hell of a night. But they live in a building I run, and this is my neighborhood, and I don’t want to be a story you tell your cousin’s wife at Christmas.”"},
+{t:"p",s:"“I would never give her the satisfaction.”"},
+{t:"p",s:"“I’m serious.”"},
+{t:"p",s:"“So am I.” I hold her eyes. “Ask me anything. The truth, even when it’s boring.”"},
+{t:"p",s:"She studies me as if I’m the third bowl. Then she leans back in the booth."},
+{t:"p",s:"“Why were you awake in a penthouse at two in the morning on Thanksgiving,” she says, “instead of sleeping at your sister’s like a normal man?”"},
+{t:"p",s:"“Because Neil snores like a cement mixer, and I like my own bed.”"},
+{t:"p",s:"“Your own bed with the shitty sheets.”"},
+{t:"p",s:"“Even my own bed with the shitty sheets,” I agree, and she laughs, and Dolly brings the chicken and waffles, and puts a hand on Veda’s shoulder and says, “This one’s polite, baby. Keep him till Monday at least,” and walks away before either of us can answer."},
+{t:"break",s:""},
+{t:"pov",s:"VEDA"},
+{t:"p",s:"We talk until eleven. He eats every bite of the chicken and waffle and asks Dolly for her secret, and she tells him to go to hell, sweetly, and he looks delighted. I tell him about my mother in Upper Marlboro, who saved me a Thanksgiving plate with my name on the foil in Sharpie, and my best friend Renata, who has texted me nine times this morning because Tomás has a big mouth."},
+{t:"p",s:"My phone buzzes again. I flip it face down without reading it."},
+{t:"p",s:"“Renata,” I say. “She wants to know if I’ve lost my mind.”"},
+{t:"p",s:"“Have you?”"},
+{t:"p",s:"I look at him across the table. The light from the fogged window catches the silver in his hair. He’s got powdered sugar on the cuff of his sweater and doesn’t know it, and he has been looking at me since he walked in as if Dolly’s has nothing else worth seeing, and Dolly’s has Dolly."},
+{t:"p",s:"Here’s what I know. He took the train and walked from the station. He asked about Andre. He brought back a badge he knew I didn’t need, and he hasn’t tried to buy me a single thing all morning."},
+{t:"p",s:"And he’s leaving Sunday."},
+{t:"p",s:"“I live four blocks from here,” I say. “I have real coffee at my house. Better than Dolly’s. Don’t tell her.”"},
+{t:"p",s:"He goes very still, as if one wrong move will make me take it back."},
+{t:"p",s:"“Is that an invitation, Veda?”"},
+{t:"p",s:"“It’s an invitation.” I pick up my bag. “My house. My rules. You’re going to take off your shoes at the door and you’re not going to say one word about my sheets.”"},
+{t:"p",s:"“I would never.”"},
+{t:"p",s:"“You’d absolutely never,” I say, and pay before he can reach for his wallet. Dolly winks at me over the register."},
+{t:"p",s:"My house is a two-story brick rowhouse on Kearny Street with a porch I painted the color of a green apple four years ago, against the advice of my mother, my contractor and the man next door. Vittorio stops on the sidewalk and looks at it for a long time."},
+{t:"p",s:"“You painted this yourself?”"},
+{t:"p",s:"“Every board.”"},
+{t:"p",s:"“It’s very green.”"},
+{t:"p",s:"“It’s very mine.”"},
+{t:"p",s:"He looks at me, then back at the porch. “Yes,” he says. “That’s what I meant.”"},
+{t:"p",s:"Inside, it smells like lemon cleaner and the cinnamon candle on my mantel. Books on every flat surface, my grandmother’s quilt over the couch, my father’s record player with Anita Baker and Sade stacked beside it."},
+{t:"p",s:"He takes off his shoes at the door without being told twice. Gray socks today. No lemons."},
+{t:"p",s:"“I didn’t know yet,” he says, when I look at them, “if I’d be allowed inside.”"},
+{t:"p",s:"I make coffee in the French press. He takes one sip with his eyes closed. Then he sets the mug down on my coffee table on a coaster without being told, and of everything he has done in two days, that’s what does it."},
+{t:"p",s:"I take his hand. I lead him upstairs."},
+{t:"p",s:"My bedroom faces east. At noon the light comes straight through the white curtains, and everything is bright and plain. My bed is a queen I bought on sale in Hyattsville. My sheets are white cotton from Target, washed so many times they’ve gone soft as a T-shirt and a little thin in the middle where I sleep. There is not a thread count on this bed I could tell you if you held a gun to my head."},
+{t:"p",s:"He doesn’t look at the sheets. He looks at me."},
+{t:"p",s:"“Sit down,” I say, “on the edge.”"},
+{t:"p",s:"He sits. Even sitting, his head comes up to my chin. I stand between his knees, and this time I’m the one who undresses him, every button of his shirt, in full daylight, where I can see everything. There’s more gray in the hair on his chest than I could see in the dark. There’s a mole above his left hip. A long scar on his right forearm, old and white."},
+{t:"p",s:"“Loom,” he says, when I touch it. “I was nineteen and stupid.”"},
+{t:"p",s:"I kiss it. He stops breathing for a second."},
+{t:"p",s:"“Lie back,” I say. “And keep your hands on the bed until I tell you different.”"},
+{t:"p",s:"He looks up at me, those gold-brown eyes steady on mine, and smiles slowly."},
+{t:"p",s:"“Your rules,” he says, and lies back, and puts his hands flat on my soft cheap sheets."},
+{t:"break",s:""},
+{t:"pov",s:"VITTORIO"},
+{t:"p",s:"She takes her time with me, and she wants me to watch her do it."},
+{t:"p",s:"She undresses at the foot of the bed in a square of noon sun, unhurried, gold hoops set one by one on the dresser, her locs down her back and her chin up. Heavy breasts, wide hips, thick thighs, soft belly, dark nipples drawn tight in the cool air, and a scatter of small moles across one shoulder."},
+{t:"p",s:"The first time I had her in the dark and learned her with my hands. Now I can see her. I don’t look away from any of it."},
+{t:"p",s:"“You’re staring again,” she says."},
+{t:"p",s:"“I’m memorizing.”"},
+{t:"p",s:"“Memorize this,” she says, and climbs onto the bed, onto me."},
+{t:"p",s:"She straddles my thighs and takes my cock in her hand, and she doesn’t hurry. She strokes me and watches my face the whole time, learning what makes my breath stop, as I learned her at the table. Slow pulls. A twist at the top. Her thumb pressing just under the head until I hiss and my hands fist in her sheets."},
+{t:"p",s:"“Hands,” she reminds me."},
+{t:"p",s:"I flatten them again. It costs me."},
+{t:"p",s:"“Good,” she says, and the word should not affect a grown man as much as it does."},
+{t:"p",s:"She bends and takes me into her mouth."},
+{t:"p",s:"Dio. Fuck. She’s slow and wet and merciless. She takes me deep and pulls back to tease the head with her tongue, and her eyes come up to watch me while she does it, and I make sounds I didn’t know I could make. I’m gripping the sheets. They’re soft from a hundred washings, worn thin in the middle where she sleeps, and I am going to remember the feel of them in my fists for the rest of my life."},
+{t:"p",s:"“Veda,” I say. “Veda, please.”"},
+{t:"p",s:"She lets me go with a soft wet sound and looks up at me, and her mouth is shining, and she is smiling like she just won a negotiation."},
+{t:"p",s:"“Please what?”"},
+{t:"p",s:"“Whatever you want. Anything. I’m begging. Look at me. A man of my age, begging.”"},
+{t:"p",s:"“I like you begging.” She crawls up my body, slow, her breasts dragging over my chest, until she’s kneeling over my hips. “Hands on me now. Only my hips.”"},
+{t:"p",s:"I take her hips. She reaches between us to hold me steady and sinks down onto me a little at a time, watching my face the whole way."},
+{t:"p",s:"It’s different in the daylight. All of it. I can see where we’re joined. I can see her bite her lip as she takes the last inch, and the flush rise across her chest, and her eyes go half closed as she settles all the way down and she breathes out, “Oh, fuck, yes, there you go.”"},
+{t:"p",s:"She rides me slow, in no rush at all. She rolls her hips in long, deep circles, grinding down, taking her pleasure exactly as she wants it, and every time I try to thrust up into her she presses my chest back down with one hand and says, “No. Mine. Let me,” and I let her. God help me, I let her do anything."},
+{t:"p",s:"“Take it,” I tell her. “Take all of it, cara. Use me however you want. I’m yours to wreck.”"},
+{t:"p",s:"Down the block somebody’s dog is barking. A car passes playing gospel too loud. Downstairs her coffee is going cold on the coaster. I have had sex in Paris, in Rome, on a boat on Lake Como with the stars out, and I have never in my life felt anything like this ordinary Saturday in a rowhouse in Northeast Washington with a woman who painted her porch the wrong shade of green to prove a point."},
+{t:"p",s:"She speeds up, just a little. Her hand goes between her own legs and she touches her clit while she rides me, and she doesn’t hide it, she watches me watch her, and when I groan she laughs low in her throat."},
+{t:"p",s:"“Look at you,” she says. “Look at you, Vittorio.”"},
+{t:"p",s:"“I’m looking at you.”"},
+{t:"p",s:"“Keep looking.”"},
+{t:"p",s:"I do. I watch her face change as it builds. I watch her lose the rhythm and find it again, faster, grinding down on me hard, her fingers moving quick, her breath going ragged. I watch her come. Her eyes stay open, on mine. She says my name, my real name, in the bright noon light, and clenches around me so hard I lose the next few seconds."},
+{t:"p",s:"Then she leans down and takes my face in both her hands. “Your turn,” she says. “Move.”"},
+{t:"p",s:"I sit up and wrap my arms around her, holding her against my chest, still inside her, her legs locked around my waist. I move up into her slow and deep, and she holds on to me, her mouth at my ear, whispering things in English I’ll remember better than any Italian, and I come with my face pressed into her neck and her name coming out of me in pieces."},
+{t:"p",s:"We stay like that for a long time. Rocking a little. Her fingers stroking the back of my neck. Neither of us talking."},
+{t:"p",s:"Eventually she tips us over, and we lie tangled on our sides, facing each other, sweaty and wrecked, her knee between mine."},
+{t:"p",s:"I touch the sheet beneath us. White. Plain. Thin in the middle. A little pilled at the edge where her foot goes. No thread count anyone would brag about. Probably made in a factory I’d be ashamed of."},
+{t:"p",s:"“Don’t,” she says, watching me. “Not one word.”"},
+{t:"p",s:"“I wasn’t going to criticize.”"},
+{t:"p",s:"“Liar.”"},
+{t:"p",s:"“I was going to say,” I say, and pull the soft cheap sheet up over her shoulder, “that I’ve never slept on anything better.”"},
+{t:"p",s:"She stares at me. “These are from Target.”"},
+{t:"p",s:"“Yes.”"},
+{t:"p",s:"“They have a hole in the corner. The dog I used to have chewed it.”"},
+{t:"p",s:"“Yes. I found it with my toe.”"},
+{t:"p",s:"“So you’re full of shit.”"},
+{t:"p",s:"“No,” I say. “The sheets are terrible. You’re on them. It turns out that’s the whole difference.”"},
+{t:"p",s:"She doesn’t say anything for a long moment. Then she pulls the sheet over both our heads, so we’re under a soft white tent in the noon light, and kisses me like she’s making up her mind about something."},
+{t:"pov",s:"VEDA"},
+{t:"p",s:"He flies home Sunday at 5:40 from Dulles. We both know it."},
+{t:"p",s:"We spend the rest of Saturday on the couch under my grandmother’s quilt with my father’s records playing, arguing about Sade. In the evening I feed him my mother’s Thanksgiving plate, split down the middle. He eats my mother’s cornbread dressing like it’s a sacrament and asks for the recipe. I tell him my mother would sooner give him a kidney."},
+{t:"p",s:"Sunday morning he’s sitting at my kitchen table in one of my old Howard T-shirts that barely covers his chest, reading the paper on my tablet, drinking my coffee, and I’m standing at the stove watching him and thinking, distinctly, Oh, hell."},
+{t:"p",s:"“I come back December 17,” he says, without looking up. “Christmas with Chiara. Eleven days. Neil’s mother is visiting, so I’ll be at the Ashgrove.” He swipes to the next page. “In whatever room the general manager allows.”"},
+{t:"p",s:"“The general manager will consider your request.”"},
+{t:"p",s:"“I ask for the penthouse. I won’t sleep on the sheets.”"},
+{t:"p",s:"“Then where are you going to sleep?”"},
+{t:"p",s:"He looks up then and doesn’t answer. He doesn’t have to."},
+{t:"p",s:"I turn the bacon. I’m aware of every muscle in my own face."},
+{t:"p",s:"“And after that,” he says, carefully. “After Christmas. I don’t want to be a man who flies in twice a year. I know what this is. I’m fifty, and I live on another continent, and you have a hotel and a green porch and a life you built with your own hands that does not need me in it.”"},
+{t:"p",s:"“It doesn’t.”"},
+{t:"p",s:"“I’m aware. I’m asking if it wants me in it anyway.”"},
+{t:"p",s:"I set the spatula down."},
+{t:"p",s:"I have run that hotel for six years and haven’t taken more than three days off in a row in all six. My vacation balance is so big HR sends me nervous emails about it. I’ve told myself the building can’t run without me so many times I started believing it."},
+{t:"p",s:"Tomás took over at 3:04 Friday morning and ran the Ashgrove fine all weekend. He called me once, about a binder."},
+{t:"p",s:"“Hand me my laptop,” I say. “It’s on the counter.”"},
+{t:"p",s:"He hands it to me. I open it right there at the stove, bacon still sizzling, and log into the Ashgrove system. I put in a request for nine days off, January 8 through 16. I approve it myself, because I’m the GM, and I can. Then I open a new tab and book a seat on a flight to Milan, and I pay for it with my own card before he can say one word about first class."},
+{t:"p",s:"He watches all of it in silence. When I turn the screen to show him, he reads it twice."},
+{t:"p",s:"“January,” he says."},
+{t:"p",s:"“Your mother is going to inspect my sheets. I want to inspect her looms.”"},
+{t:"p",s:"“She’ll love you.”"},
+{t:"p",s:"“She’ll interrogate me.”"},
+{t:"p",s:"“Yes,” he says, “that’s how she loves people.”"},
+{t:"p",s:"He comes around the table and wraps his arms around me from behind. He sets his chin on top of my head, which he can do, which I hate, which I’m getting used to. We stand like that at my stove while the bacon spits."},
+{t:"p",s:"This isn’t forever, and I’m not stupid. It’s a flight in six weeks and eleven days at Christmas and a phone that’s going to ring at strange hours from a time zone six hours ahead. It’s a start, a real one, and I chose it."},
+{t:"p",s:"“Sit down, Penthouse,” I tell him. “I’m making breakfast.”"},
+{t:"p",s:"He sits. I plate two eggs, four strips of bacon and toast, and set it in front of him. I watch him take the first bite."},
+{t:"p",s:"Nobody sends a damn thing back."},
+{t:"end",s:"The End"},
+];
+
+// ── STATE ────────────────────────────────────────────────────────
+let pages = [];
+let currentPage = 0;
+let pagesRead = 0;
+let maxReached = 0;
+let fontSize = 18; // px
+
+// ── DOM-MEASURED PAGINATION ──────────────────────────────────────
+// Measures actual rendered pixel height of each element so pages
+// never overflow and never have dead whitespace.
+function buildPages(){
+  const proseEl = document.getElementById('book-prose');
+  const pcs = getComputedStyle(proseEl);
+  // measure the text area only (inside the page padding) so pages never overflow
+  const proseH = proseEl.clientHeight - parseFloat(pcs.paddingTop) - parseFloat(pcs.paddingBottom) - 4;
+  const proseW = proseEl.clientWidth - parseFloat(pcs.paddingLeft) - parseFloat(pcs.paddingRight);
+
+  // Hidden measuring sandbox — same width & font as the real prose area
+  const sandbox = document.createElement('div');
+  const cs = getComputedStyle(proseEl);
+  sandbox.style.cssText = [
+    'position:fixed','visibility:hidden','pointer-events:none','z-index:-1',
+    'top:0','left:0',
+    'width:' + proseW + 'px',
+    'font-family:' + cs.fontFamily,
+    'font-size:' + cs.fontSize,
+    'line-height:' + cs.lineHeight,
+    'padding:0','overflow:visible'
+  ].join(';');
+  document.body.appendChild(sandbox);
+
+  const pGap = Math.round(fontSize * 0.65); // paragraph margin-bottom
+  const breakH = Math.round(fontSize * 1.7 * 2 + 32); // scene break height (two lines + margins)
+
+  const result = [];
+  let cur = [];
+  let curH = 0;
+
+  for(let i = 0; i < STORY.length; i++){
+    const item = STORY[i];
+    let el;
+
+    if(item.t === 'break'){
+      el = document.createElement('span');
+      el.style.cssText = 'display:block;text-align:center;font-family:\'Cormorant Garamond\',serif;font-size:18px;letter-spacing:.5em;margin:24px 0;';
+      el.textContent = '* * *';
+    } else if(item.t === 'pov'){
+      el = document.createElement('span');
+      el.style.cssText = 'display:block;font-family:Montserrat,sans-serif;font-size:11px;letter-spacing:.32em;margin:6px 0 18px;';
+      el.textContent = item.s;
+    } else if(item.t === 'end'){
+      el = document.createElement('span');
+      el.style.cssText = 'display:block;font-size:1.1em;margin:28px 0 8px;';
+      el.textContent = item.s;
+    } else if(item.t === 'note'){
+      el = document.createElement('p');
+      el.style.cssText = 'margin-bottom:' + Math.round(fontSize*0.3) + 'px;padding-left:2em;font-style:italic;';
+      el.textContent = item.s;
+    } else {
+      el = document.createElement('p');
+      // drop-cap only on very first paragraph of entire story
+      const isVeryFirst = (result.length === 0 && cur.length === 0);
+      if(isVeryFirst){
+        el.style.cssText = 'margin-bottom:' + pGap + 'px;text-indent:0;';
+        // approximate drop-cap extra height
+      } else if(cur.length === 0 || (cur.length >= 1 && (cur[cur.length-1].t === 'break' || cur[cur.length-1].t === 'pov'))){
+        el.style.cssText = 'margin-bottom:' + pGap + 'px;text-indent:0;';
+      } else {
+        el.style.cssText = 'margin-bottom:' + pGap + 'px;text-indent:2em;';
+      }
+      el.textContent = item.s;
+    }
+
+    sandbox.appendChild(el);
+    const elH = el.offsetHeight + ((item.t === 'p') ? pGap : (item.t === 'note' ? Math.round(fontSize*0.3) : 0)) + (item.t === 'pov' ? 24 : 0);
+    sandbox.removeChild(el);
+
+    // If adding this element would overflow and we already have content, start new page
+    if(curH + elH > proseH && cur.length > 0){
+      // never strand a POV heading or scene break at the bottom of a page
+      const carry = [];
+      while(cur.length > 1 && (cur[cur.length-1].t === 'pov' || cur[cur.length-1].t === 'break')){
+        carry.unshift(cur.pop());
+      }
+      result.push(cur);
+      cur = carry;
+      curH = carry.length ? carry.length * Math.round(fontSize * 3) : 0;
+    }
+    cur.push(item);
+    curH += elH;
+  }
+  if(cur.length) result.push(cur);
+
+  document.body.removeChild(sandbox);
+  return result;
+}
+
+// ── RENDER ───────────────────────────────────────────────────────
+function renderPage(){
+  const prose = document.getElementById('book-prose');
+  prose.innerHTML = '';
+  const pg = pages[currentPage];
+  let firstOnPage = true;
+
+  for(const item of pg){
+    if(item.t === 'break'){
+      const el = document.createElement('span');
+      el.className = 'scene-break';
+      el.textContent = '* * *';
+      prose.appendChild(el);
+      firstOnPage = true;
+    } else if(item.t === 'pov'){
+      const el = document.createElement('span');
+      el.className = 'pov-label';
+      el.textContent = item.s;
+      prose.appendChild(el);
+      firstOnPage = true;
+    } else if(item.t === 'end'){
+      const el = document.createElement('span');
+      el.className = 'the-end';
+      el.textContent = item.s;
+      prose.appendChild(el);
+    } else if(item.t === 'note'){
+      const el = document.createElement('p');
+      el.className = 'note';
+      el.textContent = item.s;
+      prose.appendChild(el);
+      firstOnPage = false;
+    } else {
+      const el = document.createElement('p');
+      const isVeryFirst = currentPage === 0 && firstOnPage;
+      if(isVeryFirst){
+        el.className = 'drop-cap';
+      } else if(firstOnPage){
+        el.className = 'no-indent';
+      }
+      el.textContent = item.s;
+      prose.appendChild(el);
+      firstOnPage = false;
+    }
+  }
+
+  document.getElementById('page-indicator').textContent =
+    (currentPage+1) + ' of ' + pages.length;
+  document.getElementById('pages-read-counter').textContent =
+    'Pages read this session: ' + pagesRead;
+  document.getElementById('btn-prev').disabled = currentPage === 0;
+  document.getElementById('btn-next').disabled = currentPage === pages.length - 1;
+  document.getElementById('reader-wrap').scrollIntoView({behavior:'smooth',block:'nearest'});
+
+  // Show vote block only on the last page
+  if(currentPage === pages.length - 1){
+    showVoteBlock();
+  } else {
+    hideVoteBlock();
+  }
+}
+
+function changePage(dir){
+  const next = currentPage + dir;
+  if(next < 0 || next >= pages.length) return;
+  currentPage = next;
+  if(currentPage > maxReached){
+    maxReached = currentPage;
+    pagesRead = maxReached + 1;
+  }
+  renderPage();
+}
+
+function changeFontSize(dir){
+  fontSize = Math.max(14, Math.min(24, fontSize + dir));
+  document.documentElement.style.setProperty('--fs', fontSize + 'px');
+  // Rebuild pages at new font size then re-render
+  pages = buildPages();
+  currentPage = 0;
+  renderPage();
+}
+
+// ── VOTE BLOCK ───────────────────────────────────────────────────
+const VOTE_KEY = 'rs_voted_v1';
+const SB_URL  = 'https://myelzkbeipgwgyxrtgcq.supabase.co';
+const SB_KEY  = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im15ZWx6a2JlaXBnd2d5eHJ0Z2NxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzI1Njg1NjIsImV4cCI6MjA4ODE0NDU2Mn0.DgcLH8ie77yaCiIr8-bvImxsPAGAftmwMcAa-d6WwLU';
+const FORM_ID = 'f4c08d96-a534-4de1-8749-bcd06faebb06';
+
+async function fetchVoteCount(){
+  try{
+    const r = await fetch(
+      `${SB_URL}/rest/v1/submissions?form_id=eq.${FORM_ID}&select=id`,
+      { headers:{ apikey: SB_KEY, Authorization: `Bearer ${SB_KEY}`, Prefer: 'count=exact', Range: '0-0' } }
+    );
+    const count = r.headers.get('content-range');
+    if(count){
+      const total = count.split('/')[1];
+      if(total && total !== '*'){
+        return parseInt(total, 10);
+      }
+    }
+    return null;
+  } catch(e){ return null; }
+}
+
+function showVoteBlock(){
+  const block = document.getElementById('vote-block');
+  if(!block) return;
+  block.style.display = 'block';
+  if(localStorage.getItem(VOTE_KEY) === '1'){
+    const chk = document.getElementById('vote-check');
+    chk.checked = true;
+    chk.disabled = true;
+    document.getElementById('vote-label').classList.add('locked');
+    document.getElementById('vote-tally').innerHTML =
+      'Your vote is in. ♥<br><span style="font-size:11px;letter-spacing:.1em;color:var(--gold-d);font-family:\'Montserrat\',sans-serif;text-transform:uppercase;">Stay tuned — the decision drops in the newsletter.</span>';
+  }
+  // Load live vote count
+  fetchVoteCount().then(function(n){
+    if(n === null) return;
+    const tallyEl = document.getElementById('vote-tally');
+    if(!tallyEl) return;
+    const countLine = `<div style="margin-top:8px;font-family:'Montserrat',sans-serif;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-d)">${n.toLocaleString()} reader${n===1?'':'s'} voted yes</div>`;
+    if(localStorage.getItem(VOTE_KEY) === '1'){
+      tallyEl.innerHTML =
+        'Your vote is in. ♥<br><span style="font-size:11px;letter-spacing:.1em;color:var(--gold-d);font-family:\'Montserrat\',sans-serif;text-transform:uppercase;">Stay tuned — the decision drops in the newsletter.</span>' + countLine;
+    } else {
+      tallyEl.innerHTML = countLine;
+    }
+  });
+}
+
+function hideVoteBlock(){
+  const block = document.getElementById('vote-block');
+  if(block) block.style.display = 'none';
+}
+
+function handleVote(){
+  const chk = document.getElementById('vote-check');
+  if(!chk.checked) return;
+  chk.disabled = true;
+  document.getElementById('vote-label').classList.add('locked');
+  localStorage.setItem(VOTE_KEY, '1');
+  // Submit to Supabase
+  fetch(`${SB_URL}/rest/v1/submissions`, {
+    method: 'POST',
+    headers:{
+      apikey: SB_KEY,
+      Authorization: `Bearer ${SB_KEY}`,
+      'Content-Type': 'application/json',
+      Prefer: 'return=minimal'
+    },
+    body: JSON.stringify({ form_id: FORM_ID, data: { vote: 'yes' } })
+  }).catch(()=>{});
+  document.getElementById('vote-tally').innerHTML =
+    'Your vote is in. ♥<br><span style="font-size:11px;letter-spacing:.1em;color:var(--gold-d);font-family:\'Montserrat\',sans-serif;text-transform:uppercase;">Stay tuned — the decision drops in the newsletter.</span>';
+}
+
+// ── INIT ─────────────────────────────────────────────────────────
+// Wait for fonts so measurements are accurate, then build & render
+document.fonts.ready.then(function(){
+  pages = buildPages();
+  renderPage();
+});
+</script>
+</body>
+</html>
