@@ -719,7 +719,7 @@ function buildPages(){
     }
 
     sandbox.appendChild(el);
-    const elH = el.offsetHeight + ((item.t === 'p') ? pGap : (item.t === 'note' ? Math.round(fontSize*0.3) : 0)) + (item.t === 'pov' ? 24 : 0);
+    const elH = el.offsetHeight + ((item.t === 'p') ? pGap : (item.t === 'note' ? Math.round(fontSize*0.3) : 0)) + (item.t === 'pov' ? 24 : 0) + (item.t === 'break' ? 56 : 0) + (item.t === 'end' ? 36 : 0);
     sandbox.removeChild(el);
 
     // If adding this element would overflow and we already have content, start new page
