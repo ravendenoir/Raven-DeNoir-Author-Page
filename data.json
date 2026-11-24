@@ -13,7 +13,7 @@
     {
       "id": "cta3",
       "label": "Previous Month Newsletter",
-      "url": "https://ravendenoir.com/2026-11-november-newsletter-web.html"
+      "url": "https://ravendenoir.com/2026-10-october-newsletter-web.html"
     }
   ],
   "profile": {
@@ -771,7 +771,7 @@
       "coverUrl": "https://m.media-amazon.com/images/I/81Atca9JT5L._SL1500_.jpg",
       "isTopSeller": false,
       "isKuFave": false,
-      "isComingSoon": true
+      "isComingSoon": false
     },
     {
       "id": "mtks9c9m7c1s",
@@ -783,7 +783,7 @@
       "coverUrl": "https://m.media-amazon.com/images/I/71dE4bA8BLL._SL1500_.jpg",
       "isTopSeller": false,
       "isKuFave": false,
-      "isComingSoon": true
+      "isComingSoon": false
     },
     {
       "id": "mv8lgost78gq",
@@ -810,5 +810,5 @@
       "isComingSoon": false
     }
   ],
-  "latestNewsletter": "https://ravendenoir.com/2026-11-november-newsletter-web.html"
+  "latestNewsletter": "https://ravendenoir.com/2026-10-october-newsletter-web.html"
 }
